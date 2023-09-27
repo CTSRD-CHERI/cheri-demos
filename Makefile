@@ -19,7 +19,9 @@ ${PACKAGES_HYBRIDABI}:
 	sudo pkg64 install $@
 
 ${REPOS}:
-	if [ ! -d "${USER_HOME}/${@:C/.git$//}" ]; then \
+	if [ -d "${USER_HOME}/${@:C/.git$//}" ]; then \
+		git -C ${USER_HOME}/${@:C/.git$//} pull; \
+	else \
 		git clone https://github.com/CTSRD-CHERI/$@ ${USER_HOME}/${@:C/.git$//}; \
 	fi
 
