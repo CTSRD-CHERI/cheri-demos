@@ -12,6 +12,8 @@ REPOS+=			chericat.git
 
 all: ${PACKAGES_CHERIABI} ${PACKAGES_HYBRIDABI} ${REPOS} overlay chericat
 
+.PHONY: overlay
+
 ${PACKAGES_CHERIABI}:
 	sudo pkg64c install $@
 
