@@ -6,7 +6,7 @@ In the demo nginx is configured with the following root location:
 
 `/usr/local/www/nginx`
 
-To server the demo static content it must be copied to that root
+To serve the demo static content it must be copied to that root
 location:
 
 `cp -r cam /usr/local/www/nginx`
@@ -62,6 +62,6 @@ strength of Diffe-Hellan keys. To install the parameter file:
 
 `cp dhparams.pem /usr/local/etc/nginx/`
 
-**NOTE: the dhparams.pen file should not be used for any other purpose than
+**NOTE: the dhparams.pem file should not be used for any other purpose than
 the demo.**  
 
