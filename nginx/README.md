@@ -20,8 +20,6 @@ listen 443;
 listen [::]:443;
 ```
 
-Configuration of HTTP
-
 ### demo-self-signed.conf
 
 The demo nginx configuration file includes the file `demo-ssl-params.conf`.
@@ -50,8 +48,19 @@ not be used for any other purpose than the demo.**
 
 ### demo-ssl-params.conf
 
-The demo nginx configuration file includes the file `demo-ssl-params.confa.`
+The demo nginx configuration file includes the file `demo-ssl-params.conf.`
 This file configures TLS parameters to provide a realistic real-world HTTPS
 server. Install this file as follows: 
 
 `cp demo-ssl-params.conf /usr/local/etc/nginx/`
+
+#### dhparam.pem
+
+This nginx demo ssl configuration includes a setting to increase the default
+strength of Diffe-Hellan keys. To install the parameter file:
+
+`cp dhparams.pem /usr/local/etc/nginx/`
+
+**NOTE: the dhparams.pen file should not be used for any other purpose than
+the demo.**  
+
