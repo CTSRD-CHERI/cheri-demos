@@ -1,0 +1,186 @@
+[Document 0]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=C
+Highlighting Set By User=false
+Indentation Mode=cstyle
+Mode=C
+Mode Set By User=false
+URL=file:///home/demo/cheri-exercises/src/exercises/buffer-overflow-stack/buffer-overflow-stack.c
+
+[Kate Plugins]
+cmaketoolsplugin=false
+compilerexplorer=false
+eslintplugin=false
+externaltoolsplugin=true
+formatplugin=false
+katebacktracebrowserplugin=false
+katebuildplugin=true
+katecloseexceptplugin=false
+katecolorpickerplugin=false
+katectagsplugin=false
+katefilebrowserplugin=false
+katefiletreeplugin=true
+kategdbplugin=true
+kategitblameplugin=false
+katekonsoleplugin=true
+kateprojectplugin=true
+katereplicodeplugin=false
+katesearchplugin=true
+katesnippetsplugin=false
+katesqlplugin=false
+katesymbolviewerplugin=false
+katexmlcheckplugin=false
+katexmltoolsplugin=false
+keyboardmacrosplugin=false
+ktexteditorpreviewplugin=false
+latexcompletionplugin=false
+lspclientplugin=true
+rainbowparens=false
+tabswitcherplugin=true
+textfilterplugin=true
+
+[MainWindow0]
+1920x1080 screen: Window-Maximized=true
+Active ViewSpace=0
+Kate-MDI-H-Splitter=0,1369,462
+Kate-MDI-Sidebar-0-Bar-0-TvList=kate_private_plugin_katefiletreeplugin,kateproject,kateprojectgit,lspclient_symbol_outline
+Kate-MDI-Sidebar-0-LastSize=200
+Kate-MDI-Sidebar-0-SectSizes=0
+Kate-MDI-Sidebar-0-Splitter=901
+Kate-MDI-Sidebar-1-Bar-0-TvList=Locals and Stack
+Kate-MDI-Sidebar-1-LastSize=200
+Kate-MDI-Sidebar-1-SectSizes=0
+Kate-MDI-Sidebar-1-Splitter=901
+Kate-MDI-Sidebar-2-Bar-0-TvList=
+Kate-MDI-Sidebar-2-LastSize=200
+Kate-MDI-Sidebar-2-SectSizes=0
+Kate-MDI-Sidebar-2-Splitter=251
+Kate-MDI-Sidebar-3-Bar-0-TvList=output,diagnostics,kate_plugin_katesearch,kateprojectinfo,kate_private_plugin_katekonsoleplugin,kate_plugin_katebuildplugin,Debug View
+Kate-MDI-Sidebar-3-LastSize=407
+Kate-MDI-Sidebar-3-SectSizes=0
+Kate-MDI-Sidebar-3-Splitter=1581
+Kate-MDI-Sidebar-Style=2
+Kate-MDI-Sidebar-Visible=true
+Kate-MDI-ToolView-Debug View-Position=3
+Kate-MDI-ToolView-Debug View-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-Debug View-Visible=true
+Kate-MDI-ToolView-Locals and Stack-Position=1
+Kate-MDI-ToolView-Locals and Stack-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-Locals and Stack-Visible=true
+Kate-MDI-ToolView-diagnostics-Position=3
+Kate-MDI-ToolView-diagnostics-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-diagnostics-Visible=false
+Kate-MDI-ToolView-kate_plugin_katebuildplugin-Position=3
+Kate-MDI-ToolView-kate_plugin_katebuildplugin-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-kate_plugin_katebuildplugin-Visible=false
+Kate-MDI-ToolView-kate_plugin_katesearch-Position=3
+Kate-MDI-ToolView-kate_plugin_katesearch-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-kate_plugin_katesearch-Visible=false
+Kate-MDI-ToolView-kate_private_plugin_katefiletreeplugin-Position=0
+Kate-MDI-ToolView-kate_private_plugin_katefiletreeplugin-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-kate_private_plugin_katefiletreeplugin-Visible=false
+Kate-MDI-ToolView-kate_private_plugin_katekonsoleplugin-Position=3
+Kate-MDI-ToolView-kate_private_plugin_katekonsoleplugin-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-kate_private_plugin_katekonsoleplugin-Visible=false
+Kate-MDI-ToolView-kateproject-Position=0
+Kate-MDI-ToolView-kateproject-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-kateproject-Visible=false
+Kate-MDI-ToolView-kateprojectgit-Position=0
+Kate-MDI-ToolView-kateprojectgit-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-kateprojectgit-Visible=false
+Kate-MDI-ToolView-kateprojectinfo-Position=3
+Kate-MDI-ToolView-kateprojectinfo-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-kateprojectinfo-Visible=false
+Kate-MDI-ToolView-lspclient_symbol_outline-Position=0
+Kate-MDI-ToolView-lspclient_symbol_outline-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-lspclient_symbol_outline-Visible=false
+Kate-MDI-ToolView-output-Position=3
+Kate-MDI-ToolView-output-Show-Button-In-Sidebar=true
+Kate-MDI-ToolView-output-Visible=false
+Kate-MDI-V-Splitter=0,493,407
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAOjAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAGABoAGEAbQBiAHUAcgBnAGUAcgBCAGEAcgEAAAHx/////wAAAAAAAAAAAAAAEgBnAGQAYgBwAGwAdQBnAGkAbgEAAAIZ/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+
+[MainWindow0 Settings]
+1920x1080 screen: Window-Maximized=true
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAOjAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAGABoAGEAbQBiAHUAcgBnAGUAcgBCAGEAcgEAAAHx/////wAAAAAAAAAAAAAAEgBnAGQAYgBwAGwAdQBnAGkAbgEAAAIZ/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+WindowState=10
+
+[MainWindow0-Splitter 0]
+Children=MainWindow0-ViewSpace 0
+Orientation=1
+Sizes=1369
+
+[MainWindow0-ViewSpace 0]
+Active View=file:///home/demo/cheri-exercises/src/exercises/buffer-overflow-stack/buffer-overflow-stack.c
+Count=1
+Documents=file:///home/demo/cheri-exercises/src/exercises/buffer-overflow-stack/buffer-overflow-stack.c
+View 0=file:///home/demo/cheri-exercises/src/exercises/buffer-overflow-stack/buffer-overflow-stack.c
+
+[MainWindow0-ViewSpace 0 file:///home/demo/cheri-exercises/src/exercises/buffer-overflow-stack/buffer-overflow-stack.c]
+CursorColumn=0
+CursorLine=12
+Dynamic Word Wrap=true
+JumpList=
+TextFolding={"checksum":"7b58b5cac74e022e98a33e598948d9643797a75c","ranges":[]}
+ViMarks=
+
+[Open Documents]
+Count=1
+
+[Open MainWindows]
+Count=1
+
+[Plugin:katebuildplugin:MainWindow:0]
+0 BuildCmd Build=make
+0 BuildCmd Clean=make clean
+0 BuildPath=/home/demo/cheri-exercises/src/exercises/buffer-overflow-stack
+0 RunCmd Build=
+0 RunCmd Clean=
+0 Target=Target Set
+0 Target Names=Build,Clean
+Active Target Command=0
+Active Target Index=0
+NumTargets=1
+ProjectTargetSetRow=0
+Show Marks=false
+
+[Plugin:kategdbplugin:MainWindow:0]
+alwaysFocusOnInput=false
+lastTarget=0
+redirectTerminal=false
+targetCount=1
+target_0={"advanced":{"customInit":["run"],"gdb":"gdb"},"args":"","file":"/home/demo/cheri-exercises/src/exercises/buffer-overflow-stack/buffer-overflow-stack","target":"Target 1","workdir":"/home/demo/cheri-exercises/src/exercises/buffer-overflow-stack"}
+version=5
+
+[Plugin:kateprojectplugin:]
+projects=
+
+[Plugin:katesearchplugin:MainWindow:0]
+BinaryFiles=false
+CurrentExcludeFilter=-1
+CurrentFilter=-1
+ExcludeFilters=
+ExpandSearchResults=false
+Filters=
+FollowSymLink=false
+HiddenFiles=false
+MatchCase=false
+Place=1
+Recursive=true
+Replaces=
+Search=
+SearchAsYouTypeAllProjects=true
+SearchAsYouTypeCurrentFile=true
+SearchAsYouTypeFolder=true
+SearchAsYouTypeOpenFiles=true
+SearchAsYouTypeProject=true
+SearchDiskFiles=
+SearchDiskFiless=
+UseRegExp=false
+
+[Recent Files]
+File1[$e]=$HOME/cheri-exercises/src/exercises/buffer-overflow-stack/buffer-overflow-stack.c
+Name1[$e]=buffer-overflow-stack.c
