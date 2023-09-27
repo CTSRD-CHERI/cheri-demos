@@ -2,11 +2,12 @@
 
 ## Static content
 
-In the demo nginx s configured with the following root location:
+In the demo nginx is configured with the following root location:
 
 `/usr/local/www/nginx`
 
-To server the idemo static it should be copied to that location:
+To server the demo static content it must be copied to that root
+location:
 
 `cp -r cam /usr/local/www/nginx`
 
