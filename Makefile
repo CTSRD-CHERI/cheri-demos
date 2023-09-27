@@ -10,6 +10,8 @@ PACKAGES_HYBRIDABI+=	gdb-cheri
 REPOS=			cheri-exercises.git
 REPOS+=			chericat.git
 
+all: ${PACKAGES_CHERIABI} ${PACKAGES_HYBRIDABI} ${REPOS} overlay chericat
+
 ${PACKAGES_CHERIABI}:
 	sudo pkg64c install $@
 
@@ -26,5 +28,3 @@ overlay:
 
 chericat:
 	make -C ${USER_HOME}/chericat
-
-all: ${PACKAGES_CHERIABI} ${PACKAGES_HYBRIDABI} ${REPOS} overlay chericat
