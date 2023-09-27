@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>BERI open-source hardware downloads</title>
+<style type="text/css">
+</style>
+<body>
+
+<img width=200 src="../images/20120525-swm-beri-de4-photo.jpg" align=right>
+
+<h1>BERI open-source hardware downloads</h1>
+
+<table bgcolor="#ddffdd" border="0"><tr><td>Newflash - May 18 2015:
+  we have made a <a href="downloads-hw.html">new release of the BERI/CHERI</a>
+  source code, which has been updated for our most recent architectural changes
+  and includes everything necessary to synthesise BERI on an Altera FPGA.
+  </td></tr></table>
+
+<table bgcolor="#ffdddd" border="0"><tr><td>Newflash - June 18 2014: the
+  BERI/CHERI source code is now available for download!  Physical build specs for the Terasic DE4-based tablet are
+  online, as is <a href="downloads-sw.html">FreeBSD OS support for BERI</a>,
+  which was merged to FreeBSD 10.0 in August 2012.</td></tr></table>
+
+<p>
+  <a href="http://www.csl.sri.com/">SRI International</a> and the <a
+  href="/">University of Cambridge</a> have developed <a
+  href="index.html">BERI</a>, a pipelined 64-bit RISC FPGA soft-core processor
+  designed for teaching and research in the hardware-software interface.
+  BERI is implemented in <a href="http://www.bluespec.com/">Bluespec</a>, a
+  high-level hardware definition language (HDL) that compiles to efficient C
+  simulation or Verilog descriptions suitable for FPGA implementation.
+  BERI is able to boot the open-source <a
+  href="http://www.freebsd.org/">FreeBSD UNIX operating system</a>, which
+  supports multitasking, TCP/IP networking, multiple filesystems, POSIX APIs,
+  advanced security features, a has drivers for a variety of devices found on
+  Terasic's FPGA boards, as well as many thousands of third-party open-source
+  applications.
+  We use the BERI hardware-software platform daily in our teaching and
+  research (e.g., <a href="../cheri.html">CHERI</a>), and hope that others
+  will find it useful as well!
+</p>
+
+<h2>Hardware Downloads</h2>
+<p>
+  BERI consists of a number of components including: physical designs (e.g.,
+  tablet packaging for the Terasic DE4); HDL descriptions of the processor
+  and several peripherals; and adaptations of FreeBSD and other open-source
+  software to support BERI.
+</p>
+<p>
+  <a href="downloads-sw.html">For software downloads such as BERI OS support,
+    see this page.</a>
+</p>
+<p>
+  Please consider <a href="mailinglists.html">subscribing to our mailing
+  lists</a> if you have any questions or need a hand getting started with
+  BERI.
+</p>
+
+<dl>
+<dt><b>BERI hardware description</b></dt>
+<dd>
+<p>
+  We have open sourced the Bluespec hardware description of the BERI1
+  and BERI2 processors, integrated peripherals such as the BERI programmable interrupt
+  control, C-language simulations exposing UNIX devices within the
+  simulation (e.g., disk images as SD cards), and the control/debugging tool
+  berictl.  We include our FPGA projects for synthesis on the DE4, so this
+  release is usable for both Bluespec software simulation and synthesis on
+  FPGA.
+</p>
+<ul>
+  <li>BERI processor source: <a
+    href="https://github.com/CTSRD-CHERI/beri">https://github.com/CTSRD-CHERI/beri</a></li>
+</ul>
+</dd>
+</dl>
+
+<dl>
+<dt><b>BERI physical designs</b> - June 2013</dt>
+<dd>
+<p>
+  We have open sourced the hardware specs and build instructions for our
+  Terasic DE4-based tablet design.
+</p>
+<ul>
+  <li><a
+    href="http://www.cl.cam.ac.uk/research/comparch/opensource/de4tablet/">DE4
+    tablet computer hardware design</a></li>
+</ul>
+</dd>
+
+<h2>License and Disclaimer</h2>
+
+<p>
+  BERI is distributed under the <a
+  href="http://www.beri-open-systems.org/legal/beri-hardware-software-license.txt">BERI Hardware-Software License</a>, a lightly modified version of the Apache Software License enhanced to better support open-source hardware.
+  <a href="http://www.beri-open-systems.org/">BERI Open Systems CIC</a> is a
+  UK-based not-for-profit responsible for receiving contributors' agreements
+  for BERI.
+</p>
+
+<p>
+  The BERI hardware-software platform is highly experimental; users are
+  cautioned that damage to physical FPGA hardware can result from bugs or user
+  error.
+  The BERI hardware-software open-source license places further limitations on
+  warranty and liability.
+</p>
+
+<h2>Acknowledgment</h2>
+
+<p>
+  This hardware, software, and documentation was developed by SRI
+  International and the University of Cambridge Computer Laboratory under
+  DARPA/AFRL contract (FA8750-10-C-0237) ("CTSRD"), as part of the DARPA CRASH
+  research programme.
+  Additional support was received from Google.
+</p>
+
+<p>
+  We acknowledge our many supporters, including Terasic, and our early adopter
+  community who have provided helpful feedback and advice!
+</p>
+
+</body>

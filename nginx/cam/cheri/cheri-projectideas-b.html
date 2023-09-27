@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>Cambridge student project ideas</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>
+  Cambridge Part II, Part III, and ACS student project ideas - CHERI
+</h1>
+<br clear=all>
+
+<div class="ucampas-toc"></div>
+
+<p>
+This page documents potential student dissertation and research project ideas
+based on CHERI-related research for University of Cambridge Computer
+Laboratory students.
+As with virtual memory, <a href="."><b>CHERI</b></a> is an <i>architectural
+protection model</i>.
+CHERI extends Instruction-Set Architectures (ISAs) and processors so that
+software can define policies at run time, including memory protection and
+isolation.
+CHERI has very different scaling properties, and target use cases, from
+virtual memory, however, allowing much finer-grained protection and more
+efficient software compartmentalisation.
+The CHERI project has been running for over ten years, and Arm has recently
+shipped an experimental, high-performance CHERI-based CPU, <a
+href="cheri-morello.html"><b>Morello</b>, with SoC and development board.
+<a
+href="https://msrc-blog.microsoft.com/2022/09/06/whats-the-smallest-variety-of-cheri/">Microsoft
+has also recently announced a production-quality embedded RISC-V core
+implementing CHERI.
+
+Student projects would work on Morello, FPGA, and/or ISA-level simulations
+(i.e., <a href="cheri-qemu.html"><b>CHERI Qemu</b></a>), depending on the
+project's goals.
+Purely software projects might choose to focus solely on Morello, whereas
+those investigating architecture or microarchitecture migth use CHERI-RISC-V.
+</p>
+
+<h2>CHERI and potential student project foundations in hardware and
+  software</h2>
+<p>
+The CHERI project spans hardware, software, and theory, exploring the
+interactions between compatibility, performance, and security as we transform
+the way programs are represented in terms of instruction-set architecture,
+OS platform, and compilation.
+Past Part II projects have included designing a small CHERI-enabled RISC-V
+microcontroller, implementing a floating-point unit, adding CHERI-aware
+run-time linking to an operating system, and compartmentalising significant
+software applications.
+Past Partt III and ACS projects have included extending an OS kernel to use
+CHERI memory protection internally, testing CHERI integration in the operating
+system and compiler using tracing, and extending the DTrace debugging facility
+to work with (and use) CHERI.
+There are many potential projects to do, in (or spanning) hardware, software,
+and formal modeling/proof.
+</p>
+
+<p>
+Our original CHERI-MIPS hardware stack was based on a home-grown open-source
+pipelined 64-bit MIPS core, BERI.
+More recently we have been extending a set of three open-source RISC-V cores,
+Piccolo (3-stage), Flute (5-stage), and Toooba (superscalar)
+implemented in Bluespec SystemVerilog (BSV) based on designs from Bluespec
+and MIT.
+This new architecture is known as <a
+href="cheri-risc-v.html"><b>CHERI-RISC-V</b></a>, and is mature enough to host
+a range of research and development projects.
+Our CHERI hardware and software could form the basis of other development and
+research projects such as exploring potential CHERI interactions with various
+computation models such as vector computing and machine learning.
+It would also be interesting to explore the composition of CHERI with other
+architectural security models such as enclaves, information-flow tracking, and
+memory versioning.
+</p>
+
+<p>
+Our <a href="cheri-software.html"><b>CHERI software stack consists of an
+assembler, compiler, and linker based on the Clang/LLVM toolchain</b></a>, as
+well as LLD debugger, and two CHERI-extended operating systems: CheriBSD (on
+64-bit Armv8-a or 64-bit RISC-V, MMU
+based) and CheriFreeRTOS (32-bit RISC-V, without an MMU).
+We also have a substantial user application stack, including the FreeBSD UNIX
+userspace (e.g., including OpenSSH), and open-source applications such as
+Postgres, nginx, Wayland / KDE, and WebKit.
+All of these have been extended for fine-grained memory protection; some are
+also being extended to support compartmentalisation.
+This software stack could be used at the foundation for a variety of
+projects including work on new OS primitives (e.g., hypervisor support for
+CHERI, analysis tools to validate capability delegation), new
+compartmentalisation models such as in-kernel compartments),
+compiler features (e.g., exploring CHERI-backed C/C++ type safety not just
+memory safety, tradeoffs in terms of bounds setting), debugging (e.g., how
+should a debugger work correctly and securely in a least-privilege
+environment), or application-level work (how should a major application, such
+as a web browser, use compartmentalisation?  How should language runtimes use
+architectural memory safety to support higher-level type-safe or managed
+languages?).
+</p>
+
+<p>
+A variety of adversarial activities would also be interesting, to try to
+identify vulnerabilities in the architecture, hardware, toolchain, and/or
+software stacks.
+</p>
+
+<h2>Specific project ideas</h2>
+
+<dl>
+<dt><b>CHERI memory and trace analysis for visualisation and
+  validation</b></dt>
+<dd><p>Contact: Robert Watson</p>
+  Memory-safe C and C++ software running on CHERI may instantiate, implicitly
+  and implictly, tens or hundreds of thousands of capabilities.
+  Tools able to analyse memory snapshot and execution traces could assist both
+  with validating that specific implementation objectives are met (e.g., with
+  respect to stack or memory-mapping bounds setting, or compartmentalisation),
+  and also to support discovering and understanding application behaviour
+  (e.g., through static or interactive plots and reports on capability use).
+</dd>
+
+<!--
+<dt><b>CHERI code generation: From memory safety to type safety</b></dt>
+<dd><p>Contact: Robert Watson</p>
+
+  <p>
+  Today, the objective of CHERI C/C++, as described in our ASPLOS 2019
+  paper on CheriABI, and CHERI C/C++ Programming Guide, is to provide memory
+  safety for C.
+  This consists of referential safety (pointer protection), spatial safety
+  (bounds checking), and temporal safety (pointer revocation), with a set of
+  tradeoffs around source-code compatibility, architecture, microarchitecture,
+  and protection.
+  This disables many common vulnerability classes and attack techniques
+  relating to pointer misuse to leak or manipulation data or code.
+  However, some attacks against C/C++ rely on type confusion where a pointer
+  to one type might be used for another purpose, perhaps leading to
+  attacker-manipulable control-flow attacks.
+  For example, function pointers with different signatures are not safely
+  interchangeable, and yet CHERI will not pick up on that: it distinguishes
+  code and data pointers from one another, preventing code-data confusion, but
+  not different types of code pointers from each other.
+  </p>
+
+  <p>
+  There have been a number of research projects on limiting that confusion
+  through additional software checks, but none have attempted to use CHERI as
+  the enforcement mechanism, which could offer improved efficiency.
+  This project would develop a prototype CHERI run-time signature checker for
+  function pointers (and perhaps other code pointers), and evaluate against
+  the current state-of-the-art (also ported to the same hardware) in terms of
+  performance, compatibility, and security.
+  One potential approach would be to implement function pointers as sealed
+  capabilities, allowing the architecture to run-time type check on
+  invocation.
+  This could then be extended into more rich types of data-pointer type
+  checking, depending on project scope (e.g., if an MPhil project).
+  </p>
+
+  <p>
+  This project will engage heavily with C-language semantics and practical
+  compiler behavior, as well as require building knowledge about a novel
+  computer architecture.
+  It will be challenging, but should also be very exciting.
+  </p></dd>
+
+<dt><b>CHERI stack temporal safety</b></dt>
+<dd><p>Contact: Robert Watson</p>
+
+  <p>
+  We have explored various forms of heap temporal safety based on
+  garbage-collection-like revocation techniques, which sweep memory for
+  capabilities to free'd memory before it can be reallocated.
+  Due to the current cost and overall throughput of stack allocation, these
+  techniques are likely unsuitable for stack allocation.
+  This research project would investigate a strawman "true" temporal safety
+  for stacks based on revocation, but also a number of more pragmatic
+  techniques including stack-frame clearing, performing revocation only on
+  escaped pointers and avoiding revocation if no pointers to a frame escape,
+  and so on.
+  Different gradations of temporal safety would be identified, including
+  simple pointer revocation in allocated frames (perhaps via architectural
+  fast tag-clearing extensions) through to full memory clearing of frames, and
+  full memory revocation.
+  Each approach, including the strawman ("ideal semantics") would be
+  prototyped via changes to the compiler and C runtime and evaluated on one
+  or more CHERI-RISC-V cores (e.g., 5-stage pipeline, superscalar) on FPGA.
+  </p>
+
+  <p>
+  This project will engage heavily with C-language semantics and practical
+  compiler behavior, as well as require building knowledge about a novel
+  computer architecture.
+  It will be challenging, but should also be very exciting.
+  </p></dd>
+-->
+
+<dt><b>Microarchitectural design of new CHERI domain crossing
+    instructions</b></dt>
+<dd><p>Contact: Jonathan Woodruff</p>
+
+  <p>
+  This project would implement the two experimental instructions described in the CHERI Architecture document in the section titled "Indirect Sentry Capabilities" (see CHERI Architecture v8; upcoming publication). This section describes two domain crossing instruction variants for CHERI which should present interesting tradeoffs in microarchitectural implementation. The first loads a capability pointer from memory directly into the PC, and the second not only does this but also loads a second, adjacent capability pointer into a register. This project would implement examples of these instructions in the Flute (in-order, single-scalar) and/or Toooba (out-of-order, super-scalar) open-source CHERI-RISCV implementations and explore the complexity and cost of adding these unusual instructions to the microarchitecture. There should be some evaluation of performance using micro-benchmarks to demonstrate the value (or lack thereof) of the more sophisticated implementation options.
+  </p></dd>
+
+<dt><b>CHERI Domain Crossing using Simplified Primitives</b></dt>
+<dd><p>Contact: Jonathan Woodruff</p>
+
+  <p>
+  The primary domain crossing mechanism for compartmentalisation in CHERI has relied on sealing with object types. The shortcoming of this approach is that it requires a type field to be allocated in the capability encoding which is necessarily limited in size, and therefore introduces an awkward necessity to manage this limited typespace. A simpler mechanism has recently been added to the CHERI architecture; Sealed Entry Capabilities (or "Sentries"). These simply unseal and jump to a target capability, granting access to any capabilities embedded with the target instructions. Sentries have the convenient property that their object type space scales with the virtual address space, while bearing the disadvantage of tying together objects and code.
+  </p>
+
+  <p> 
+  Libcheri is a library used for compartmentalisation which uses the traditional type-based domain crossing instructions. This project would develop an alternative implementation of libcheri based solely on the Sentry mechanism, likely requiring some system of indirection to ensure the integrity of entry tokens distributed to mutually distrusting domains. This project would seek to approach the performance of type-based libcheri for the existing benchmarks to learn where the type-based mechanism might be replaced for this style of compartmentalisation.
+  </p></dd>
+
+</dl>
+
+<h2>Contact details</h2>
+
+<p>
+There are, of course, many other interesting projects that might be done in
+related areas, and you should feel to talk to us about these as well.
+Please contact the listed potential supervisor, <a href="/~rnw24/">Dr Robert
+Watson</a>, or <a href="/~swm11/">Professor Simon Moore</a> for further
+information.
+</p>
+
+</body>

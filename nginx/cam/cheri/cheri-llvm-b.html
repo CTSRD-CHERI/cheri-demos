@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CHERI Clang/LLVM and LLD</title>
+<style type="text/css">
+</style>
+<body>
+
+<img width=200 src="../images/llvm-dragon.png" align=right>
+
+<h1>CHERI Clang/LLVM and LLD</h1>
+
+<p>
+  CHERI Clang/LLVM and LLD are adaptations of the open-source Clang/LLVM
+  compiler and LLD linker to support the CHERI-MIPS, CHERI-RISC-V, and Arm
+  Morello ISAs.
+  They collectively implement the CHERI C/C++ programming language, described
+  in the <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-947.pdf"><b>CHERI
+  C/C++ Programming Guide</b></a>, as well as CHERI Hybrid C/C++.
+  This includes support for strong referential and spatial memory protection,
+  as well as providing foundations for temporal memory protection.
+  In addition, CHERI C/C++ is a critical foundation for CHERI software
+  compartmentalization.
+</p>
+
+<div class="ucampas-toc"></div>
+
+<h2>Obtaining CHERI Clang/LLVM and LLD</h2>
+
+<p>
+  The best way to get started with CHERI Clang/LLVM and LLD for CHERI-MIPS,
+  CHERI-RISC-V, or Morello is using our <a
+  href="https://github.com/CTSRD-CHERI/cheribuild"><b>cheribuild</b></a> tool.
+  cheribuild will download any necessary source code, build our
+  cross-development environment, the CheriBSD OS, and any necessary emulators,
+  create disk images, and run the emulation tool.
+  For CHERI-MIPS and CHERI-RISC-V, that's <a
+  href="cheri-qemu.html"><b>QEMU-CHERI</b></a>.
+  For Morello, it's <a
+  href="https://developer.arm.com/tools-and-software/open-source-software/arm-platforms-software/arm-ecosystem-fvps"><b>Arm's
+  Morello FVP model</b></a>, which cheribuild will download automatically.
+</p>
+
+<p>
+  Get started with CHERI Clang/LLVM and LLD for CHERI-MIPS or CHERI-RISC-V in
+  one command line:
+</p>
+
+<pre>
+./cheribuild.py --include-dependencies llvm
+</pre>
+
+<p>
+  Get started with CHERI Clang/LLVM and LLD for Morello in one command line:
+</p>
+
+<pre>
+./cheribuild.py --include-dependencies morello-llvm
+</pre>
+
+<p>
+  In practice, however, the CHERI compiler suite is most useful if you also
+  have an OS image and emulator.
+  The following command line builds CheriBSD/RISC-V, QEMU-CHERI, and the
+  complete toolchain including tools such as CHERI GDB, and runs the resulting
+  image in QEMU:
+</p>
+
+<pre>
+./cheribuild.py --include-dependencies run-riscv64-purecap
+</pre>
+
+<p>
+  The CHERI Clang/LLVM and LLD source code can be found in the
+  <a href="https://github.com/CTSRD-CHERI/llvm-project"><b>CHERI Clang/LLVM
+  GitHub repository</b></a>.
+  We also use a GitHub issue tracker to track <a
+  href="https://github.com/CTSRD-CHERI/llvm-project/issues"><b>bugs and
+  feature requests for CheriBSD</b></a>.
+</p>
+
+<h2>Papers and documentation</h2>
+
+<p>
+  CHERI Clang/LLVM was used as the foundation toolchain for our various
+  publications at ISCA 2014, ASPLOS 2015, IEEE S&amp;P 2015, ASPLOS 2019, and
+  Oakland 2020 papers on CHERI memory protection, which can be found on the <a
+  href="cheri-publications.html"><b>CHERI publications list</b></a>.
+</p>
+
+<p>
+  Our paper on <a
+  href="../pdfs/201904-asplos-cheriabi.pdf"><b>CheriABI</b></a> explains
+  CheriBSD's memory-safe process environment, which is the principal target
+  execution environment for CHERI C/C++ code.
+  The <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-947.pdf"><b>CHERI
+  C/C++ Programming Guide</b></a> documents CHERI C and C++.
+</p>
+</body>

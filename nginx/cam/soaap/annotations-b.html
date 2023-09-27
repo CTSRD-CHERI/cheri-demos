@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<head>
+<title>Annotations</title>
+<link rel="stylesheet" type="text/css" href="soaap.css"/>
+</head>
+
+<body>
+
+<p>SOAAP currently supports the following annotations (see include/soaap.h):</p>
+
+<h1>Annotations for specifying control-flow information</h1>
+
+<h4>__soaap_fp(fns...)</h4>
+
+<p>Annotation on a function pointer specifying the possible callee targets of the pointer. This can be used for local variables and struct members.</p>
+
+<p>Example:</p>
+
+<pre>
+struct mystruct { 
+  void (*myfp)() __soaap_fp(b, c);
+};
+
+void a(struct mystruct* s); 
+void b();
+void c();
+
+int main(int argc, char** argv) {
+  struct mystruct s;
+  s.myfp = (...) ? b : c;
+  a(&amp;s);
+  return 0;
+}
+
+__soaap_sandbox_persistent("mysandbox")
+void a(struct mystruct* s) {
+  s->myfp();
+  printf("hello from a!\n");
+}
+
+void b() {
+  printf("hello from b!\n");
+}
+
+void c() {
+  printf("hello from c!\n");
+}
+</pre>
+
+<h1>Annotations for specifying sandboxed code scopes</h1>
+
+<h4>__soaap_sandbox_persistent(N)</h4>
+
+<p>Function-level annotation specifying that this function should execute in the single global persistent sandbox. N is the name associated with the sandbox. This name will be necessary when annotating data as being private to a particular sandbox (see below).</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandbox_persistent("network")
+void foo(int a, int b) {
+  ...
+}
+</pre>
+
+<h4>__soaap_sandbox_ephemeral(N)</h4>
+
+<p>Function-level annotation specifying that this function should execute in a fresh sandbox, each time it is invoked. N is the name associated with the sandbox. This name will be necessary when annotating data as being private to a particular sandbox (see below). In some sense, the name here refers to the group of sandboxes that are created for invocations of the function.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandbox_ephemeral("codec")
+void foo(int a, int b) {
+  ...
+}
+</pre>
+
+<h4>__soaap_create_persistent_sandbox(N) and __soaap_kill_persistent_sandbox(N)</h4>
+
+<p>Marks the points at which the named persistent sandbox should be created and torn down respectively.</p>
+
+<p>Example:</p>
+
+<pre>
+int main(int argc, char** argv) {
+  __soaap_create_persistent_sandbox("mysandbox");
+  ...
+  __soaap_kill_persistent_sandbox("mysandbox");
+  return 0;
+}
+</pre>
+
+<h4>__soaap_sandboxed_region_start(N)</h4>
+
+<p>Annotation to mark the start of a non-function sandboxed region. N is the name of this sandbox.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandboxed_region_start("renderer");
+...
+...
+...
+__soaap_sandboxed_region_end("renderer");
+</pre>
+
+<h4>__soaap_sandboxed_region_end(N)</h4>
+
+<p>Annotation to mark the end of a non-function sandboxed region. N is the name of this sandbox.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandboxed_region_start("renderer");
+...
+...
+...
+__soaap_sandboxed_region_end("renderer");
+</pre>
+
+<h1>Annotations for validating the functional correctness of a compartmentalisation hypothesis</h1>
+
+<h4>__soaap_var_read(N)</h4>
+
+<p>Global variable annotation specifying that the variable can be read by sandbox N.</p>
+
+<p>Example:</p>
+
+<pre>
+int x __soaap_var_read("parser");
+int y;
+
+int main(int argc, char** argv) {
+    ...
+}
+</pre>
+
+<h4>__soaap_var_write(N)</h4>
+
+<p>Global variable annotation specifying that the variable can be written to by sandbox N.</p>
+
+<p>Example:</p>
+
+<pre>
+int x;
+int y __soaap_var_write("auth");
+
+int main(int argc, char** argv) {
+    ...
+}
+</pre>
+
+<h4>__soaap_fd_permit(syscalls...)</h4>
+
+<p>Function parameter annotation specifying that the sandbox has the rights to perform the listed system calls on the file corresponding to the annotated file descriptor. The special value <tt>SOAAP_NO_SYSCALLS_ALLOWED</tt> can be used to express that the sandbox is not allowed to call any system call.</p>
+
+<p>Example:</p>
+
+<pre>
+int compress(int in __soaap_fd_permit(read), int out __soaap_fd_permit(SOAAP_NO_SYSCALL_ALLOWED)) {
+    ...
+    read(in, inbuf, 10);
+    ...
+    write(in, inbuf, 10); // disallowed
+    write(out, outbuf, 10); // disallowed
+}
+</pre>
+    
+<p>This annotation can be applied to an integer file descriptor or to a pointer to a struct that contains a file descriptor. For example:</p>
+
+<pre>
+int compress(FILE* in __soaap_fd_permit(read), FILE* out) {
+    ...
+    fread(inbuf, 1, 10, in);
+    ...
+}
+</pre>
+
+<h4>__soaap_callgates(N, fns...)</h4>
+
+<p>Global scope annotation specifying a list of privileged callgates that sandbox N is allowed to invoke.</p>
+
+<p>Example:<p/>
+
+<pre>
+__soaap_callgates("network", getservbyname, gethostbyname)
+
+int main(int argc, char** argv) {
+    ...
+}
+</pre>
+
+<h1>Annotations for specifying the data isolation requirements of a compartmentalisation hypothesis</h1>
+
+<h4>__soaap_private(N)</h4>
+
+<p>This annotation can be applied to global variables, struct fields and local variables. It specifies that the annotated data item is private to the persistent sandbox named N (see __soaap_sandbox_persistent(N) above).</p>
+
+<p>Example:</p>
+
+<pre>
+int x; // global variable
+
+__soaap_sandbox_persistent("box")
+void foo() {
+  int key __soaap_private("box");
+  key = 813;
+  x = key; // a leak - output warning!
+}
+</pre>
+
+<h4>__soaap_classify(L) and _soaap_clearance(L)</h4>
+
+<p>Allows assigning a confidentiality label L to a struct field or global variable. A sandbox has to be given explicit clearance to access such a data item, using the __soaap_clearance(L) annotation.</p>
+
+<p>Example:</p>
+
+<pre>
+int key __soaap_classify("secret");
+
+__soaap_sandbox_persistent __soaap_clearance("secret")
+int encrypt() {
+  // ... access key ...
+}
+
+__soaap_sandbox_ephemeral
+void foo() {
+  key = 1; // disallowed access - output warning!
+}
+</pre>
+
+<h4>__soaap_declassify(V)</h4>
+
+<p>The specified variable (currently, only local variables) should be treated as declassified from this point onwards.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandbox_persistent("ftp")
+void fetch_over_ftp(char* ftp_url, int ftp_server_sock __soaap_fd_read __soaap_fd_write) {
+  char ftp_user[255] __soaap_private("ftp");
+  char ftp_passwd[255] __soaap_private("ftp");
+  ...
+  read_from_stdin("FTP Username: ", ftp_user, 255);
+  read_from_stdin("FTP Password: ", ftp_passwd, 255);
+  ...
+  do_ftp_auth(ftp_server_sock, ftp_user, ftp_passwd);
+  ...
+}
+
+// authenticate with ftp server
+void do_ftp_auth(int ftp_server_sock, char* ftp_user, char* ftp_passwod) {
+  __soaap_declassify(ftp_user);
+  __soaap_declassify(ftp_passwd);
+  write_login_details_to_socket(ftp_server_sock, ftp_user, ftp_passwd);
+}
+</pre>
+
+<h1>Annotations for specifying past-vulnerability information/code provenance</h1>
+
+<p>The intended definition of vulnerability for the following annotations is the point at whcih an attacker may gain control.</p>
+
+<h4>__soaap_vuln_fn(CVE)</h4>
+
+<p>Function-level annotation for indicating that the function contains a vulnerability (somewhere inside it). The argument is the CVE string.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_vuln_fn("CVE-2013-0000")
+void foo() {
+  ...
+}
+</pre>
+
+<h4>__soaap_vuln_pt(CVE)</h4>
+
+<p>Used at a particular program point to indicate that there was a vulnerability here in the past. The argument is the CVE string.</p>
+
+<p>Example:</p>
+
+<pre>
+void foo(int* p) {
+  if (p != NULL) {
+    __soaap_vuln_pt("CVE-2012-0000");
+    *p = 1;
+  }
+}
+</pre>
+
+<h4>__soaap_provenance(O)</h4>
+
+<p>Used to specify the provenance of a source/header file, whereby O is a string denoting the vendor the file originates from.</p>
+
+<p>Example:</p>
+
+<pre>
+#ifndef SOME_VENDOR_H
+#define SOME_VENDOR_H
+
+__soaap_provenance("some_vendor")
+...
+void a();
+void b();
+...
+
+#endif
+</pre>
+
+<h1>Annotations for limiting allowed system calls</h1>
+
+<h4>__soaap_limit_syscalls(syscalls...)</h4>
+
+<p>Specifies that from this point onwards in the program, only the comma-separated list of system calls (actually, lib C system call wrapper functions) are allowed to be called. The special value <tt>SOAAP_NO_SYSCALLS_ALLOWED</tt> can be used to express that the sandbox is not allowed to call any system call.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandbox_persistent("parser")
+void parse(...) {
+  __soaap_limit_syscalls(read, close, exit);
+  ...
+}
+</pre>
+
+<h4>__soaap_limit_fd_syscalls(fd, syscalls...)</h4>
+
+<p>Specifies that from this point onwards in the program, only the specified list of system calls (actually, lib C system call wrapper functions) may be passed the file descriptor fd as an argument (fd can be either an immediate value or a local variable). Essentially, this describes what capabilities the file descriptor has. The special value <tt>SOAAP_NO_SYSCALLS_ALLOWED</tt> can be used to express that the file descriptor has no capabilities.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandbox_persistent("compress")
+int compress(int in, int out) {
+  __soaap_limit_fd_syscalls(in, read);
+  __soaap_limit_fd_syscalls(out, write);
+  ...
+}
+</pre>
+
+<h4>__soaap_limit_fd_key_syscalls(fdkey, syscalls...), __soaap_fd_getter and __soaap_fd_setter</h4>
+
+<p>In some applications, file descriptors might be stored inside collections. We can still limit the system calls allowed on them by instead specifying the key value, as well as annotating the functions that perform getting and setting the key-to-file-descriptor mappings. The special value <tt>SOAAP_NO_SYSCALLS_ALLOWED</tt> can be used to express no system calls are allowed.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_fd_getter
+int get_fd(int key) { ... }
+
+__soaap_fd_setter
+void set_fd(int key, int fd) { ... }
+
+int privilegedProcessFDKey = ...;
+
+__soaap_sandbox_persistent("renderer")
+void render() {
+  __soaap_limit_fd_key_syscalls(privilegedProcessFDKey, read, write);
+  ...
+  int parentFd = get_fd(privilegedProcessFDKey);
+  write(parentFd, ...);
+  ...
+}
+</pre>
+
+<h1>Annotations for expressing RPC communication</h1>
+
+<h4>__soaap_rpc_send(N, message_type, args...) and __soaap_rpc_recv(N, message_type, handler_func)</h4>
+
+<p>Allows expressing RPC communication between security domains in already-compartmentalised applications. Both annotations have the name N of the recipient/sender as the first argument and the message type as the second. N can either be the name of a sandbox or "&lt;privileged&gt;" to indicate the privileged/ambient domain. The message type can be the name of the class or a constant. Parameters being sent in the message are passed as additional arguments. For receive, the handler function for that kind of message is specified as the third argument. Sends are assumed to be asynchronous and receives are synchronous.
+</p>
+
+<p>Example:</p>
+
+<pre>
+// message types
+enum MessageTypes {
+  SquareNumber,
+  SquareNumberReply,
+  BinarySum,
+  ...
+};
+
+int main(int argc, char** argv) {
+  __soaap_create_persistent_sandbox("calculator");
+  ...
+  while (...) {
+    ...
+    int x = read_input_from_stdin();
+    __soaap_rpc_send("calculator", SquareNumber, x);
+    __soaap_rpc_recv("calculator", SquareNumberReply, OnSquareNumberReplyReceived);
+    ...
+  }
+  
+}
+
+__soaap_sandbox_persistent("calculator")
+void calc() {
+  while (...) {
+    __soaap_rpc_recv("&lt;privileged&gt;", SquareNumber, OnSquareNumberReceived);
+    __soaap_rpc_recv("&lt;privileged&gt;", BinarySum, OnBinarySumReceived);
+  }
+}
+
+void OnSquareNumberReceived(int x) {
+  long r = x*x;
+  __soaap_rpc_send("&lt;privileged&gt;", SquareNumberReply, r);
+}
+
+void OnSquareNumberReplyReceived(long r) {
+  printf("Result: %d\n", r);
+}
+</pre>
+
+
+<h1>Annotations for emulating the performance of a compartmentalisation hypothesis</h1>
+
+<h4>__soaap_overhead(X)</h4>
+
+<p>Function-level annotation indicating the maximum overhead (X is a percentage) you are willing to accept/tolerate. If this is exceeded, a report will be triggered.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandbox_ephemeral __soaap_overhead(80)
+int foo() {
+  ...
+}
+</pre>
+
+<h4>__soaap_data_in</h4>
+
+<p>Function parameter (integer type) annotation for indicating that this parameter corresponds to the number of bytes that should be passed as a message to the sandbox. The function needs to have been tagged with __soaap_sandbox_{ephemeral,persistent} as well.</p>
+
+<p>Example:</p>
+
+<pre>
+__soaap_sandbox_ephemeral __soaap_overhead(12)
+int subtract(int a, int b, int len __soaap_data_in) { // len is the size of a in bytes
+  return a-b;
+}
+</pre>
+
+</body>

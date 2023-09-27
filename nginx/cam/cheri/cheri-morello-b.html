@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>The Arm Morello Board</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>The Arm Morello Board</h1>
+
+<p>August 2021: We have released an updated version of our <a
+  href="cheri-morello-software.html"><b>CHERI software stack for
+  Morello</b></a>, which can be downloaded and run on the Arm Morello FVP
+  ISA-level simulator or on QEMU-Morello.  Key features include
+  pure-capability kernel support, and integrated support for Morello in our
+  main CheriBSD development branch.</p>
+
+<!--
+<p>October 2020: We have released a prototype of our <a
+  href="cheri-morello-software.html"><b>CHERI software stack for
+  Morello</b></a>, which can be downloaded and run on Arm's Morello FVP
+  ISA-level simulator.</p>
+-->
+
+<p>September 2020: Arm has published its <a
+  href="https://developer.arm.com/documentation/ddi0606/A-f/?lang=en"><b>Morello
+  architecture specification</b></a>, a fully elaborated integration of the
+  CHERI protection model into the ARMv8-A architecture.</p>
+
+<p>October 2019: <a href="https://www.arm.com/blogs/blueprint/digital-security-by-design"><b>Arm announced Morello</b></a>,
+  an experimental CHERI-extended, multicore, superscalar ARMv8-A processor,
+  System-on-Chip (SoC), and prototype board to be available from late 2021.
+  Morello is a part of the UKRI £187M <a href="dsbd.html"><b>Digital Security
+  by Design Challenge</b></a> (DSbD) supported by the UK Industrial Strategy
+  Challenge Fund, including a commitment of over £50M commitment by Arm.
+  This web page provides more information on Morello, drawing from publicly
+  available Arm content, as well as our own material on CHERI.
+  You can learn more about CHERI by reading our technical report, <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf"><b>An
+  Introduction to CHERI</b></a>.</p>
+
+<div class="ucampas-toc"></div>
+
+<h2 id="morello">What is Morello?</h2>
+
+<p>Morello is an industrial demonstrator of a capability architecture: a
+  prototype System-on-Chip (SoC) and development board, developed by Arm,
+  implementing a CHERI-extended ARMv8-A processor, GPU, peripherals, and
+  memory subsystem, to ship in early 2022.
+  The purposes of Morello are to enable industrial evaluation of the CHERI
+  hardware and software ideas, to gather evidence for adoption, and to support
+  further related research and development.
+  This will be enabled by applying CHERI to a widely deployed, real-world
+  architecture via a high-end mature processor design, and a mature software
+  ecosystem.</p>
+
+<p>Morello will be based on Arm's existing <a
+  href="https://www.anandtech.com/show/13959/arm-announces-neoverse-n1-platform"><b>Neoverse
+  N1 platform and CPU</b></a>; this is roughly an Arm A76 with an enhanced
+  server-class memory subsystem.
+  <a href="https://vimeo.com/366246134/fa067a2689"><b>Richard Grisenthwaite
+  (Arm)'s talk</b></a> at the 29 September 2019 ISCF DSbD Collaborators'
+  Workshop included the following work-in-progress Morello SoC block
+  diagram:</p>
+
+<div align=center>
+<a href="../pdfs/20190926-morello-soc.pdf">
+<img width="80%" src="../images/20190926-arm-morello-soc-wip.png">
+<p>
+(Click for large version)
+</p>
+</a>
+</div>
+<br>
+
+<p>The Morello SoC includes two CPU clusters, each containing two
+  out-of-order cores, all implementing CHERI.
+  The Morello SoC has been fabricated in 7nm process, with a target clock
+  frequency of 2.5GHz.</p>
+
+<p>The coherent memory interconnect has been extended to carry tag bits, and
+  the on-board DRAM controllers supports <a href="#tagging"><b>memory
+  tagging</b></a>.
+  Other DMA-enabled devices, including the on-SoC Mali GPU, do not
+  implement CHERI, but will be conservative with respect to tag interaction.
+  They clear tags on any memory that they overwrite, to prevent
+  capability corruption or introduction.</p>
+
+<p>Various aspects of the Morello design remain subject to change prior to the
+  board becoming available in 2022.</p>
+
+<h2 id="cheri-iscf-briefings">Morello Talks from Cambridge, Arm, and
+  Microsoft</h2>
+
+  <p>UKRI has now posted slides and videos from the <a href=""><b>26 September
+  2019 Digital Security by Design Challenge Collaborators' Workshop:</b></a>:
+
+<ul>
+<li>Robert N. M. Watson, Simon W. Moore, Peter Sewell, and Peter G. Neumann.
+  <b>CHERI: Capability Hardware Enhanced RISC Instructions</b>, ISCF Digital
+  Security by Design Challenge Collaborators' Workshop, London, UK, 26
+  September 2019.
+  (<a href="../pdfs/20190926-innovateuk-cheri-slides.pdf"><b>Slides</b></a>)
+  (<a href="https://vimeo.com/362811265/69fd190da3"><b>Video</b></a>)</li>
+
+<li>Richard Grisenthwaite (Arm).  <b>Digital Security by Design</b>, ISCF
+  Digital Security by Design Challenge Collaborators' Workshop, London, UK, 26
+  September 2019.
+  (<a href="https://www.slideshare.net/KTNUK/digital-security-by-design-technology-platform-richard-grisenthwaite-arm/1"><b>Slides</b></a>)
+  (<a href="https://vimeo.com/366246134/fa067a2689"><b>Video</b></a>)</li>
+
+<li>Manuel Costa (Microsoft).  <b>Hardware Memory Safety: Challenges and
+  Opportunities</b>, ISCF Digital Security by Design Challenge Collaborators'
+  Workshop, London, UK, 26 September 2019.
+  (<a href="https://www.slideshare.net/KTNUK/digital-security-by-design-hardware-memory-safety-challenges-and-opportunities-manuel-costa-microsoft-research-cambridge/1"><b>Slides</b></a>)
+  (<a href="https://vimeo.com/362801867/2252619083"><b>Video</b></a>)</li>
+</ul>
+
+<h2 id="timeline">What is the Morello timeline?</h2>
+
+<p>Implementation is well under way, including architecture, hardware, and
+  software.
+  Arm has published the following prospective timeline for Morello:</p>
+
+<dl>
+<dt><b>October 2020</b></dt>
+<dd><ul>
+  <li>Virtual Platform Model of Morello board (behavioural software model)</li>
+  <li>Architecture Specification of the CPU architecture used in the Morello
+  board<br>
+  (This includes XML and pseudo-code to allow formal proofs and other
+  auto-generated collateral)</li>
+</ul></dd>
+
+<dt><b>January 2022</b></dt>
+<dd><ul>
+  <li>Morello boards made available with initial software and toolchains</li>
+</ul></dd>
+</dl>
+
+<h2 id="architecture">What ISA will Morello implement?</h2>
+
+<p>Morello implements an architecture combining the CHERI protection model
+  (synchronized to <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-951.pdf"><b>CHERI
+  ISAv8</b></a>) and the ARMv8-A (application-class) ISA.
+  ARMv8-A is found in a broad range of devices including almost all mobile
+  devices (e.g., iOS and Android phones and tablets) as well as an increasing
+  number of server-class systems.
+  The experimental architecture was developed in a DARPA-supported
+  collaboration, starting in 2014, between Arm, SRI International, and the
+  University of Cambridge.
+  In September 2020, Arm published its <a
+  href="https://developer.arm.com/documentation/ddi0606/A-f/?lang=en"><b>Morello
+  architecture specification</b></a>, a fully elaborated integration of the
+  CHERI protection model into the ARMv8-A architecture.</p>
+
+<p>The baseline Neoverse N1 processor core implements ARMv8.2; only AArch64
+  (not 32) will be supported. 
+  It is expected that, except for 32-bit compatibility, all existing ARMv8.2-A
+  software should work without change on Morello.
+  CHERI-enabled software enables and uses the CHERI feature set
+  for the purposes of fine-grained memory protection, software
+  compartmentalization, and so on.
+  This approach allows rigorous performance (and other) comparisons betweeen
+  CHERI-aware and CHERI-unaware software stacks, as well as supporting our
+  incremental adoption goals for CHERI.</p>
+
+<p>Morello implements a <b>superset architecture</b> supporting various
+  mechanisms for compartmentalisation, a collection of features for which
+  there remains ongoing research into their effectiveness (e.g., accelerations
+  for temporal memory safety), and multiple techniques for implementing
+  tagging in the microarchitecture (see below).
+  This choice impacts clock frequency, with the aim of allowing a key set of
+  experiments to be run rather than to produce a commercial product.
+  A production design would be expected to perform substantially better as a
+  result.</p>
+
+<p>Richard Grisenthwaite's slides from the DSbD workshop include the following
+  notes regarding forward compatibility to future CHERI-enabled Arm ISAs:</p>
+
+<ul>
+  <li><b>The Morello Board will be the ONLY physical implementation of this
+    prototype architecture.</b></li>
+  <ul>
+    <li><b>Learnings from these experiments will be adopted into a mainstream
+      extension to the Arm architecture.</b></li>
+    <li><b>NO COMMITMENT TO FULL BINARY COMPATIBILITY TO THE PROTOTYPE
+      ARCHITECTURE.</b></li>
+    <ul>
+      <li><b>But successful concepts are expected to be carried forward into
+        the architecture and can be reused there.</b></li>
+    </ul>
+  </ul>
+</ul>
+
+<p>The architecture will have formally proved security properties, based on
+  out methodology developed for CHERI-MIPS.
+  See our page on  <a href="cheri-formal-b.html"><b>CHERI Rigorous
+  Engineering</b></a> to learn more about this work.</p>
+
+<h2 id="tagging">How will Morello store CHERI's tag bits?</h2>
+
+<p>Morello supports two different implementations of physical memory
+  tagging, to allow their properties to be compared experimentally.
+  In one configuration, ECC bits are used to hold memory tags.
+  In the other, a tag controller and tag cache are used to hold memory
+  tags (see <a href="../pdfs/201711-iccd2017-efficient-tags.pdf"><b>our ICCD
+  2017 paper on efficient memory tagging</b></a>).</p>
+
+<h2 id="software">What CHERI-aware software will Morello run?</h2>
+
+<p>The following slide from <a
+  href="../pdfs/20190926-innovateuk-cheri-slides.pdf"><b>Robert Watson
+  (Cambridge)'s slides</b></a> from the DSbD workshop illustrate the rough
+  anticipated software stack to be available when Morello ships; portions of
+  this stack remain under development:</p>
+
+<div align=center>
+<img width="80%" src="../images/20190926-cheri-morello-sw-stack.png"><br>
+</div>
+
+<p>Arm has adapted the <a href="cheri-llvm.html"><b>CHERI Clang/LLVM compiler
+  suite</b></a> to target the architecture present in Morello.</p>
+
+<p>SRI International and the University of Cambridge will are providing an
+  adaptation of the <a href="cheri-software.html"><b>CheriBSD operating system
+  and application stack</b></a> for Morello.
+  This includes support for a spatially and referentially safe open-source
+  UNIX kernel, and spatially, referentially, and temporally safe UNIX
+  userspace.
+  There are also the associated CHERI-adapted toolchain and tools such as the
+  run-time linker, debugger, and so on.
+  We currently anticipate that applications will include OpenSSH, PostgreSQL,
+  and <a href="cheri-webkit.html"><b>WebKit</b></a>, as well as a host of
+  other third-party open-source software packages.
+  See <a href="../pdfs/201904-asplos-cheriabi.pdf"><b>ASPLOS 2019 paper on
+  CheriABI for details and evaluation of the memory-safety model</b></a>.
+  We will also provide a Morello-adapted memory-safe version of Google's <a
+  href="https://opensource.google/projects/hafnium"><b>Hafnium
+  hypervisor</b></a>.
+  Unmodified ARMv8-A applications will continue to run.</p>
+
+<p>Arm is providing an experimental adaptation of the Android operating
+  system.</p>
+
+</body>

@@ -1,0 +1,6 @@
+Redirect permanent /research/security/ctsrd/soaap.html http://www.cl.cam.ac.uk/research/security/ctsrd/soaap/
+Redirect permanent /research/security/ctsrd/tesla.html http://www.cl.cam.ac.uk/research/security/ctsrd/tesla/
+Redirect permanent /research/security/ctsrd/beri.html http://www.cl.cam.ac.uk/research/security/ctsrd/beri/
+Redirect permanent /research/security/ctsrd/beri-downloads.html http://www.cl.cam.ac.uk/research/security/ctsrd/beri/downloads-hw.html
+Redirect permanent /research/security/ctsrd/beri/downloads.html http://www.cl.cam.ac.uk/research/security/ctsrd/beri/downloads-hw.html
+Redirect permanent /research/security/ctsrd/cheri.html http://www.cl.cam.ac.uk/research/security/ctsrd/cheri/

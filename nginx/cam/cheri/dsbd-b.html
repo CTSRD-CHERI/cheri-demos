@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>The Digital Security by Design (DSbD) Initiative</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>
+  The Digital Security by Design (DSbD) Initiative
+</h1>
+
+<p>On 22 January 2019, the UK government announced that the <a
+  href="https://www.gov.uk/government/news/global-businesses-including-google-and-microsoft-back-uk-to-block-cyber-threats-with-new-tech"><b>UK
+  Industrial Strategy Challenge Fund (ISCF) will support the integration of
+  new fundamental hardware security through a £70M investment</b></a>, to be
+  matched by a further £117M from industry including from Microsoft and
+  Google.</p>
+
+  <p>The <a href="https://www.ukri.org/innovation/industrial-strategy-challenge-fund/digital-security-by-design/"><b>ISCF
+  Digital Security by Design challenge</b></a> aims to radically update the
+  foundation of our insecure digital computing infrastructure, by
+  demonstrating that mainstream processor technology (e.g. from Arm) and
+  software can be updated to include new security technologies based on the
+  <a href="./"><b>CHERI Architecture</b></a>, along with accompanying
+  innovations across system software, runtime environments, formal
+  verification, and tools from the UK research base and businesses.
+  The programme will create a hardware platform prototype in which a
+  mainstream processor technology will be updated to include CHERI-like
+  security technologies, along with formal modeling and verification of the
+  architecture.
+  The programme will fund work through the Innovate UK, EPSRC, and ESRC, and
+  will support industrial transition and academic research around the
+  prototype.</p>
+
+  <p>On 26 September 2019, <a
+  href="https://epsrc.ukri.org/funding/calls/iscf-digital-security-by-design-research-projects/"><b>UKRI
+  announced a £8M funding call for research into CHERI</b></a> as part of
+  Digital Security by Design.
+  As part of the program, Arm will produce a demonstrator CPU, SoC, and board
+  based on experimental integration of CHERI into the ARMv8-A ISA.
+  The boards will be available for industrial and academic research from
+  2021.
+  Speakers at the Digital Security by Design Collaborators' Workshop in
+  London included Robert Watson (University of Cambridge), Richard
+  Grisenthwaite (Arm), and Manuel Costa (Microsoft).
+  <a href="#cheri-iscf-briefings"><b>Slides and videos from the workshop are
+  now online</b></a>.
+
+  <p>On 17 October 2019, 
+  <a href="https://www.arm.com/blogs/blueprint/digital-security-by-design"><b>Arm
+  announced the Morello board</b></a>, an experimental CPU, SoC, and board
+integrating CHERI support into an ARMv8-A baseline system.
+  Our own <a href="https://www.lightbluetouchpaper.org/2019/10/18/ukri-digital-security-by-design-a-190m-research-programme-around-arms-morello-an-experimental-armv8-a-cpu-soc-and-board-with-cheri-support/"><b>Morello blog post on the
+  Cambridge Security Research Group blog</b></a> provides further background
+  on the programme, as well as links to workshop slides and videos regarding
+  CHERI and Morello.
+  Our <a href="cheri-morello.html"><b>page on Morello</b> provides more detail
+  on the forthcoming board.
+  The Department of Computer Science and Technology also has a <a
+  href="https://www.cst.cam.ac.uk/news/cambridge-collaborates-arm-improve-computer-security"><b>blog post on DSbD and Morello</b></a>.</p>
+
+<p>This webpage supports the DSbD programme by providing supporting
+  information on the CHERI architecture, software stack, and formal models; it
+  will be updated frequently over the coming months as further information
+  becomes available.
+  The CHERI research team is eager to collaborate with academia and industry
+  in exploring new potential applications and many unexplored research areas
+  for CHERI (e.g., in hypervisors, in language runtimes, with higher-level
+  programming languages, in formal verification, and so on).
+</p>
+
+<div class="ucampas-toc"></div>
+
+<h2 id="cheri-architecture">The CHERI architecture</h2>
+
+<p><b>PIs: Robert N. M. Watson (University of Cambridge), Simon W. Moore
+  (University of Cambridge), Peter Sewell (University of Cambridge), and Peter
+  Neumann (SRI International)</b></p>
+
+  <p>Mainstream computer systems are chronically insecure.
+  One of the main reasons for this is that conventional hardware architectures
+  and C/C++ language abstractions provide only coarse-grained memory
+  protection, which turns many coding errors into exploitable security
+  vulnerabilities.
+  <a href="./"><b>CHERI is an ongoing research project</b></a>, from 2010 to
+  date, that revises the hardware/software architectural interface with
+  hardware support for <b>capabilities</b> that can be used for fine-grained
+  memory protection and/or scalable software compartmentalisation.
+  CHERI aims to provide practically deployable performance and compatibility
+  for software, as well as being microarchitecturally viable for mainstream
+  architectures and microarchitectures.</p>
+
+  <p>CHERI is a hardware/software/semantics co-design project, combining
+  hardware implementation, adaption of mainstream software stacks, and formal
+  semantics and proof.
+  The CHERI ideas have been developed first as a modification to 64-bit
+  MIPS and now also for 32/64-bit RISC-V and 64-bit ARMv8-A.
+  We have prototyped a complete software stack for CHERI by adapting widely
+  used open-source software such as Clang/LLVM, FreeBSD, FreeRTOS, and
+  applications such as WebKit, OpenSSH, and PostgreSQL.
+  We have formally modeled the architecture and constructed a number of proofs
+  about its security, as well as used these models for microarchitectural
+  validation in our prototypes.
+  These models also have the potential to support further activities such as
+  formal proofs about software and microarchitecture.</p>
+
+  <p>We have <a href="cheri-publications.html"><b>published a number of
+  technical reports and papers on the CHERI approach</b></a>, including on the
+  instruction set and its design, how efficient microarchitecture can support
+  the CHERI model, and how software systems can be adapted to utilize CHERI's
+  architectural features.</p>
+
+<h2 id="cheri-iscf-briefings">Digital Security by Design slides and videos</h2>
+
+  <p>UKRI has now posted slides and videos from the <a href=""><b>26 September
+  2019 Digital Security by Design Challenge Collaborators' Workshop:</b></a>:
+
+<ul>
+<li>Robert N. M. Watson, Simon W. Moore, Peter Sewell, and Peter G. Neumann.
+  <b>CHERI: Capability Hardware Enhanced RISC Instructions</b>, ISCF Digital
+  Security by Design Challenge Collaborators' Workshop, London, UK, 26
+  September 2019.
+  (<a href="../pdfs/20190926-innovateuk-cheri-slides.pdf"><b>Slides</b></a>)
+  (<a href="https://vimeo.com/362811265/69fd190da3"><b>Video</b></a>)</li>
+
+<li>Richard Grisenthwaite (Arm).  <b>Digital Security by Design</b>, ISCF
+  Digital Security by Design Challenge Collaborators' Workshop, London, UK, 26
+  September 2019.
+  (<a href="https://www.slideshare.net/KTNUK/digital-security-by-design-technology-platform-richard-grisenthwaite-arm/1"><b>Slides</b></a>)
+  (<a href="https://vimeo.com/366246134/fa067a2689"><b>Video</b></a>)</li>
+
+<li>Manuel Costa (Microsoft).  <b>Hardware Memory Safety: Challenges and
+  Opportunities</b>, ISCF Digital Security by Design Challenge Collaborators'
+  Workshop, London, UK, 26 September 2019.
+  (<a href="https://www.slideshare.net/KTNUK/digital-security-by-design-hardware-memory-safety-challenges-and-opportunities-manuel-costa-microsoft-research-cambridge/1"><b>Slides</b></a>)
+  (<a href="https://vimeo.com/362801867/2252619083"><b>Video</b></a>)</li>
+</ul>
+
+<h2 id="cheri-architecture-reports">Reports on the CHERI architecture</h2>
+
+<p><b>An Introduction to CHERI</b> is a high-level description of our
+  architectural, microarchitectural, formal methods, software model, and
+  software prototyping approaches, as well as a guide to further reading on
+  CHERI:</p>
+  
+<ul>
+<li>Robert N. M. Watson, Simon W. Moore, Peter Sewell, and Peter G. Neumann.
+  <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf"><b>An
+  Introduction to CHERI</b></a>, Technical Report UCAM-CL-TR-941, Computer
+  Laboratory, September 2019.</li>
+</ul>
+
+<p>The authoritative reference to the CHERI Instruction-Set Architecture (ISA)
+  is the ISA specification.
+  This report is updated intermittently to reflect ongoing research into the
+  CHERI approach; the current version, released in June 2019, is version 7:</p>
+
+<ul>
+<li>Robert N. M. Watson, Peter G. Neumann, Jonathan Woodruff, Michael Roe,
+  Hesham Almatary, Jonathan Anderson, John Baldwin, David Chisnall,
+  Brooks Davis, Nathaniel Wesley Filardo, Alexandre Joannou, Ben Laurie,
+  A. Theodore Markettos, Simon W. Moore, Steven J. Murdoch, Kyndylan Nienhuis,
+  Robert Norton, Alex Richardson, Peter Rugg, Peter Sewell, Stacey Son,
+  Hongyan Xia.  <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-927.pdf"><b>Capability
+  Hardware Enhanced RISC Instructions: CHERI Instruction-Set Architecture
+  (Version 7)</b></a>, Technical Report UCAM-CL-TR-927, Computer Laboratory,
+  June 2019.</li>
+</ul>
+
+<p>Formal modeling and verification has been an essential part of both the
+  practical day-to-day aspects of developing CHERI, as well as an essential
+  longer-term argument for its security and maintainability.
+  We describe this work in a tech report released in September 2019:</p>
+
+<ul>
+<li>Kyndylan Nienhuis, Alexandre Joannou, Anthony Fox, Michael Roe,
+  Thomas Bauereiss, Brian Campbell, Matthew Naylor, Robert&nbsp;M. Norton, Simon
+&nbsp;W.
+  Moore, Peter&nbsp;G. Neumann, Ian Stark, Robert N.&nbsp;M. Watson, and Peter
+  Sewell.
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-940.pdf"><b>Rigorous
+  engineering for hardware security: Formal modelling
+  and proof in the CHERI design and implementation process</b></a>.
+ Technical Report UCAM-CL-TR-940, University of Cambridge, Computer
+  Laboratory, September 2019.
+</li>
+</ul>
+
+<p>We have also recently released a technical report exploring the impact of
+  Spectre-style attacks on systems implementing the CHERI architecture:</p>
+
+<ul>
+<li>Robert N. M. Watson, Jonathan Woodruff, Michael Roe, Simon W. Moore,
+  Peter G. Neumann.  <a
+  href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-916.pdf"><b>Capability
+  Hardware Enhanced RISC Instructions (CHERI): Notes on the Meltdown and
+  Spectre Attacks</b></a>, Technical Report UCAM-CL-TR-916, Computer
+  Laboratory, February 2018.</li>
+</ul>
+
+<h2 id="announcements">Announcements about DSbD and the Morello board</h2>
+
+<p>We have gathered a number of links to announcements and blog posts about
+  DSbD and Arm's forthcoming Morello board here:</p>
+
+<ul>
+<li>On 17 October 2019, Arm announced its <a
+  href="https://www.arm.com/blogs/blueprint/digital-security-by-design"><b>Morello
+  board</b></a>, an experimental CPU, SoC, and board integrating CHERI support
+  into an ARMv8-A baseline system.
+  Our own <a href="https://www.lightbluetouchpaper.org/2019/10/18/ukri-digital-security-by-design-a-190m-research-programme-around-arms-morello-an-experimental-armv8-a-cpu-soc-and-board-with-cheri-support/"><b>Morello blog post on the
+  Cambridge Security Research Group blog</b></a> provides further background
+  on the programme, as well as links to workshop slides and videos regarding
+  CHERI and Morello.
+  The Department of Computer Science and Technology also has a <a
+  href="https://www.cst.cam.ac.uk/news/cambridge-collaborates-arm-improve-computer-security"><b>blog post on DSbD and Morello</b></a>.</li>
+
+<li>On 27 September 2019, <a
+  href="https://esrc.ukri.org/funding/funding-opportunities/pre-call-announcement-iscf-digital-security-by-design-social-science-hub/"><b>UKRI
+  announced a £3M funding call for research into the economic, regulatory,
+  business, and social challenges associated with transitioning technologies
+  such as CHERI</b></a>.</li>
+
+<li>On 26 September 2019, <a
+  href="https://epsrc.ukri.org/funding/calls/iscf-digital-security-by-design-research-projects/"><b>UKRI
+  announced a £8M funding call for research into CHERI</b></a> as part of
+  Digital Security by Design.
+  As part of the program, Arm will produce a demonstrator CPU, SoC, and board
+  based on experimental integration of CHERI into the ARMv8-A ISA.
+  The boards will be available for industrial and academic research from
+  2021.
+  Speakers at the Digital Security by Design Collaborators' Workshop in
+  London included Robert Watson (University of Cambridge), Richard
+  Grisenthwaite (Arm), and Manuel Costa (Microsoft).
+  <a href="#cheri-iscf-briefings"><b>Our slides are available</b></a>; others
+  will be online shortly as well.</li>
+
+<li>On 28 January 2019, <a
+  href="https://community.arm.com/blog/company/b/blog/posts/supporting-the-uk-in-becoming-a-leading-global-player-in-cybersecurity"><b>Arm
+  announced that it has been working with the CHERI research team to bring
+  concepts from the CHERI architecture into the Arm architecture</b></a>.</li>
+
+<li>On 22 January 2019, the UK government announced that the <a
+  href="https://www.gov.uk/government/news/global-businesses-including-google-and-microsoft-back-uk-to-block-cyber-threats-with-new-tech"><b>UK
+  Industrial Strategy Challenge Fund (ISCF) will support the integration of
+  new fundamental hardware security through a £70M investment</b></a>, to be
+  matched by a further £117M from industry including from Microsoft and
+  Google.</li>
+</ul>
+
+<h2 id="key-links">Key links for further information</h2>
+
+<ul>
+<li><a href="https://www.ukri.org/innovation/industrial-strategy-challenge-fund/digital-security-by-design/"><b>UKRI's
+  Digital Security by Design programme</b></a></li>
+<li><a href="./"><b>The CHERI Project</b></a> at the University of Cambridge
+  and SRI International.</li>
+<li><a href="cheri-publications.html"><b>CHERI research publications,
+  technical reports, and presentations</b></a> including the CHERI ISA
+  specification and our papers.</li>
+<li><a href="cheri-software.html"><b>CHERI software stack</b></a>: How we have
+  adapted compilers, operating systems, and applications to utilize the CHERI
+  architecture.</li>
+<li><a href="cheri-formal.html"><b>CHERI rigorous engineering</b></a>: How we
+  have used formal modeling and verification in the CHERI architecture
+  project.</li>
+<li><a href="cheri-morello.html"><b>The Arm Morello board</b></a>: More
+  information on Arm's forthcoming Morello prototype CPU and board.</li>
+</ul>
+
+<h2 id="reference-software">Reference CHERI software stack</h2>
+
+<p>
+  As part of the DARPA-supported work to develop the CHERI Architecture, we
+  have adapted a <a href="cheri-software.html"><b>complete open-source
+  software stack</b></a> including compiler and toolchain (based on
+  Clang/LLVM), general-purpose and embedded operating systems (based on
+  FreeBSD and FreeRTOS), and application suite to the architecture (including
+  software such as OpenSSH, PostgreSQL, and WebKit).
+  This stack is "architecture neutral" in that it can support CHERI extensions
+  on multiple architectures, including the original 64-bit MIPS CHERI and also
+  more recent work on 32-bit and 64-bit RISC-V CHERI.
+  With our industry partners, we anticipate providing a complete adaptation of
+  this infrastructure to the hardware platform prototype.</p>
+
+<p>We are currently preparing further technical reports for release in the
+  autumn of 2019 in order to support the DSbD programme:</p>
+
+<ul>
+<li>A new version of the <b>CHERI Programmer's Guide</b> technical report,
+  last released in September 2015.
+  The new version will take into account compiler and operating-system
+  research since that date, as well as updates to our corresponding software
+  prototypes.
+  We anticipate this report being released in October 2019.</li>
+</ul>
+
+<p><i>More information will be available soon.</i>
+</p>
+
+<h2 id="research-papers">Research papers on the CHERI Architecture</h2>
+
+<p>Over the past ten years, we have published numerous papers elaborating and
+  exploring the CHERI protection model and its application to architecture,
+  microarchitecture, and software, as well as formal modeling and verification
+  of that architecture.
+  A complete publications list can be found on the <a
+  href="cheri-publications.html"><b>CHERI Publications Page</b></a>.
+  Recent publications of particular note include:<p>
+
+<ul>
+<li>Kyndylan Nienhuis, Alexandre Joannou, Thomas Bauereiss, Anthony
+  Fox, Michael Roe, Brian Campbell, Matthew Naylor,
+  Robert&nbsp;M. Norton, Simon&nbsp;W.  Moore, Peter&nbsp;G. Neumann,
+  Ian Stark, Robert N.&nbsp;M. Watson, and Peter Sewell.
+  <a href="../pdfs/202005oakland-cheri-formal.pdf">
+  <b>Rigorous engineering for hardware security: Formal modelling
+  and proof in the CHERI design and implementation process</b></a>. 
+  In Proceedings of the 41st IEEE Symposium on Security and Privacy
+  (SP), May 2020.</li>
+
+<li>Jonathan Woodruff, Alexandre Joannou, Hongyan Xia, Anthony Fox, Robert
+  Norton, Thomas Bauereiss, David Chisnall, Brooks Davis, Khilan Gudka,
+  Nathaniel W. Filardo, A. Theodore Markettos, Michael Roe, Peter G. Neumann,
+  Robert N. M. Watson, and Simon W. Moore.  <a href="../pdfs/2019tc-cheri-concentrate.pdf"><b>CHERI Concentrate: Practical Compressed Capabilities</b></a>.
+  In IEEE Transactions on Computers, 10.1109/TC.2019.2914037, IEEE, 2019.</li>
+
+<li>Brooks Davis, Robert N. M. Watson, Alexander Richardson, Peter G. Neumann,
+  Simon W. Moore, John Baldwin, David Chisnall, Jessica Clarke,
+  Nathaniel Wesley Filardo, Khilan Gudka, Alexandre Joannou, Ben Laurie,
+  A. Theodore Markettos, J. Edward Maste, Alfredo Mazzinghi,
+  Edward Tomasz Napierala, Robert M. Norton, Michael Roe, Peter Sewell,
+  Stacey Son, and Jonathan Woodruff. <a
+  href="../pdfs/201904-asplos-cheriabi.pdf"><b>CheriABI: Enforcing Valid
+  Pointer Provenance and Minimizing Pointer Privilege in the POSIX C Run-time
+  Environment</b></a>. In Proceedings of 2019 Architectural Support for
+  Programming Languages and Operating Systems (ASPLOS’19). Providence, RI,
+  USA, April 13-17, 2019</li>
+
+<li>Alexandre Joannou, Jonathan Woodruff, Robert Kovacsics, Simon W. Moore,
+  Alex Bradbury, Hongyan Xia, Robert N. M. Watson, David Chisnall,
+  Michael Roe, Brooks Davis, Edward Napierala, John Baldwin, Khilan Gudka,
+  Peter G. Neumann, Alfredo Mazzinghi, Alex Richardson, Stacey Son, and
+  A. Theodore Markettos.  <a
+  href="../pdfs/201711-iccd2017-efficient-tags.pdf"><b>Efficient Tagged
+  Memory</b></a>.  Proceedings of the 2017 IEEE 35th International Conference
+  on Computer Design (ICCD).  Boston, MA, USA, November 5-8, 2017.</li>
+
+<li>Robert N. M. Watson, Peter G. Neumann, and Simon W. Moore.  <a
+  href="../pdfs/2017mit-cybersecurity-cheri-web.pdf"><b>Balancing Disruption
+  and Deployability in the CHERI Instruction-Set Architecture (ISA)</b></a>,
+  New Solutions for Cybersecurity, Shrobe H., Shrier D., Pentland A. eds., MIT
+  Press/Connection Science: Cambridge MA. (to appear, fall 2017)</li>
+
+<li>Robert N.M. Watson, Robert M. Norton, Jonathan Woodruff, Simon W. Moore,
+  Peter G. Neumann, Jonathan Anderson, David Chisnall, Brooks Davis,
+  Ben Laurie, Michael Roe, Nirav H. Dave, Khilan Gudka, Alexandre Joannou,
+  A. Theodore Markettos, Ed Maste, Steven J. Murdoch, Colin Rothwell,
+  Stacey D. Son, and Munraj Vadera.  <a
+  href="../pdfs/20160728micro-journal-cheri-final.pdf"><b>Fast
+  Protection-Domain Crossing in the CHERI Capability-System
+  Architecture</b></a>. IEEE Micro vol. 36 no. 5, p. 38-49, Sept.-Oct.,
+  2016</li>
+</ul>
+
+</body>

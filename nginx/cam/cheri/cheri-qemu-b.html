@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CHERI-QEMU</title>
+<style type="text/css">
+</style>
+<body>
+
+<!--
+<img width=200 src="../images/20120525-swm-beri-de4-photo.jpg" align=right>
+-->
+
+<h1>CHERI-QEMU</h1>
+
+<p>
+  CHERI-QEMU is an adaptation of the popular QEMU ISA emulator to implement
+  the CHERI-MIPS and CHERI-RISC-V instruction sets.
+  CHERI-QEMU boots <a href="cheribsd.html">CheriBSD</a> and passes all of the
+  CheriBSD MIPS/RISC-V and CheriABI tests.
+  More information on QEMU itself can be found on the <a
+  href="http://wiki.qemu.org/Manual">QEMU Wiki</a>.
+</p>
+
+<div class="ucampas-toc"></div>
+
+<h2 id="build-qemu">Obtaining CHERI-QEMU</h2>
+
+<p>
+  The best way to get started with CHERI-QEMU is using our <a
+  href="https://github.com/CTSRD-CHERI/cheribuild">cheribuild</a> tool, which
+  will automatically download and build the necessary source.
+  The compiled binaries will be installed to
+  <code>~/cheri/output/sdk/bin</code> by default.
+</p>
+
+<p>
+  Get started with CHERI-QEMU in one command line:
+</p>
+
+<pre>
+./cheribuild.py --include-dependencies qemu
+</pre>
+
+<p>
+  The CHERI-QEMU source code can be found in the <a
+  href="https://github.com/CTSRD-CHERI/qemu"><b>CHERI-QEMU GitHub
+  repository</b></a>.
+  We also use a GitHub issue tracker to track <a
+  href="https://github.com/CTSRD-CHERI/qemu/issues"><b>bugs and feature
+  requests</b></a>.
+</p>
+
+<h3 id="test-cheribsd">CheriBSD Startup and Regression Testing</h3>
+
+<p>
+  In practice, however, CHERI-QEMU is most useful if you also have an OS image.
+  The following command line builds CheriBSD/RISC-V, CHERI-QEMU, and the
+  complete toolchain including tools such as CHERI Clang/LLVM and CHERI GDB,
+  and runs the resulting image in CHERI-QEMU:
+</p>
+
+<pre>
+./cheribuild.py --include-dependencies run-riscv64-purecap
+</pre>
+
+<p>
+  This will boot CheriBSD to a multiuser prompt as follows:
+</p>
+
+<pre>$ ./cheribuild.py --include-dependencies run-riscv64-purecap
+[...]
+Copyright (c) 1992-2020 The FreeBSD Project.
+Copyright (c) 1979, 1980, 1983, 1986, 1988, 1989, 1991, 1992, 1993, 1994
+	The Regents of the University of California. All rights reserved.
+FreeBSD is a registered trademark of The FreeBSD Foundation.
+FreeBSD 13.0-CURRENT #0 ea692111dcc-c1(master)-dirty: Thu Dec  3 13:22:10 UTC 2020
+    jrtc4@zeno.sec.cl.cam.ac.uk:/home/jrtc4/cheri/build/cheribsd-riscv64-purecap-build/home/jrtc4/cheri/cheribsd/riscv.riscv64c/sys/CHERI-QEMU riscv
+clang version 11.0.0 (https://github.com/CTSRD-CHERI/llvm-project.git ca275db7edb8f9ac26a926f750c0fc263da0ac27)
+CHERI hybrid kernel.
+[...]
+FreeBSD/riscv (cheribsd-riscv64-purecap) (ttyu0)
+
+login:</pre>
+
+<p>
+  At this point you can login as the root user (no password) and run
+  the CheriBSD regression tests:
+</p>
+
+<pre>login: root
+[...]
+root@:~ # cheribsdtest-hybrid -a
+[...]
+root@:~ # cheribsdtest-purecap -a
+[...]
+root@:~ #</pre>
+
+<p>
+  Note that QEMU can be exited using the key sequence "Ctrl-a x" at any time.
+</p>
+
+<h2 id="tracing">Instruction, Register and Memory Tracing</h2>
+
+<p>
+  CHERI-QEMU also has support for simple instruction, register and memory
+  tracing.
+  This is very useful for debugging and can be turned on (and off) by the
+  command-line when QEMU is started or via the <a
+  href="https://en.wikibooks.org/wiki/QEMU/Monitor">QEMU monitor</a>.
+  Note that turning on instruction tracing will add a lot of overhead to the
+  QEMU emulation and can generate very large trace log files.
+</p>
+
+<p>
+  In addition to the disassembled instructions the trace includes changes to
+  registers and memory.
+  Here is a small sample of what the trace log looks like on CHERI-MIPS (e.g.
+  start of an exception handler):
+</p>
+
+<pre>0xffffffff80000194:  csetdefault        c30
+    Write C00|v:1 s:0 p:7fffffff b:0000000000000000 l:ffffffffffffffff
+             |o:0000000000000000 t:0
+[...]
+0xffffffff8051d0ec:  sd a3,296(k1)
+    Memory Write [c000000000143588] = 000000016004f5a0
+0xffffffff8051d0f0:  cgetcause  k0
+    Write k0 = 00000000000006ff
+0xffffffff8051d0f4:  daddiu     t4,k1,608
+    Write t4 = c0000000001436c0
+0xffffffff8051d0f8:  csc        c28,t4,192(c30)
+    Cap Memory Write [c0000000001436c0] = v:1 tps:00000000ffff00fa
+    c:0000000000000000 b:0000000000000000 l:0000010000000000</pre>
+
+<h3 id="tracing-start">Starting Instruction Tracing on Start Up</h3>
+
+<p>
+  To start instruction tracing on start up add "-D &lt;logfile&gt; -d instr"
+  to the QEMU command-line.
+  For example (for CHERI-MIPS):
+</p>
+
+<pre>$ qemu-system-cheri128 -M malta -kernel ./kernel -nographic -hda ./disk.img -m 2048 -D /var/tmp/instr.log -d instr</pre>
+
+<h3 id="tracing-command">Starting and Stopping Instruction Tracing via CheriBSD
+  command</h3>
+<p>
+  CheriBSD also has a tool <code>/usr/bin/qtrace</code> that can be used to toggle QEMU tracing.
+  This will log the traces to the file specified using the <code>-D</code> flag on QEMU startup.
+  For example:
+</p>
+<pre>
+$ qtrace -u exec /bin/true  # trace user-space instructions for cat
+$ qtrace exec /bin/true     # trace all instructions for true
+$ qtrace start              # turn on instruction tracing
+$ qtrace stop               # turn off instruction tracing
+</pre>
+
+<h3 id="tracing-monitor">Starting and Stopping Instruction Tracing via QEMU
+  Monitor</h3>
+
+<p>
+  Instruction tracing can also be started and stopped using the QEMU Monitor.
+  To do this toggle into the QEMU Monitor using the "Ctrl-a c" key sequence.
+  At the QEMU Monitor prompt, to start instruction tracing, do:
+</p>
+
+<pre>(qemu) logfile /var/tmp/instr.log
+(qemu) log instr</pre>
+
+<p>
+  Toggle back to the console with another "Ctrl-a c" key sequence.
+</p>
+
+<p>
+  To stop instruction tracing using the QEMU Monitor:
+</p>
+
+<pre>(qemu) log none</pre>
+
+<p>
+  CHERI=QEMU can also create CHERI-MIPS instruction traces that are compatible
+  with the <a
+  href="https://github.com/CTSRD-CHERI/cheritrace">libcheritrace</a> format
+  that is used by the tracedump utility and <a
+  href="https://github.com/CTSRD-CHERI/CheriVis">CheriVis</a>.
+  To generate libcheritrace instruction traces use '-d cvtrace' instead of
+  '-d instr'.
+  For example:
+</p>
+
+<pre>$ qemu-system-cheri128 -M malta -kernel ./kernel -nographic -hda ./disk.img -m 2048 -D /var/tmp/cvtrace.bin -d cvtrace
+[...]
+$ tracedump -t /var/tmp/cvtrace.bin
+[...]</pre>
+
+</body>

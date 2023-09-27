@@ -1,0 +1,8 @@
+style=ucam2008(blue),
+navtop=1,
+navtopinclude=1,
+section='CHERI early adopters - archival material',
+copyright_holder="Robert N. M. Watson",
+copyright_year="2013-2014",
+webmaster=(name='Robert Watson',
+           url='/~rnw24/'),

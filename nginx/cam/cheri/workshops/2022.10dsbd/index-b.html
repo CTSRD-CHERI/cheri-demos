@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>DSbD All Hands October 2022 - Software porting to CHERI memory safety</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>DSbD All Hands October 2022 - Software porting to CHERI memory safety</h1>
+
+<h2>Organisers</h2>
+
+<p>
+Konrad Witaszczyk (University of Cambridge, Research Associate), Dr. Nathaniel
+Filardo (Microsoft Research, Senior Researcher), and others (TBD)
+</p>
+
+<h2>Overview</h2>
+
+<p>
+  Registration link:
+  <a href="https://www.eventbrite.co.uk/e/digital-security-by-design-dsbd-all-hands-event-12th-october-2022-tickets-403320822437">Eventbrite</a>
+</p>
+<p>
+  Location:
+  <a href="https://g.page/grandstation">Grand Station, Sun Street, Wolverhampton WV10 0BF</a>
+</p>
+<p>
+  Time: 1:45 PM UTC+1 - 4:00 PM UTC+1 (2h workshop; 15 min break), October 12,
+  2022
+</p>
+<p>
+  Capacity limit: 30 people
+</p>
+
+<p>
+  University of Cambridge, SRI International and Arm are actively working to
+  provide toolchains for CHERI and Morello to compile, debug and run third-party
+  software and increase a number of available software for the Arm Morello
+  platform.
+  The latest CheriBSD release 22.05p1 includes over 9,000 precompiled CheriABI
+  third-party software ports and over 23,000 precompiled hybrid ABI third-party
+  sofware ports for Morello.
+</p>
+<p>
+  During this workshop, we would like to present what is required to adapt
+  upstream software code bases for CheriABI and hybrid ABI on CheriBSD/Morello
+  to help and encourage others to port software to CHERI/Morello.
+  Additionally, we would like to discuss with people interested in the CHERI
+  software ecosystem what third-party software they would like to see ported
+  for CHERI/Morello and what are their plans in achieving that.
+</p>
+
+<h2>Prerequisites</h2>
+
+<p>
+  During the workshop, participants will have access to Azure VMs with
+  preinstalled QEMU and CheriBSD/Morello.
+  They might also wish to make remote use of their own Morello boxes, but
+  Morello board access will not be provided by the organisers.
+</p>
+<p>
+  However, in order to understand workshop materials better and create a work
+  environment that you can experiment with after the workshop as well, it is
+  recommended, but not required, to:
+</p>
+<ul>
+  <li>
+    If you do not have access to a Morello board, get familiar with the
+    <a href="https://github.com/CTSRD-CHERI/cheribuild">cheribuild utility</a>
+    and run CheriBSD for Morello using QEMU;
+  </li>
+  <li>
+    If have installed CheriBSD for Morello using QEMU or have access to
+    a Morello board, read the
+    <a href="https://ctsrd-cheri.github.io/cheribsd-getting-started/helloworld/">CheriABI "Hello World"</a>
+    section from the Getting Started with CheriBSD guide to make sure you can
+    compile and debug programs.
+  </li>
+</ul>
+<p>
+Additionally to the work environment, we recommend to:
+</p>
+<ul>
+  <li>
+    If you are new to the CHERI architecture, read the technical report
+    <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An
+    Introduction to CHERI</a>. You can also consider reading the
+    <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-947.pdf">
+    CHERI C/C++ Programming Guide</a>.
+  </li>
+  <li>
+    Join the <a href="../../cheri-slack.html">CHERI-CPU Slack</a> and its public
+    #workshop-dsbd-22-10 channel. You will be able to find workshop organisers
+    and other participants there, ask questions and share your answers. Note
+    that you must send a request to join the Slack first and it might take some
+    time to approve your request.
+  </li>
+</ul>
+
+<h2>Agenda</h2>
+
+<p>
+  The workshop will be held fully in person at Grand Station, Wolverhampton and
+  will last 2 hours. It will begin at 1:45 PM UTC+1 and will finish at 4:00 PM
+  UTC+1. There will be a 15 min break between 2:45 PM and 3:00 PM.
+</p>
+<p>
+  The workshop will consist of three parts:
+</p>
+<ul>
+  <li>
+    Part I: a presentation session.<br>
+    CHERI memory safety features, semantics of CHERI C/C++ and SDK for CHERI
+    C/C++.
+  </li>
+  <li>
+    Part II: a practical session.<br>
+    CHERI C/C++ porting difficulties/issues, sanitisers and debugging
+    CHERI-enabled applications with
+    example third-party software on CheriBSD provided with CheriBSD ports.
+  </li>
+  <li>
+    Part III: a discussion session.<br>
+    CHERI C/C++ porting plans, roadmap, collaboration and portability across
+    CHERI-enabled platforms and operating systems.
+  </li>
+</ul>
+<p>
+  If you are interested in the discussion session but not in the practical
+  session (e.g., you are already familiar with CheriBSD/Morello and how to port
+  software to it), we are planning to split the workshop room into two sections:
+  one dedicated for people who would like to do practical exercises, and the
+  other dedicated for people who would like to discuss with others their current
+  practical challenges related to software porting to Morello.
+</p>
+<p>
+The topics covered during the workshop will include:
+</p>
+<ul>
+  <li>Presentation of the CHERI memory safety features;</li>
+  <li>Presentation of the CHERI SDK;</li>
+  <li>Presentation of CheriBSD ports;</li>
+  <li>Example software porting case studies for CHERI memory safety;</li>
+  <li>Example software building, debugging and patching with CheriBSD
+    ports;</li>
+  <li>Discussion on future porting plans, roadmap, collaboration and
+    portability.</li>
+</ul>
+
+<h2>Slides</h2>
+
+<p>
+  Slides will be published here after the workshop.
+</p>
+
+</body>

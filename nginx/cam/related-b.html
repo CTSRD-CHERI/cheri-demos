@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>Related</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>
+  Related
+</h1>
+<br clear=all>
+
+<p>
+The CTSRD project builds on a long history of work in computer architecture,
+operating systems, programming languages, and security, both at SRI and
+Cambridge, and elsewhere.
+On this page, we have gathered a few links to recent and ongoing projects that
+have been direct influences on our work.
+</p>
+
+<ul>
+<li><a href="http://www.cl.cam.ac.uk/research/security/capsicum/">Capsicum</a>:
+  practical capabilities for UNIX.  Our concerns with the scalability of
+  fine-grained application compartmentalisation originated in this work at the
+  University of Cambridge, as well as ideas about the hybridisation of
+  capability models with contemporary operating system (and CPU) design
+  explored further in CHERI.  Reasoning about the correctness of Capsicum also
+  led us to aspects of our approach in TESLA.</li>
+
+<li><a href="http://www.openmirage.org/">Mirage</a>.  Developed at the
+  University of Cambridge, Mirage is an exokernel for constructing secure,
+  high-performance network applications across a variety of cloud computing
+  and mobile platforms.  Mirage is based on the OCaml language, with syntax
+  extensions and libraires which provide networking, storage, and concurrency
+  support.  Mirage can compile fully standalone, specialised microkernels to
+  run on Xen, and we hope also to target CHERI.</li>
+
+<li><a href="http://www.xen.org/">Xen</a>.  Developed at the University of
+  Cambridge, the Xen hypervisor is widely used in research and industry for
+  full-machine virtualisation.  It has been used as a platform for a variety
+  of security research, and brings to the forefront limitations of current CPU
+  architectures in supporting scalable protection.  We would like to maintain
+  full-system virtualisation facilities in CHERI.  Reasoning about Xen's
+  correctness will also benefit from TESLA.</li>
+</ul>
+
+</body>

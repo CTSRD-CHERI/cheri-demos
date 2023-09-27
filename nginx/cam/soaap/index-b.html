@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<head>
+<title>Security-Oriented Analysis of Application Programs (SOAAP)</title>
+<link rel="stylesheet" type="text/css" href="soaap.css"/>
+</head>
+
+<body>
+<h1>
+  Security-Oriented Analysis of Application Programs (SOAAP)
+</h1>
+<br clear=all>
+
+<table bgcolor="#ddffdd" border="0"><tr><td>October 2015: Khilan Gudka has
+  presented <a href="../pdfs/2015ccs-soaap.pdf">our paper on SOAAP, a tool to
+  explore and evaluate compartmentalised software</a> at ACM CCS
+  2015.</td></tr></table>
+
+<p>
+Sandboxing technologies such as <a href="../capsicum/">Capsicum</a> and
+<a href="cheri.html">CHERI</a> support the fine-grained compartmentalisation
+of large-scale applications such as web browsers and office suites, as well as
+multiple-component software such as the UNIX userspace.
+When deployed correctly, application compartmentalisation offers significant
+benefits by allowing policies to be imposed within applications, and in
+mitigating exploited vulnerabilities.
+However, application compartmentalisation remains an art rather than a
+science: identifying, implementing, and debugging partitioning strategies
+requires detailed expertise in both the application and security.
+SOAAP is exploring semi-automated techniques, grounded in static analysis,
+dynamic analysis, and automated program transformation, to improve the
+developer experience.
+This project is jointly funded by Google and DARPA, and takes place within the
+context of the CTSRD project.
+</p>
+
+<h2>Conference and journal papers</h2>
+<ul>
+<li>Khilan Gudka, Robert N.M. Watson, Jonathan Anderson, David Chisnall,
+  Brooks Davis, Ben Laurie, Ilias Marinos, Peter G. Neumann, and
+  Alex Richardson.  <a href="../pdfs/2015ccs-soaap.pdf"><b>Clean Application
+  Compartmentalization with SOAAP</b></a>, Proceedings of the 22nd ACM
+  Conference on Computer and Communications Security (CCS 2015), Denver, CO,
+  USA, October 2015.</li>
+
+<li>William R. Harris (University of Wisconsin, Madison), Somesh Jha
+  (University of Wisconsin, Madison), Thomas Reps (University of Wisconsin,
+  Madison), Jonathan Anderson (University of Cambridge), and Robert N. M.
+  Watson (University of Cambridge).  <a
+  href="../pdfs/201305-temporal-practical-capabilities.pdf"><b>Declarative,
+  Temporal, and Practical Programming with Capabilities</b></a>.  IEEE
+  Symposium on Security and Privacy ("Oakland"), May, 2013.</li>
+</ul>
+
+<h2>Workshop papers</h2>
+<ul>
+<li>Robert N. M. Watson, Steven J. Murdoch, Khilan Gudka, Jonathan Anderson,
+  Peter G. Neumann, and Ben Laurie.  Towards a theory of application
+  compartmentalisation. Security Protocols Workshop, March, 2013.</li>
+
+<li>Khilan Gudka, Robert N. M. Watson, Steven Hand, Ben Laurie, and Anil
+  Madhavapeddy.  <a href="../pdfs/2012ahans-soaap-final.pdf"><b>Exploring
+  compartmentalisation hypotheses with SOAAP</b></a>.  Workshop paper,
+  Adaptive Host and Network Security (AHANS 2012), September, 2012.</li>
+</ul>
+
+<h2>Presentations</h2>
+<ul>
+<li>Khilan Gudka, Robert N. M. Watson, Steven Hand, Ben Laurie, and Anil
+  Madhavapeddy.  <a href="../pdfs/20120914-ahans-soaap.pdf"><b>Exploring
+  compartmentalisation hypotheses with SOAAP</b></a>.  Workshop presentation,
+  Adaptive Host and Network Security (AHANS 2012), September, 2012.</li>
+</ul>
+
+</body>

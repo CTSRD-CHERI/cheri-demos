@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CHERI and Microkernels</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>CHERI and Microkernels</h1>
+
+<p>
+Following the <a href="../workshops/">first CHERI Microkernel Workshop</a> in
+April 2016, there has been substantial interest in whether CHERI's
+architectural features can help support more expressive or performant
+microkernel designs.
+At one end of the spectrum, current virtual-memory-based microkernels (e.g.,
+seL4, L4, Barrelfish) could be extended to support in-address-space memory
+protection and compartmentalisation, much in the style of <a
+href="../cheribsd/">CheriBSD</a>.
+They could also be extended to use certain CHERI features to improve
+performance &mdash; for example, using sealed capabilities to avoid entering
+the kernel for certain types of delegation operations.
+At the other extreme, CHERI's protection and compartmentalisation features
+could be used in place of MMU-based techniques to implement a single
+address-space operating-system design, minimising or entirely eliminating use
+of virtual memory.
+</p>
+
+<h2>cl-cheri-microkernel mailing list</h2>
+
+<p>
+We have created a mailing list, cl-cheri-microkernel, to host discussions
+about using CHERI in microkernel design:
+</p>
+
+<ul>
+<li><a href="https://lists.cam.ac.uk/mailman/listinfo/cl-cheri-microkernel">cl-cheri-microkernel
+  list information</a></li>
+</ul>
+
+</body>

@@ -1,0 +1,194 @@
+<title>CHERI-RISC-V</title>
+<style type="text/css">
+</style>
+<body>
+
+<img width=320 src="../images/20200407-swm2020-vcu118-photo.jpg" align=right>
+
+<h1>CHERI-RISC-V</h1>
+
+<p>
+CHERI-RISC-V is an in-progress application of the CHERI protection model to
+the 32-bit and 64-bit variants of the RISC-V Instruction-Set Architecture
+(ISA).
+The current draft specification of CHERI-RISC-V can be found in <a
+href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-951.pdf"><b>CHERI
+ISAv8</b></a>, and we are continuing to update the spceification as we improve
+the architecture.
+We have prototype CHERI-RISC-V implementations of:
+</p>
+
+<ul>
+  <li>Formal Sail specification</li>
+  <li>Qemu ISA-level emulator</li>
+  <li>3-stage and 5-stage pipelined cores, and a superscalar core, on FPGA</li>
+  <li>Adaptation of the CHERI Clang/LLVM/LLD and GDB</li>
+  <li>Adaptation of the 32-bit and 64-bit MMU-free CheriFreeRTOS operating
+    system, based on FreeRTOS</li>
+  <li>Adaptation of the 64-bit MMU-enabled CheriBSD operating system, based on
+    FreeBSD</li>
+</ul>
+
+<p>
+We anticipate an updated <b>CHERI ISAv9</b> in 2021Q3 or 2021Q4 that
+introduces a number of improvements relating to code linkage, extended
+performance counters for CHERI-related events, and support for compressed
+CHERI-RISC-V instructions.
+Many of these features are already present in our emulators, hardware, and
+software, but instruction and opcode choices are not yet finalized.
+</p>
+
+<br clear=all>
+
+<div class="ucampas-toc"></div>
+
+<h2 id="isa-hw">CHERI-RISC-V ISA and Implementations</h2>
+
+<h3 id="isa">CHERI-RISC-V Instruction-Set Architecture (ISA)</h3>
+
+<p>
+CHERI-RISC-V is a from-scratch application of the CHERI protection model to
+the 32-bit and 64-bit variants of the RISC-V ISA.
+Our approach learns from experience integrating CHERI into 64-bit MIPS, as
+well as <a href="cheri-morello.html"><b>our collaboration with Arm to create
+Morello</b></a>, a CHERI extended version of ARMv8-A.
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-951.pdf"><b>CHERI
+ISAv8</a> contains a relatively mature prototype of the CHERI-RISC-V ISA, which
+we have implemented in multiple microarchitectures and Qemu, and for which we
+have complete CHERI Clang/LLVM/LLD/GDB and CheriBSD adaptations.
+We expect that future ISA versions will continue to evolve the specification
+(and, in particular, opcode encodings, which have not yet been optimized, but
+also compressed instructions), and so binary compatibility is not assured.
+Key differences between CHERI-MIPS and CHERI-RISC-V include:
+</p>
+
+<ul>
+  <li>Whereas CHERI-MIPS supported only a split capability register file,
+    CHERI-RISC-V supports both merged and split register files.
+    Currently, we are focusing on a merged register file.</li>
+  <li>CHERI-RISC-V extends 32-bit RISC-V with 64-bit capabilities, and 64-bit
+    RISC-V with 128-bit capabilities; CHERI-MIPS supported only 128-bit
+    capabilities with 64-bit MIPS.</li>
+  <li>CHERI-RISC-V supports hardware floating point.</li>
+  <li>CHERI-RISC-V benefits from a richer underlying architecture, including
+    architectural page tables.</li>
+  <li>CHERI-RISC-V utilizes a new "capability mode" instruction encoding mode
+    to conserve ISA opcode space.
+    CHERI-RISC-V load and store instructions utilize identical load/store
+    encodings, making code generation more similar between baseline RISC-V and
+    pure-capability code.</li>
+</ul>
+
+<h3 id="sail">Sail CHERI-RISC-V</h3>
+
+<p>
+We have extended the baseline RISC-V Sail model with support for CHERI.
+This is our golden model for CHERI-RISC-V, and all pseudocode in our textual
+specification is derived from the Sail model.
+We use the model for proofs about the architecture (such as that monotonicity
+holds), tandem verification, and hope soon to also use it for automated test
+generation.
+This implementation is experimental:
+</p>
+
+<ul>
+  <li><a href="https://github.com/CTSRD-CHERI/sail-cheri-riscv">Sail
+    CHERI-RISC-V Model (GitHub)</a> - Formal model of the CHERI-RISC-V
+    ISA.</li>
+</ul>
+
+<h3 id="qemu">Qemu CHERI-RISC-V</h3>
+
+<p>
+We have extended <a href="cheri-qemu.html">QEMU-CHERI</a> to support CHERI
+for 64-bit RISC-V.
+This is now incorporated into our mainline QEMU-CHERI implementation, which
+can be built using <a
+href="https://github.com/CTSRD-CHERI/cheribuild">cheribuild</a>.
+QEMU-CHERI is able to boot and run CheriBSD/RISC-V as well as CheriFreeRTOS.
+This implementation is experimental:
+</p>
+
+<ul>
+  <li><a href="https://github.com/CTSRD-CHERI/qemu">Qemu-CHERI (GitHub)</a>
+    - Qemu-CHERI, which includes support for the CHERI-RISC-V ISA.</li>
+</ul>
+
+<h3 id="cores">CHERI-Piccolo, CHERI-Flute, and CHERI-Toooba CPU cores on
+  FPGA</h3>
+
+<p>
+We have extended the open-source Bluespec SystemVerilog (BSV) RISC-V cores
+Piccolo (32-bit, 3-stage), Flute (64-bit, 5-stage), and Toooba (64-bit,
+superscalar) with support for CHERI-RISC-V.
+We are developing these cores on the Xilinx VCU-118 board.
+These implementations are still highly experimental:
+</p>
+
+<ul>
+  <li><a href="https://github.com/CTSRD-CHERI/Piccolo">Piccolo 3-stage core
+    (GitHub)</a> - Early prototype running CheriFreeRTOS.</li>
+  <li><a href="https://github.com/CTSRD-CHERI/Flute">Flute 5-stage core
+    (GitHib)</a> - Early prototype running CheriBSD/RISC-V and
+      CheriFreeRTOS.</li>
+  <li><a href="https://github.com/CTSRD-CHERI/Toooba">Tooba superscalar core
+    (GitHub)</a> - Early prototype running CheriBSD/RISC-V.</li>
+</ul>
+
+<h2 id="software">CHERI-RISC-V Software Stack</h2>
+
+<h3 id="llvm">CHERI Clang/LLVM/LLD on CHERI-RISC-V</h3>
+
+<p>
+We have adapted <a href="cheri-llvm.html"><b>CHERI Clang/LLVM and LLD</b></a>,
+and GDB to support CHERI-RISC-V.
+These changes are part of our mainline CHERI implementations:
+</p>
+
+<ul>
+  <li><a href="https://github.com/CTSRD-CHERI/llvm-project">CHERI Clang/LLVM
+    and LLD main development tree</a> - Supports hybrid and pure-capability
+    code generation from CHERI C/C++.
+  <li><a href="https://github.com/CTSRD-CHERI/gdb">CHERI GDB main development
+    tree</a> - Supports debugging CHERI-RISC-V CheriABI processes live and
+    using core dumps.</li>
+</ul>
+
+<h3 id="cherifreertos">CheriFreeRTOS</h3>
+
+<p>
+CheriFreeRTOS is a version of the open-source <a
+href="https://www.freertos.org">FreeRTOS embedded operating system</a> that
+has been extended to support CHERI memory protection.
+CheriFreeRTOS is compiled as a pure-capability binary, and includes strong
+hardware-supported spatial memory protection and pointer protection for the
+stack, heap, and global variables.
+We now have a prototype also supporting software compartmentalization (e.g.,
+a sandboxed FreeRTOS TCP/IP stack), but this is not yet ready for more
+mainstream use.
+</p>
+
+<p><i>GitHub repository to be available shortly.</i></p>
+
+<h3 id="cheribsd">CheriBSD</h3>
+
+<p>
+We have extended our existing <a href="cheribsd.html">CheriBSD</a>
+implementation with support for CHERI-RISC-V, with the goal of full feature
+parity.
+CheriBSD is a CHERI-enabled adaptation of the open-source <a
+href="https://www.FreeBSD.org/">FreeBSD operating system</a>, along with many
+of its applications.
+Currently, CheriBSD/RISC-V is experimental, and boots to multiuser mode with a
+statically and dynamically linked CheriABI userspace.
+These changes are part of our mainline implementation, and CHERI-RISC-V is now
+our preferred research platform for software work:
+</p>
+
+<ul>
+  <li><a href="https://github.com/CTSRD-CHERI/cheribsd">CheriBSD main
+    development tree</a> - Fully supports RISC-V binaries and CheriABI
+    binaries.</li>
+</ul>
+
+</body>

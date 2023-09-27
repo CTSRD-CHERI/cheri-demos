@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>BERI open-source software downloads</title>
+<style type="text/css">
+</style>
+<body>
+
+<img width=200 src="../images/20120525-swm-beri-de4-photo.jpg" align=right>
+
+<h1>BERI open-source software downloads</h1>
+
+<table bgcolor="#ffdddd" border="0"><tr><td>Newflash - June 18 2014: the
+  BERI/CHERI source code is <a href="downloads-hw.html">now available for
+  download</a>!  Physical build specs for the Terasic DE4-based tablet are
+  online, as is FreeBSD OS support for BERI, which was merged to FreeBSD 10.0
+  in August 2012.</td></tr></table>
+
+<p>
+  <a href="http://www.csl.sri.com/">SRI International</a> and the <a
+  href="/">University of Cambridge</a> have developed <a
+  href="index.html">BERI</a>, a pipelined 64-bit RISC FPGA soft-core processor
+  designed for teaching and research in the hardware-software interface.
+  BERI is implemented in <a href="http://www.bluespec.com/">Bluespec</a>, a
+  high-level hardware definition language (HDL) that compiles to efficient C
+  simulation or Verilog descriptions suitable for FPGA implementation.
+  BERI is able to boot the open-source <a
+  href="http://www.freebsd.org/">FreeBSD UNIX operating system</a>, which
+  supports multitasking, TCP/IP networking, multiple filesystems, POSIX APIs,
+  advanced security features, a has drivers for a variety of devices found on
+  Terasic's FPGA boards, as well as many thousands of third-party open-source
+  applications.
+  We use the BERI hardware-software platform daily in our teaching and
+  research (e.g., <a href="../cheri.html">CHERI</a>), and hope that others
+  will find it useful as well!
+</p>
+
+<p>
+  BERI consists of a number of components including: physical designs (e.g.,
+  tablet packaging for the Terasic DE4); HDL descriptions of the processor
+  and several peripherals; and adaptations of FreeBSD and other open-source
+  software to support BERI.
+</p>
+<p>
+  <a href="downloads-hw.html">For hardware downloads, see this page.</a>
+</p>
+<p>
+  Please consider <a href="mailinglists.html">subscribing to our mailing
+  lists</a> if you have any questions or need a hand getting started with
+  BERI.
+</p>
+
+<h2>Source-code repositories</h2>
+<p>
+  All BERI and CHERI software is developed in public repositories.
+  We routinely synchronise processor and device-driver support in the FreeBSD
+  repository to our local development trees.
+  We are also developing our CHERI-aware software in GitHub:
+</p>
+
+<ul>
+<li>CheriBSD: <a href="https://github.com/CTSRD-CHERI/cheribsd">https://github.com/CTSRD-CHERI/cheribsd</a></li>
+<li>CHERI binutils: <a href="https://github.com/CTSRD-CHERI/binutils">https://github.com/CTSRD-CHERI/binutils</a></li>
+<li>CHERI LLVM: <a href="https://github.com/CTSRD-CHERI/llvm">https://github.com/CTSRD-CHERI/llvm</a></li>
+<li>CHERI Clang: <a href="https://github.com/CTSRD-CHERI/clang">https://github.com/CTSRD-CHERI/clang</a></li>
+</ul>
+
+<p>
+  More information on CheriBSD can be found on the <a
+  href="../cheri/cheribsd.html">CheriBSD web page</a>.
+  The software stack is documented in our <a href="../publications.html">BERI
+  Software Reference, CHERI Programmer's Guide, and other technical
+  reports</a>.
+</p>
+
+<h2>FreeBSD/BERI operating system</h2>
+<p>
+<a href="http://www.freebsd.org/">FreeBSD 10.0</a> shipped "out of the box"
+  with support for the BERI hardware-software research platform.
+  FreeBSD provides a full 64-bit UNIX environment including MMU-based process
+  model, support for the BERI floating-point unit, preemptive multitasking and
+  multithreading, POSIX APIs, multiple filesystems, advanced security features
+  such as Capsicum and mandatory access control, network services such as SSH,
+  UNIX shells, gcc, Clang/LLVM, and tens of thousands of third-party
+  applications.
+  FreeBSD includes support for all BERI features including the BERI processor,
+  programmable interrupt control, and many common hard- and soft-core
+  peripherals including those found on the Terasic DE4: Altera triple-speed
+  Ethernet MAC (atse), Intel Strata Flash, Philips USB, Altera JTAG UART,
+  16550 UART, Altera University Programme SD Card Controller, on-board
+  switches and LEDs, and Terasic's MTL capacitive multi-touch display.
+  The result is a complete 64-bit hardware and OS platform able to run tens of
+  thousands of open-source applications "out of the box".
+</p>
+
+<p>
+  We are continuing to add device drivers and support for new platform
+  features, and provide prebuilt software images here for convenience.
+  Two types of images are available: those depending on stock BERI processor
+  features, and those also able to utilize the CHERI capability coprocessor.
+  The latter require a version of BERI built with CP2 support.
+</p>
+
+<h2>Downloads</h2>
+
+<table>
+<tr>
+<th>File</th>
+<th>Target</th>
+<th>Title</th>
+<th>Version</th>
+</tr>
+
+<tr>
+<td><a href="downloads/arcina-cheribsd-beri-de4-mdroot-singleuser-kernel.bz2">arcina-cheribsd-beri-de4-mdroot-singleuser-kernel.bz2</a></td>
+<td>DE4</td>
+<td>FreeBSD/BERI single-user  memory-disk kernel (<a href="downloads/arcina-cheribsd-beri-de4-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-beri-de4-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-beri-de4-mdroot-smoketest_bootonly-kernel.bz2">arcina-cheribsd-beri-de4-mdroot-smoketest_bootonly-kernel.bz2</a></td>
+<td>DE4</td>
+<td>FreeBSD/BERI boot test memory-disk kernel (<a href="downloads/arcina-cheribsd-beri-de4-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-beri-de4-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-beri-de4-sdroot-kernel.bz2">arcina-cheribsd-beri-de4-sdroot-kernel.bz2</a></td>
+<td>DE4</td>
+<td>FreeBSD/BERI  SD-card-root kernel (<a href="downloads/arcina-cheribsd-beri-de4-sdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-beri-de4-sdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-beri-de4-usbroot-kernel.bz2">arcina-cheribsd-beri-de4-usbroot-kernel.bz2</a></td>
+<td>DE4</td>
+<td>FreeBSD/BERI  USB-root kernel (<a href="downloads/arcina-cheribsd-beri-de4-usbroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-beri-de4-usbroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-beri-sim-mdroot-singleuser-kernel.bz2">arcina-cheribsd-beri-sim-mdroot-singleuser-kernel.bz2</a></td>
+<td>Simulation</td>
+<td>FreeBSD/BERI single-user  memory-disk kernel (<a href="downloads/arcina-cheribsd-beri-sim-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-beri-sim-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-beri-sim-mdroot-smoketest-kernel.bz2">arcina-cheribsd-beri-sim-mdroot-smoketest-kernel.bz2</a></td>
+<td>Simulation</td>
+<td>FreeBSD/BERI testsuite memory-disk kernel (<a href="downloads/arcina-cheribsd-beri-sim-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-beri-sim-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-beri-sim-mdroot-smoketest_bootonly-kernel.bz2">arcina-cheribsd-beri-sim-mdroot-smoketest_bootonly-kernel.bz2</a></td>
+<td>Simulation</td>
+<td>FreeBSD/BERI boot test memory-disk kernel (<a href="downloads/arcina-cheribsd-beri-sim-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-beri-sim-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-cheri-de4-mdroot-singleuser-kernel.bz2">arcina-cheribsd-cheri-de4-mdroot-singleuser-kernel.bz2</a></td>
+<td>DE4</td>
+<td>CheriBSD single-user  memory-disk kernel (<a href="downloads/arcina-cheribsd-cheri-de4-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-cheri-de4-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-cheri-de4-mdroot-smoketest-kernel.bz2">arcina-cheribsd-cheri-de4-mdroot-smoketest-kernel.bz2</a></td>
+<td>DE4</td>
+<td>CheriBSD testsuite memory-disk kernel (<a href="downloads/arcina-cheribsd-cheri-de4-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-cheri-de4-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-cheri-de4-mdroot-smoketest_bootonly-kernel.bz2">arcina-cheribsd-cheri-de4-mdroot-smoketest_bootonly-kernel.bz2</a></td>
+<td>DE4</td>
+<td>CheriBSD boot test memory-disk kernel (<a href="downloads/arcina-cheribsd-cheri-de4-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-cheri-de4-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-cheri-de4-sdroot-kernel.bz2">arcina-cheribsd-cheri-de4-sdroot-kernel.bz2</a></td>
+<td>DE4</td>
+<td>CheriBSD  SD-card-root kernel (<a href="downloads/arcina-cheribsd-cheri-de4-sdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-cheri-de4-sdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-cheri-de4-usbroot-kernel.bz2">arcina-cheribsd-cheri-de4-usbroot-kernel.bz2</a></td>
+<td>DE4</td>
+<td>CheriBSD  USB-root kernel (<a href="downloads/arcina-cheribsd-cheri-de4-usbroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-cheri-de4-usbroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-cheri-sim-mdroot-singleuser-kernel.bz2">arcina-cheribsd-cheri-sim-mdroot-singleuser-kernel.bz2</a></td>
+<td>Simulation</td>
+<td>CheriBSD single-user  memory-disk kernel (<a href="downloads/arcina-cheribsd-cheri-sim-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-cheri-sim-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-cheri-sim-mdroot-smoketest-kernel.bz2">arcina-cheribsd-cheri-sim-mdroot-smoketest-kernel.bz2</a></td>
+<td>Simulation</td>
+<td>CheriBSD testsuite memory-disk kernel (<a href="downloads/arcina-cheribsd-cheri-sim-mdroot-kernel.dump.bz2">dump</a>) (<a href="downloads/arcina-cheribsd-cheri-sim-mdroot-kernel.symbols.bz2">symbols</a>)</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-sdcard.img.xz">arcina-cheribsd-sdcard.img.xz</a></td>
+<td>DE4</td>
+<td>SD-card/USB-stick image</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-singleuser.img.xz">arcina-cheribsd-singleuser.img.xz</a></td>
+<td></td>
+<td>Single user filesystem</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-smoketest.img.xz">arcina-cheribsd-smoketest.img.xz</a></td>
+<td></td>
+<td>Testsuite filesystem</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-smoketest_bootonly.img.xz">arcina-cheribsd-smoketest_bootonly.img.xz</a></td>
+<td></td>
+<td>Boot-test filesystem</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-net.img.xz">arcina-cheribsd-net.img.xz</a></td>
+<td></td>
+<td>Network boot filesystem</td>
+<td>20150511</td>
+</tr>
+<tr>
+<td><a href="downloads/arcina-cheribsd-world.tar.xz">arcina-cheribsd-world.tar.xz</a></td>
+<td></td>
+<td>FreeBSD filesystem tarball</td>
+<td>20150511</td>
+</tr>
+
+
+<!-- FreeBSD/BERI -->
+
+<tr>
+<td><a href="downloads/20140616-cheribsd-beri-sim-mdroot-singleuser-kernel.bz2">20140616-cheribsd-beri-sim-mdroot-singleuser-kernel.bz2</a></td>
+<td>Simulation</td>
+<td>FreeBSD/BERI single-user memory-disk kernel</td>
+<td>20140616</td>
+</tr>
+
+<tr>
+<td><a href="downloads/20140616-cheribsd-beri-de4-mdroot-singleuser-kernel.bz2">20140616-cheribsd-beri-de4-mdroot-singleuser-kernel.bz2</a></td>
+<td>DE4</td>
+<td>FreeBSD/BERI single-user memory-disk kernel</td>
+<td>20140616</td>
+</tr>
+
+<!-- CheriBSD -->
+
+<tr>
+<td><a href="downloads/20140616-cheribsd-cheri-sim-mdroot-singleuser-kernel.bz2">20140616-cheribsd-cheri-sim-mdroot-singleuser-kernel.bz2</a></td>
+<td>Simulation</td>
+<td>CheriBSD single-user memory-disk kernel</td>
+<td>20140616</td>
+</tr>
+
+<tr>
+<td><a href="downloads/20140616-cheribsd-cheri-de4-mdroot-kernel.bz2">20140616-cheribsd-cheri-de4-mdroot-kernel.bz2</a></td>
+<td>DE4</td>
+<td>CheriBSD single-user memory-disk kernel</td>
+<td>20140616</td>
+</tr>
+
+<tr>
+<td><a href="downloads/20140616-cheribsd-cheri-de4-sdroot-kernel.bz2">20140616-cheribsd-cheri-de4-sdroot-kernel.bz2</a></td>
+<td>DE4</td>
+<td>CheriBSD single-user SD-Card-root kernel</td>
+<td>20140616</td>
+</tr>
+
+</table>
+
+<h2>Browsable Source Code</h2>
+
+<p>
+  You can <a
+  href="http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/svn.html">download
+  FreeBSD source code using Subversion</a> from a number of different <a
+  href="http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/svn-mirrors.html">mirror
+  sites</a>.
+</p>
+<p>
+  You can also browse the FreeBSD source code on <a
+  href="http://fxr.watson.org/fxr/source">cross-referencing websites such as
+  fxr.watson.org</a>:
+</p>
+<ul>
+  <li><a href="http://fxr.watson.org/fxr/source/mips/beri/beri_machdep.c">BERI
+    machine-dependent platform support code</a></li>
+  <li><a href="http://fxr.watson.org/fxr/source/mips/beri/beri_pic.c">BERI
+    programmable interrupt controller (PIC) device driver</a></li>
+  <li><a
+    href="http://fxr.watson.org/fxr/source/boot/fdt/dts/beri-sim.dts">Flat
+    device tree configuration for BERI in simulation</a></li>
+  <li><a
+    href="http://fxr.watson.org/fxr/source/boot/fdt/dts/beripad-de4.dts">Flat
+    device tree configuration for BERI on the Terasic DE4 tablet</a></li>
+  <li><a href="http://fxr.watson.org/fxr/source/dev/altera/avgen">Avalon
+    "generic" memory-mapped device driver</a></li>
+  <li><a href="http://fxr.watson.org/fxr/source/dev/altera/jtag_uart">Altera
+    JTAG UART device driver</a></li>
+  <li><a href="http://fxr.watson.org/fxr/source/dev/altera/sdcard">Altera
+    University Program SD Card device driver</a></li>
+  <li><a href="http://fxr.watson.org/fxr/source/dev/altera/atse">Altera
+    Triple-Speed Ethernet MAC device driver (atse)</a></li>
+  <li><a href="http://fxr.watson.org/fxr/source/dev/terasic/de4led">Terasic
+    LEDs and switches device driver</a></li>
+  <li><a href="http://fxr.watson.org/fxr/source/dev/terasic/mtl">Terasic MTL
+    touch-screen device driver</a></li>
+</ul>
+
+<h2>License and Disclaimer</h2>
+
+<p>
+  BERI is distributed under the <a
+  href="http://www.beri-open-systems.org/legal/beri-hardware-software-license.txt">BERI Hardware-Software License</a>, a lightly modified version of the Apache Software License enhanced to better support open-source hardware.
+  <a href="http://www.beri-open-systems.org/">BERI Open Systems CIC</a> is a
+  UK-based not-for-profit responsible for receiving contributors' agreements
+  for BERI.
+</p>
+
+<p>
+  The BERI hardware-software platform is highly experimental; users are
+  cautioned that damage to physical FPGA hardware can result from bugs or user
+  error.
+  The BERI hardware-software open-source license places further limitations on
+  warranty and liability.
+</p>
+
+<h2>Acknowledgment</h2>
+
+<p>
+  This hardware, software, and documentation was developed by SRI
+  International and the University of Cambridge Computer Laboratory under
+  DARPA/AFRL contract (FA8750-10-C-0237) ("CTSRD"), as part of the DARPA CRASH
+  research programme.
+  Additional support was received from Google.
+</p>
+
+<p>
+  We acknowledge our many supporters, including Terasic, and our early adopter
+  community who have provided helpful feedback and advice!
+</p>
+
+</body>

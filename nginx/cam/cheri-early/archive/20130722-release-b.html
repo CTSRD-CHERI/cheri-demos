@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>20130722 - CHERI, CheriBSD Annabella Release</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>
+  CHERI, CheriBSD Annabella Release (20130722)
+</h1>
+
+<h2>Description</h2>
+
+<p>
+This is the second early adopter's release of CHERI and CheriBSD, "Annabella".
+The release includes a bitfile suitable for use on the Terasic DE4, the
+cherictl mananagement tool, and software images for FreeBSD/BERI and CheriBSD
+suitable for use on the hardware prototype.
+</p>
+
+<p>
+This release has been tested from an Ubuntu 12.04.1 on x86_64 with
+Quartus 12.1 installed.
+Other versions of Linux x86_64 are likely to work assuming that Quartus
+12.1 is installed.
+</p>
+
+<p>
+The FreeBSD/BERI and CheriBSD snapshots in this release correspond to
+the FreeBSD Project perforce branches
+<tt>//depot/projects/ctsrd/beribsd/...</tt> and
+<tt>//depot/projects/ctsrd/cheribsd/...</tt> as tagged with the label
+ctsrd_annabella.
+</p>
+
+<h2>WARNING</h2>
+
+<p>
+<b>
+THIS HARDWARE, SOFTWARE, AND DOCUMENTATION IS PROVIDED BY THE AUTHOR AND
+CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</b>
+</p>
+
+<h2>Downloads</h2>
+
+<table>
+<tr>
+<th>File</th>
+<th>Title</th>
+<th>Version</th>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-release-notes.txt">annabella-release-notes.txt</a></td>
+<td>Release notes</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-mdroot-demo-kernel.bz2">annabella-beribsd-de4-mdroot-demo-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel with embedded memory filesystem - demo</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-mdroot-kernel.bz2">annabella-beribsd-de4-mdroot-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel with space for a memory filesystem - used to
+create of annabella-beribsd-de4-mdroot-*-kernel.bz2</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-mdroot-kernel.dump.bz2">annabella-beribsd-de4-mdroot-kernel.dump.bz2</a></td>
+<td>Disassembled FreeBSD/BERI kernel with embedded memory filesystem</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-mdroot-kernel.symbols.bz2">annabella-beribsd-de4-mdroot-kernel.symbols.bz2</a></td>
+<td>Debug symbols for FreeBSD/BERI kernel with embedded memory filesystem</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-mdroot-net-kernel.bz2">annabella-beribsd-de4-mdroot-net-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel with embedded memory filesystem - network tools</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-mdroot-singleuser-kernel.bz2">annabella-beribsd-de4-mdroot-singleuser-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel with embedded memory filesystem - limited tools forsingleuser mode</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-sdroot-kernel.bz2">annabella-beribsd-de4-sdroot-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel for use with an SD-card root filesystem <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-sdroot-kernel.dump.bz2">annabella-beribsd-de4-sdroot-kernel.dump.bz2</a></td>
+<td>Disassembled FreeBSD/BERI kernel for use with an SD-card root filesystem</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-de4-sdroot-kernel.symbols.bz2">annabella-beribsd-de4-sdroot-kernel.symbols.bz2</a></td>
+<td>FreeBSD/BERI kernel for use with an SD-card root filesystem - debug symbols</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-demo.img.xz">annabella-beribsd-demo.img.xz</a></td>
+<td>FreeBSD/BERI SD card image - demo</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-net.img.xz">annabella-beribsd-net.img.xz</a></td>
+<td>FreeBSD/BERI SD card image - networking tools</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-sdcard.img.xz">annabella-beribsd-sdcard.img.xz</a></td>
+<td>FreeBSD/BERI SD card image - full root filesystem <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-singleuser.img.xz">annabella-beribsd-singleuser.img.xz</a></td>
+<td>FreeBSD/BERI SD card image - limited tools for singleuser mode</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-beribsd-world.tar.xz">annabella-beribsd-world.tar.xz</a></td>
+<td>FreeBSD/BERI binaries as installed in file system images</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-mdroot-demo-kernel.bz2">annabella-cheribsd-de4-mdroot-demo-kernel.bz2</a></td>
+<td>CheriBSD kernel with embedded memory filesystem - demo</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-mdroot-kernel.bz2">annabella-cheribsd-de4-mdroot-kernel.bz2</a></td>
+<td>CheriBSD kernel with space for a memory filesystem - used to create of annabella-cheribsd-de4-mdroot-*-kernel.bz2</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-mdroot-kernel.dump.bz2">annabella-cheribsd-de4-mdroot-kernel.dump.bz2</a></td>
+<td>Disassembled CheriBSD kernel with embedded memory filesystem</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-mdroot-kernel.symbols.bz2">annabella-cheribsd-de4-mdroot-kernel.symbols.bz2</a></td>
+<td>Debug symbols for CheriBSD kernel with embedded memory filesystem</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-mdroot-net-kernel.bz2">annabella-cheribsd-de4-mdroot-net-kernel.bz2</a></td>
+<td>CheriBSD kernel with embedded memory filesystem - network tools</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-mdroot-singleuser-kernel.bz2">annabella-cheribsd-de4-mdroot-singleuser-kernel.bz2</a></td>
+<td>CheriBSD kernel with embedded memory filesystem - limited tools for singleuser mode</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-sdroot-kernel.bz2">annabella-cheribsd-de4-sdroot-kernel.bz2</a></td>
+<td>CheriBSD kernel for use with an SD-card root filesystem <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-sdroot-kernel.dump.bz2">annabella-cheribsd-de4-sdroot-kernel.dump.bz2</a></td>
+<td>Disassembled CheriBSD kernel for use with an SD-card root filesystem</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-de4-sdroot-kernel.symbols.bz2">annabella-cheribsd-de4-sdroot-kernel.symbols.bz2</a></td>
+<td>Debug symbols for CheriBSD kernel for use with an SD-card root filesystem</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-demo.img.xz">annabella-cheribsd-demo.img.xz</a></td>
+<td>CheriBSD filesystem image - demo</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-net.img.xz">annabella-cheribsd-net.img.xz</a></td>
+<td>CheriBSD filesystem image - network tools</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-sdcard.img.xz">annabella-cheribsd-sdcard.img.xz</a></td>
+<td>CheriBSD SD card image - full root filesystem <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-singleuser.img.xz">annabella-cheribsd-singleuser.img.xz</a></td>
+<td>CheriBSD filesystem image - limited tools for singleuser mode</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheribsd-world.tar.xz">annabella-cheribsd-world.tar.xz</a></td>
+<td>CheriBSD binaries as installed in file system images</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cherictl.bz2">annabella-cherictl.bz2</a></td>
+<td>Statically linked cherictl binary (built on Ubuntu 12.04.2) <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheri-de4-bitfile.bin.bz2">annabella-cheri-de4-bitfile.bin.bz2</a></td>
+<td>CHERI DE4 bitfile - binary format</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-cheri-de4-bitfile.sof.bz2">annabella-cheri-de4-bitfile.sof.bz2</a></td>
+<td>CHERI DE4 bitfile - sof format <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-beribsd-de4-mdroot-demo-kernel.bz2">annabella-flash-beribsd-de4-mdroot-demo-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-beribsd-de4-mdroot-demo-kernel and annabella-cheri-de4-bitfile to flash <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-beribsd-de4-mdroot-net-kernel.bz2">annabella-flash-beribsd-de4-mdroot-net-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-beribsd-de4-mdroot-net-kernel and annabella-cheri-de4-bitfile to flash</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-beribsd-de4-mdroot-singleuser-kernel.bz2">annabella-flash-beribsd-de4-mdroot-singleuser-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-beribsd-de4-mdroot-singleuser-kernel and annabella-cheri-de4-bitfile to flash</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-beribsd-de4-sdroot-kernel.bz2">annabella-flash-beribsd-de4-sdroot-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-beribsd-de4-sdroot-kernel and annabella-cheri-de4-bitfile to flash</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-cheribsd-de4-mdroot-demo-kernel.bz2">annabella-flash-cheribsd-de4-mdroot-demo-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-cheribsd-de4-mdroot-demo-kernel and annabella-cheri-de4-bitfile to flash</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-cheribsd-de4-mdroot-net-kernel.bz2">annabella-flash-cheribsd-de4-mdroot-net-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-cheribsd-de4-mdroot-net-kernel and annabella-cheri-de4-bitfile to flash</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-cheribsd-de4-mdroot-singleuser-kernel.bz2">annabella-flash-cheribsd-de4-mdroot-singleuser-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-cheribsd-de4-mdroot-singleuser-kernel and annabella-cheri-de4-bitfile to flash</td>
+<td>Annabella</td>
+</tr>
+
+<tr>
+<td><a href="downloads/annabella-flash-cheribsd-de4-sdroot-kernel.bz2">annabella-flash-cheribsd-de4-sdroot-kernel.bz2</a></td>
+<td>FreeBSD/BERI kernel that writes annabella-cheribsd-de4-sdroot--kernel and annabella-cheri-de4-bitfile to flash <b>(recommended)</b></td>
+<td>Annabella</td>
+</tr>
+
+</table>
+
+</body>

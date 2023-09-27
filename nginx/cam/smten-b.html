@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>Enhancing the Satisfiability Modulo Theories Experience (Smten)</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>
+  Enhancing the Satisfiability Modulo Theories Experience (Smten)
+</h1>
+<br clear=all>
+
+<p>
+Development of tools for computer aided verification has greatly benefited
+from Satisfiability Module Theories (SMT) technologies; instead of writing an
+ad-hoc reasoning engine, tool developers translate their problem into SMT
+queries which solvers can efficiently solve. In practice, translating
+a problem into effective SMT queries is a tedious, error-prone, and
+non-trivial task. Smten is a unified language for general-purpose
+functional programming and SMT query orchestration whose goal is to greatly
+simplify the development of practical SMT-based tools for computer aided
+verification.
+</p>
+
+<p>
+We are developing an open-source implementation of the Smten language as a
+plugin to the <a href="http://www.haskell.org/ghc">Glasgow Haskell
+    Compiler</a> which supports the full syntax of the <a
+    href="http://www.haskell.org/onlinereport/haskell2010/">Haskell</a>
+functional programming language. Our implementation currently supports SMT
+solvers <a href="http://yices.csl.sri.com/">Yices1</a>, <a
+    href="http://yices.csl.sri.com/download-yices2.shtml">Yices2</a>,
+    <a href="http://z3.codeplex.com">Z3</a>, and <a
+    href="http://sites.google.com/site/stpfastprover">STP</a>. The source code
+and additional documentation for Smten is available on github
+<a href="http://www.github.com/ruhler/smten">here</a>.
+</p>
+
+<h2> Smten-Based Projects </h2>
+
+<dl>
+<dt>
+Hampi: String Constraint Solver
+</dt>
+
+<dd>
+<p>
+As an illustration of the conciseness and flexibility of design in
+Smten, we reimplemented the string constraint
+solver <a href="http://people.csail.mit.edu/akiezun/hampi">HAMPI</a>. The
+resulting SHAMPI tool is of comparable performance at 20x fewer lines
+of code, and it has the ability to completely change the low-level
+theories and SMT solvers used in solving the string constraints.
+See <a href="#smten_cav13">below</a> for results of this work as presented
+at CAV2013. The source code for SHAMPI is available on github 
+<a href="http://www.github.com/ruhler/shampi">here</a>.
+</p>
+</dd>
+
+<dt>
+Simulation Verification of Bluespec SystemVerilog Designs
+</dt>
+
+<dd>
+<p>
+Bluespec StystemVerilog is a hardware description language centered
+around the notion of guarded atomic actions (GAAs) to improve hardware
+design modularity and reuse. GAAs have a natural correspondence to
+term rewrite systems, which have seen significant use in formal
+analysis. Despite this, there has been relatively limited progress in
+leveraging Bluespec's semantic model for formal analysis. We are
+implementing a variation of a <a href="#memocode11">recently proposed
+GAA-based simulation technique</a> that mechanically extracts an architectural
+view from a microarchitectural design given a predicate representing that
+view. This can be used to quickly extract a specification-level
+representation of a design which can be much more easily checked,
+either by hand or mechanically. We are in the process of scaling up
+the performance to provide a fast abstraction of the
+<a href="cheri/">CHERI</a> processor.</p>
+</dd>
+</dl>
+
+<a id="smten_cav13"><h2>Smten in CAV 2013</h2></a>
+
+<p>
+Richard Uhler, Nirav Dave. Smten: Automatic Translation of High-level Symbolic
+Computations into SMT Queries. In: Proceedings of the 25th International
+Conference on Computer Aided Verification (CAV 2013).
+</p>
+
+<ul>
+    <li><a href="pdfs/20130718-smten-cav13.pdf">paper</a></li>
+    <li><a href="pdfs/20130718-smten-cav13-slides.pdf">presentation</a></li>
+    <li><a href="pdfs/20130718-smten-cav13-poster.pdf">poster</a></li>
+</ul>
+
+<h2>References</h2>
+<ul>
+    <a id="memocode11"><li>Dave, N.; Katelman, M.; King, Myron; Arvind;
+        Meseguer, J., <a
+  href="pdfs/201107-memocode2011-verification.pdf"><b>Verification of
+  microarchitectural refinements in rule-based systems</b></a>, 9th
+  International Conference on Formal Methods and Models for Codesign (MEMOCODE
+  2011). </li></a>
+</ul>
+
+</body>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CHERI Software for the Arm Morello Board</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>The CHERI software stack on the Arm Morello Board</h1>
+
+<div class="ucampas-toc"></div>
+
+<h2 id="cheri">What is CHERI?</h2>
+
+<p>
+<a href="."><b>CHERI<b></a> is a hardware-software protection model extending
+contemporay ISAs with support for fine-grained capabilities.
+CHERI enables fine-grained memory protection and scalable
+compartmentalization.
+Our early CHERI prototypes were based on the 64-bit MIPS ISA; more recently
+our research has been on <a href="cheri-risc-v.html"><b>32-bit and 64-bit
+RISC-V</b></a>.
+We have created multiple CHERI prototypes on FPGA using various
+microarchitectures, and also created a complete <a
+href="cheri-software.html"><b>open-source CHERI software stack</b></a>.
+This includes our <a href="cheri-llvm.html"><b>CHERI Clang/LLVM/LLD
+toolchain</b></a> and CHERI GDB debugger, and our CHERI-enabled adaptation of
+the FreeBSD operating system, <a href="cheribsd.html"><b>CheriBSD</b></a>, and
+demonstration applications such as nginx, OpenSSH, and WebKit.
+Our technical report <a
+href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf"><b>An
+Introduction to CHERI</b></a> is a high-level summary of our work on CHERI
+architecture, microarchitecture, formal modeling, and software.
+</p>
+
+<h2 id="morello">What is Morello?</h2>
+
+<p>
+<a href="cheri-morello.html"><b>Arm's Morello</b></a> is a multi-Ghz,
+multi-core experimental CHERI-extended ARMv8-A CPU, System-on-Chip (SoC), and
+board.
+Morello has been created at part of UKRI's Digital Security by Design (DSbD)
+research programme as a collaboration between Arm and the University of
+Cambridge.
+We provide a full adapation of our CHERI software stack to Morello.
+</p>
+
+<h2 id="software">CHERI software releases for Morello</h2>
+
+<p>
+The Arm Morello FVP model was released on 29 October 2020, and we have
+provided an initial <a href="https://cheri-dist.cl.cam.ac.uk/"><b>CheriBSD
+Morello Developer Preview</b></a>.
+We aim to release further quarterly updates to CheriBSD and its application
+stack roughly quarterly.
+Our release plans and feature goals for CheriBSD/Morello are as follows:
+</p>
+
+<table>
+<tr>
+  <th>Date</th>
+  <th>Release</th>
+  <th>Key features</th>
+</tr>
+<tr>
+  <td>October 2020</td>
+  <td><a href="https://cheri-dist.cl.cam.ac.uk/releases/2020.10/arm64.aarch64c/relnotes.html"><b>Developer
+    Preview</b></a></td>
+  <td>CheriABI pure-capability userspace implementing spatial memory safety.
+    Binaries are dynamically linked.
+    <br><br><i>Note: Released from a dedicated development branch.</i></td>
+</tr>
+<tr>
+  <td>August 2021</td>
+  <td><a href="https://cheri-dist.cl.cam.ac.uk/releases/2021.08/relnotes.html"><b>Summer 2021 Release</b></a></td>
+  <td>Pure-capability kernel implementing spatial memory safety.  Integrated
+    Morello support in the base CheriBSD tree.  QEMU-Morello support.
+    <br><br><i>Note: Released from the common CheriBSD branch.</i></td>
+</tr>
+
+<tr>
+  <td>Spring 2022</td>
+  <td><b>Spring 2022 Release</b></td>
+  <td>Morello board support.  Userspace heap tTemporal safety using Cornucopia
+    model.  CHERI-enabled bhyve hypervisor support.</td>
+</tr>
+<tr>
+
+<tr>
+  <td>Summer 2022</td>
+  <td><b>Summer 2022 release</b></td>
+  <td>Morello board refinements.  Support for co-process
+    compartmentalization.</td>
+</tr>
+</table>
+
+<p>
+Roughly quarterly software releases are expected after that point.
+</p>
+
+<h2 id="gettingstarted">Getting started with the CHERI software stack on Morello</h2>
+
+<p>
+The CHERI software stack for Morello consists of:
+</p>
+
+<ul>
+  <li>CheriBSD/Morello operating system and applications</li>
+  <li>Arm's adaptation of the CHERI Clang/LLVM/LLD GDB toolsuite for Morello,
+    bundled as an SDK with cross-build and cross-debug from FreeBSD, Linux,
+    and macOS</li>
+  <li>Docker development environment providing cross-compiler, cross-debugger,
+    and target libraries for CheriBSD/Morello.</li>
+</ul>
+
+<p>
+Visit our <a href="https://cheri-dist.cl.cam.ac.uk"><b>CheriBSD distribution
+  site</b></a> to get stated.
+</p>
+
+<h2 id="webkit">CHERI-WebKit on Morello</h2>
+
+<p>
+In collaboration with Arm, we have developed a port of the
+<a href="cheri-webkit.html"><b>WebKit</b></a> browser engine for Morello.
+Support so far includes multiple optimization tiers of WebKit's JavaScript
+runtime, including the baseline JIT compiler. This work will facilitate
+measurements of CHERI's performance impact and security properties for a
+modern virtual machine.
+</p>
+
+<h2 id="support">Support for the CHERI software stack on Morello</h2>
+
+<dl>
+<dt><b>Arm Morello FVP support</b></dt>
+<dd><p>For support with Arm's Morello FVP simulator, please visit the
+  <a href="https://developer.arm.com/morello"><b>Arm Morello developer
+  page</b></a>.</p></dd>
+
+<dt><b>CHERI mailing list</b></dt>
+<dd><p>For assistance and more general CHERI discussion by email, please join
+  our <a href="cheri-lists.html"><b>CHERI mailing list</b></a>.</p></dd>
+
+<dt><b>Slack</b></dt>
+<dd><p>We have a public Slack for CHERI discussions, cheri-cpu.slack.com,
+  which you are welcome to <a
+  href="cheri-slack.html"><b>join</b></a> us there!</p></dd>
+</dl>
+
+</body>

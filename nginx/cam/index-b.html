@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CTSRD</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>
+<!-- <img src="images/chili.png" width=64 height=64 alt="logo"
+  style="vertical-align: middle; display: inline;"> -->
+  CTSRD – Rethinking the hardware-software interface for security
+</h1>
+
+<p><b>PIs: Robert N. M. Watson (University of Cambridge), Simon W. Moore
+  (University of Cambridge), Peter Sewell (University of Cambridge), and Peter
+  Neumann (SRI International)</b></p>
+
+<br clear=all>
+
+<img src="images/20120525-swm-beri-de4-photo.jpg" alt="CHERI tablet photo"
+  width="320" height="183" align="right"/>
+
+<table bgcolor="ddffdd" border="0"><tr><td><p>January 2022: Arm has shipped
+  its CHERI-enabled Morello prototype processor, SoC, and board!  Read blog
+  posts about this at <a
+  href="https://www.arm.com/company/news/2022/01/morello-research-program-hits-major-milestone-with-hardware-now-available-for-testing"><b>Arm</b></a>
+  and <a
+  href="https://msrc-blog.microsoft.com/2022/01/20/an_armful_of_cheris/"><b>Microsoft</b></a>,
+  and our own thoughts at <a
+  href="https://www.lightbluetouchpaper.org/2022/01/20/arm-releases-experimental-cheri-enabled-morello-board-as-part-of-187m-ukri-digital-security-by-design-programme/"><b>Cambridge</b></a>.</p></td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>
+  <p>October 2020: We have posted <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-951.pdf"><b>CHERI
+  ISAv8</b></a>.
+  This ISA version is synchronized to Arm's Morello architecture, as well as
+  presenting a mature version of our CHERI-RISC-V ISA.</p>
+</td></tr></table>
+
+<!--
+<table bgcolor="ddffdd" border="0"><tr><td><p> September 2020: Arm has
+  published its <a
+  href="https://developer.arm.com/documentation/ddi0606/A-f/?lang=en"><b>Morello
+  architecture specification</b></a>, a fully elaborated integration of the
+  CHERI protection model into their ARMv8-A architecture.
+  This architecture will appear in their <a href="cheri-morello.html"><b>Arm
+  Morello processor, SoC, and board</b></a> in late 2021.
+  This work is part of the UKRI <a href="dsbd.html"><b>Digital Security by
+  Design programme</b></a></p></td></tr></table>
+
+<table bgcolor="ddffdd" border="0"><tr><td><p>September 2019: UKRI has
+  announced the <a href="cheri/dsbd.html"><b>Digital Security by Design
+  Challenge</b></a>, which includes £8M EPSRC and £3M ESRC calls to support
+  new UK research around CHERI using the <a
+  href="cheri/cheri-morello.html"><b>Arm-built Morello CHERI-ARM 64-bit
+  demonstrator CPU, SoC, and board</b></a> (supported by InnovateUK), to be
+  available from 2021.
+  Videos of talks from Cambridge, Arm, and Microsoft are <a
+  href="cheri/dsbd#cheri-iscf-briefings.html"><b>now online</b></a>.</p></td></tr></table>
+
+<table bgcolor="ffffdd" border="0"><tr><td><p>October 2019: We are
+  <a href="http://www.jobs.cam.ac.uk/job/23653/"><b>advertising two new jobs
+  in compiler/OS research and engineering</b></a>.  These positions will
+  contribute to our research and development on the Arm Morello board and
+  CHERI software stack.</p></td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>
+  <p>June 2020: We have posted a new technical report, <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-947.pdf"><b>CHERI
+  C/C++ Programming Guide</b></a>, which documents the memory-safe CHERI
+  pure-capability C and C++ programming languages, and their implications for
+  software implementation and portability.</p>
+</td></tr></table>
+-->
+
+<table bgcolor="ffdddd" border="0"><tr><td>
+  <p>September 2019: <b> Learn about the CHERI architecture!</b>  Our
+  technical report <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf"><b>An
+  Introduction to CHERI</b></a> is a high-level summary of our work on CHERI
+  architecture, microarchitecture, formal modeling, and software.</p>
+</td></tr></table>
+
+<!--
+<table bgcolor="ffdddd" border="0"><tr><td><p>June 2019: <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-927.pdf"><b>CHERI
+  ISAv7</b></a> elaborates CHERI-RISC-V, adopts the CHERI Concentrate
+  compression model, adds support for side-channel resistance, and makes a
+  variety of other changes to improve performance and functionality.
+  This is the first version of our specification that directly incorporates
+  formal description of the ISA.</p></td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>April 2019: We are pleased to
+  announce that our <b>ASPLOS 2019 paper on CHERI and OS design</b>, <a
+  href="cheri/index.html#academic-papers"><b>CheriABI: Enforcing Valid Pointer
+  Provenance and Minimizing Pointer Privilege in the POSIX C Run-time
+  Environment</b></a>, on the general-purpose OS design implications of CHERI
+  when used for ubiquitous memory safety, has won an ASPLOS Best Paper
+  award.</td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>January 2019: <b>ASPLOS 2019 paper
+  on CHERI and OS design</b>.  We have now posted our paper, <a href="cheri/index.html#academic-papers"><b>CheriABI: Enforcing Valid Pointer Provenance and
+  Minimizing Pointer Privilege in the POSIX C Run-time Environment</b></a>, on
+  the general-purpose OS design implications of CHERI when used for ubiquitous
+  memory safety.</td></tr></table>
+
+<table bgcolor="#ddffdd" border="0"><tr><td>August 2018: The New Scientist
+  has published an article, <a
+  href="https://www.newscientist.com/article/mg23931900-300-uncrackable-computer-chips-stop-malicious-bugs-attacking-your-computer/"><b>Uncrackable
+  computer chips stop malicious bugs attacking your computer</b></a>,
+  covering CHERI and other projects relating to security-focused computer
+  architectures.</td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>February 2018: We have posted <a
+  href="cheri/#techreports"><b>new technical report describing how CHERI
+  interacts with the Meltdown and Spectre side-channel attacks</b></a>.
+  </td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>July 2017: <b> Learn about the
+  CHERI architecture!</b>  We have now posted the
+  <b><a href="cheri/#techreports">CHERI ISAv6 specification</a></b>, which
+  introduces support for kernel-mode compartmentalization, jump-based rather
+  than exception-based domain transition, architecture-abstracted and
+  efficient tag restoration, and more efficient generated code.
+  -A new chapter
+  addresses potential applications of the CHERI model to the RISC-V and x86-64
+  ISAs, previously described relative only to the 64-bit MIPS ISA. CHERI ISAv6
+  better explains our design rationale and research
+  methodology.-</td></tr><table>
+
+<table bgcolor="ddffdd" border="0"><tr><td>October 2017: We have now posted
+  our ICCD 2017 paper, <a
+  href="pdfs/201711-iccd2017-efficient-tags.pdf"><b>Efficient Tagged
+  Memory</b></a>, which explores the design and implementation of efficient
+  hardware for tagged memory.</td></tr></table>
+
+<table bgcolor="ddffdd" border="0"><tr><td>June 2017: We have now posted our
+  ASPLOS 2017 paper, <a href="pdfs/201704-asplos-cherijni.pdf"><b>CHERI-JNI:
+  Sinking the Java security model into the C</a>, which explores how CHERI
+  capabilities can be used to support sandboxing with safe and efficient
+  memory sharing between Java Native Interface (JNI) code and the Java Virtual
+  Machine.</td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>June 2016: We have now posted the
+  <b><a href="cheri/#techreports">CHERI ISAv5 specification</a></b>, which
+  improves the maturity of 128-bit capabilities, code efficiency, and
+  description of the protection model.</td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>June 2016: We have now posted our
+  PLDI 2016 paper, <a href="pdfs/201606-pldi2016-clanguage.pdf"><b>Into to the
+  depths of C: elaborating the de facto standards</b></a>, which develops a
+  formal model for the C language - and explores its implications for CHERI.
+  This paper won a PLDI 2016 distinguished paper award.</td></tr></table>
+  
+<table bgcolor="ffdddd" border="0"><tr><td>May 2016: We have now posted slides
+  from the first <b><a href="cheri/workshops/2016eurosys/">CHERI microkernel
+  workshop</a></b>, which took place in Cambridge, UK in April
+  2016.</td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>February 2016: We have posted <a
+  href="cheri/cheri-qemu.html">QEMU-CHERI</a>, an ISA-level simulation of
+  CHERI MIPS, to complement our HDL prototypes.
+  QEMU-CHERI runs CheriBSD, providing an accessible CHERI experimentation
+  environment.</td></tr></table>
+
+<table bgcolor="#ddffdd" border="0"><tr><td>November 2015: Two new <a
+  href="publications.html#techreports">technical reports</a> on CHERI are
+  now available: <a
+  href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-876.pdf">CHERI
+  ISAv4</a>, and the <a
+  href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-877.pdf">CHERI
+  Programmer's Guide</a>.</td></tr></table>
+
+<table bgcolor="#ddffdd" border="0"><tr><td>October 2015: Khilan Gudka has
+  presented <a href="pdfs/2015ccs-soaap.pdf">our paper on SOAAP, a tool to
+  explore and evaluate compartmentalised software</a> at ACM CCS
+  2015.</td></tr></table>
+
+<table bgcolor="#ddffdd" border="0"><tr><td>Newsflash - May 18 2015: Our <a
+  href="pdfs/201505-oakland2015-cheri-compartmentalization.pdf">third full
+  paper on CHERI, <i>CHERI: A Hybrid Capability-System Architecture for
+  Scalable Software Compartmentalization</i></a>, was presented at the IEEE
+  Symposium on Security and Privacy (Oakland) in May 2015.</td></tr></table>
+
+<table bgcolor="#ffdddd" border="0"><tr><td>Newflash - May 18 2015:
+  we have made a <a href="beri/downloads-hw.html">new release of the BERI/CHERI</a>
+  source code, which has been updated for our most recent architectural changes
+  described in our ASPLOS and Oakland papers, and includes everything
+  necessary to synthesise BERI on an Altera FPGA.
+  </td></tr></table>
+
+<table bgcolor="#ddffdd" border="0"><tr><td>December 2014: The New York Times
+  has published a <a
+  href="http://bits.blogs.nytimes.com/category/security/special-section-security-2014/">Special
+  section on security</a>
+  with a quote from Peter G. Neumann in the <a
+  href="http://bits.blogs.nytimes.com/2014/12/02/hacked-vs-hackers-game-on/">lead
+  article</a> and an <a
+  href="http://bits.blogs.nytimes.com/2014/12/02/reinventing-the-internet-to-make-it-safer/">article
+  on the CRASH program</a> mentioning our work on CHERI.</td></tr></table>
+
+<table bgcolor="#ffffdd" border="0"><tr><td>Learn more about fundamental
+  research into security and the hardware-software interview by <a
+  href="http://queue.acm.org/detail_video.cfm?id=2382552">watching Robert
+  Watson's August 2012 ACM Queue interview</a>.</td></tr></table>
+-->
+
+<p>
+Clean Slate Trustworthy Secure Research and Development (CTSRD - pronounced "custard") is a joint research project between <a href="http://www.csl.sri.com/">SRI
+International's Computer Science Laboratory</a> and the <a
+href="http://www.cl.cam.ac.uk/">University of Cambridge Computer
+Laboratory</a>, supported by DARPA (part of the DARPA CRASH, MRC, and SSITH
+programmes), Google, and Arm.
+The project is revisiting the hardware-software security interface for
+general-purpose CPUs to fundamentally improve security; to this end, we are
+integrating a hybrid capability model and continuous hardware-assisted
+validation of security design principles with a commodity CPU ISA and open
+source operating systems.
+We are pursuing several new software/hardware features as part of this
+research:
+</p>
+
+<ul>
+<li><a href="beri/">BERI: a open-source hardware-software research and
+  teaching platform</a>: a 64-bit RISC processor implemented in the high-level
+  Bluespec hardware description language (HDL), along with compiler, operating
+  system, and applications;</li>
+
+<li><a href="cheri/">CHERI: capability hardware enhanced RISC
+  instructions </a>: hardware-accelerated in-process memory protection and
+  sandboxing model based on a hybrid capability model;</li>
+
+<li><a href="tesla/">TESLA: temporally enforced security logic assertions</a>:
+  compiler-generated runtime instrumentation continuously validating temporal
+  security properties;</li>
+
+<li><a href="soaap.html">SOAAP: security-oriented analysis of application
+  programs</a>: automated program analysis and transformation techniques to
+  help software authors utilize <a
+  href="http://www.cl.cam.ac.uk/research/security/capsicum/">Capsicum</a> and
+  CHERI features; and</li>
+
+<li><a href="smten.html">Smten: SMT-based tools</a> to support the formal
+  verification of processor designs implemented in Bluespec.
+</ul>
+
+<p>
+There is a strong interest, throughout, in judiciously applying formal
+methodology and bringing formally grounded techniques to mainstream hardware
+and software development.
+This work has motivated the creation of the <a href="beri/">Bluespec
+extensible RISC implementation</a> &ndash; an open-source platform for research
+into the hardware-software interface, with a BSD-licensed operating system and
+toolchain based on FreeBSD and Clang/LLVM.
+We are using open source, wherever possible, to transition new technologies
+into mainstream use.
+</p>
+
+<p>
+CTSRD builds on long past experience at both institutions in security and
+systems research, including Multics, PSOS, the Newcastle DSS, separation
+kernels, the DARPA CHATS programme, PVS/SAL/YICES, LynuxWorks, the CAP
+computer, the MAC Framework, multi-threaded CPU design, Xen, Capsicum, and
+MirageOS.
+</p>
+
+<h2>News media</h2>
+
+<ul>
+<li> The New Scientist, August 2018: <a
+  href="https://www.newscientist.com/article/mg23931900-300-uncrackable-computer-chips-stop-malicious-bugs-attacking-your-computer/"><i>Uncrackable
+  computer chips stop malicious bugs attacking your computer</i></a> - This
+  article describes CHERI and other projects focusing on more secure computer
+  architectures.</li>
+
+<li> The Economist, June 2014: <a
+  href="http://www.economist.com/news/technology-quarterly/21603233-it-security-increasing-commercial-use-personal-data-and-multiple"><i>Hiding from Big Data</i></a> - Robert Watson explains how compartmentalised software designs could have mitigated Heartbleed.</li>
+
+<li> New York Times, October 2012: <a
+  href="http://www.nytimes.com/2012/10/30/science/rethinking-the-computer-at-80.html?ref=science">article on Dr Peter G. Neumann</a>
+  regarding clean-slate research for security.</li>
+
+<li> ACM Queue, October 2012: <a
+  href="http://queue.acm.org/detail_video.cfm?id=2382552">interview with Dr
+  Robert N. M. Watson</a> on research into the hardware-software
+  interface.</li>
+
+<li> IEEE Spectrum, December 2012: <a
+  href="http://spectrum.ieee.org/podcast/computing/software/computers-its-time-to-start-over">interview with Dr Robert N. M. Watson</a>
+  on clean-slate research for security.</li>
+</ul>
+
+<img src="images/20120525-swm-beri-de4-photo.jpg">
+
+</body>

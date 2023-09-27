@@ -1,0 +1,8 @@
+style=ucam2008(blue),
+navtop=1,
+navtopinclude=1,
+section="CTSRD Open Data",
+copyright_holder="Robert N. M. Watson",
+copyright_year="2010-2016",
+navtop=2,
+webmaster=(name="Robert Watson", url="/~rnw24/"),

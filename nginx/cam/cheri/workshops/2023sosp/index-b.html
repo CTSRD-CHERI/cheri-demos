@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>SOSP 2023 - CHERI Workshop</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>SOSP 2023 - CHERI Workshop</h1>
+
+<h2>Overview</h2>
+
+<p>Join us on 23 October 2023 for a taste of CHERI at SOSP. We will guide curious
+software engineers through a series of hands-on, canned, and yet hopefully fun
+and informative exercises exploring various aspects of CHERI's impact on
+architecture and software, with short presentations and opportunity for
+discussion for each.</p>
+
+<!--
+<p>(At the present moment the <a
+href="https://www.cl.cam.ac.uk/~nwf20/cheri-exercises-book">exercises</a> are
+in a draft state; you are welcome to look at our work in progress, but things should
+be much more polished in a week. The slide deck used during the tutorial will
+also be made available for download the day of the tutorial.)</p>
+-->
+
+<h2>Prerequisites</h2>
+
+<p>Should you wish to work through the exercises with us on the day of,
+everything will likely go much more smoothly if you have done a very little bit
+of "homework" to prepare a CHERI environment ahead of time. Specifically,
+please either download and install the <a
+href="https://cheri-dist.cl.cam.ac.uk/">CheriBSD software release</a> (which
+requires the use of an x86-64 machine MacOS or Linux machine and docker) or
+follow <a
+href="https://www.cl.cam.ac.uk/~nwf20/cheri-exercises-book/introduction/get.html#source">the
+DIY installation instructions</a>. For this tutorial, we will be using the
+CheriBSD/RISC-V software stack. With that installed, you should be able to
+complete the first exercise, <a
+href="https://www.cl.cam.ac.uk/~nwf20/cheri-exercises-book/exercises/compile-and-run/index.html">Compile
+and run baseline and CHERI-enabled programs</a>, which walks you through
+compiling and running a program in the emulated CHERI environment. If you
+encounter difficulties, please do reach out to us on the <a
+href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/cheri-slack.html">CHERI-CPU
+Slack</a> or on <a
+href="https://lists.cam.ac.uk/sympa/info/cl-cheri-discuss">the Cambridge
+Computer Lab CHERI discussion email list</a>. That's it; though, of course, you
+are welcome to read further ahead in the book, if you like.</p>
+
+<h2>Agenda</h2>
+
+<p>The tutorial will begin at 10:30 AM and is likely to
+go until 6 PM, with a lunch break and a coffee break in the afternoon.
+We will also support remote attendees if there is interest.</p>
+
+<p>We will open with a short slideware overview of CHERI, and the bulk of the
+day will be spent on the exercises, exploring CHERI's implications,
+including:</p>
+
+<ul>
+
+<li> Changes to the ISA and program <code>.text</code></li>
+
+<li> Spatially safe C, including detailed looks at stack, global, and heap
+spatial safety</li>
+
+<li>Source-level changes required by CHERI C</li>
+
+<li>CHERI's impact on (C) compilers and linkers</li>
+
+<li>The CheriABI *nix system call interface</li>
+
+</ul>
+
+<p>For each exercise, we intend 15-20 minutes of work and investigation
+followed by another 15-20 minutes of presentation reviewing the lessons
+learned. Time permitting, we will also present a few 20-to-30-minute, deep dives
+into additional topics and ongoing research projects at the University of
+Cambridge, SRI, and Microsoft Research Cambridge.</p>
+
+<h2>Slides</h2>
+
+<p>Slides for a predecessor to this tutorial at ASPLOS 2022 are avaliable <a href="../../../pdfs/20220228-asplos-cheri-tutorial-full.pdf">here</a>.</p>
+
+
+</body>

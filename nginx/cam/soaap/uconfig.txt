@@ -1,0 +1,12 @@
+style=ucam2008(blue),
+navtop=1,
+navtopinclude=1,
+section="SOAAP",
+copyright_holder="Khilan Gudka",
+copyright_year="2014-2016",
+navtop=2,
+webmaster=(name="Khilan Gudka", url="/~kg365/"),
+build.html,
+workflow.html,
+annotations.html,
+flags.html

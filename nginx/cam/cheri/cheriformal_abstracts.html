@@ -1,0 +1,346 @@
+
+<dl>
+
+<dt>
+<a name="cheri-formal-SP2020">&nbsp;</a>
+</dt>
+<dd>
+Rigorous engineering for hardware security: Formal modelling
+  and proof in the CHERI design and implementation process.
+ Kyndylan Nienhuis, Alexandre Joannou, Thomas Bauereiss, Anthony Fox,
+  Michael Roe, Brian Campbell, Matthew Naylor, Robert&nbsp;M. Norton, Simon&nbsp;W.
+  Moore, Peter&nbsp;G. Neumann, Ian Stark, Robert N.&nbsp;M. Watson, and Peter Sewell.
+ In Security and Privacy 2020.
+[&nbsp;<a href="cheriformal_bib.html#cheri-formal-SP2020">bib</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">project page</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/users/pes20/cheri-formal.pdf">pdf</a>&nbsp;]
+<blockquote>
+The root causes of many security vulnerabilities include a pernicious combination of two problems, often regarded as inescapable aspects of computing.  First, the protection mechanisms provided by the mainstream processor architecture and C/C++ language abstractions, dating back to the 1970s and before, provide only coarse-grain virtual-memory-based protection.  Second, mainstream system engineering relies almost exclusively on test-and-debug methods, with (at best) prose specifications.  These methods have historically sufficed commercially for much of the computer industry, but they fail to prevent large numbers of exploitable bugs, and the security problems that this causes are becoming ever more acute.<p>
+In this paper we show how more rigorous engineering methods can be applied to the development of a new security-enhanced processor architecture, with its accompanying hardware implementation and software stack.  We use formal models of the complete instruction-set architecture (ISA) at the heart of the design and engineering process, both in lightweight ways that support and improve normal engineering practice -- as documentation, in emulators used as a test oracle for hardware and for running software, and for test generation -- and for formal verification.  We formalise key intended security properties of the design, and establish that these hold with mechanised proof.  This is for the same complete ISA models (complete enough to boot operating systems), without idealisation.<p>
+We do this for CHERI, an architecture with <em>hardware capabilities</em> that supports fine-grained memory protection and scalable secure compartmentalisation, while offering a smooth adoption path for existing software.  CHERI is a maturing research architecture, developed since 2010, with work now underway on an Arm industrial prototype to explore its possible adoption in mass-market commercial processors.  The rigorous engineering work described here has been an integral part of its development to date, enabling more rapid and confident experimentation, and boosting confidence in the design.
+
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="UCAM-CL-TR-941">&nbsp;</a>
+</dt>
+<dd>
+An Introduction to CHERI.
+ Robert N.&nbsp;M. Watson, Simon&nbsp;W. Moore, Peter Sewell, and Peter Neumann.
+ Technical Report UCAM-CL-TR-941, University of Cambridge, Computer
+  Laboratory, September 2019.
+[&nbsp;<a href="cheriformal_bib.html#UCAM-CL-TR-941">bib</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">project page</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">pdf</a>&nbsp;]
+<blockquote>
+
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="cheri-formal-tr">&nbsp;</a>
+</dt>
+<dd>
+Rigorous engineering for hardware security: Formal modelling
+  and proof in the CHERI design and implementation process.
+ Kyndylan Nienhuis, Alexandre Joannou, Anthony Fox, Michael Roe,
+  Thomas Bauereiss, Brian Campbell, Matthew Naylor, Robert&nbsp;M. Norton, Simon&nbsp;W.
+  Moore, Peter&nbsp;G. Neumann, Ian Stark, Robert N.&nbsp;M. Watson, and Peter Sewell.
+ Technical Report UCAM-CL-TR-940, University of Cambridge, Computer
+  Laboratory, September 2019.
+[&nbsp;<a href="cheriformal_bib.html#cheri-formal-tr">bib</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-940.pdf">pdf</a>&nbsp;]
+<blockquote>
+The root causes of many security vulnerabilities include a pernicious combination of two problems, often regarded as inescapable aspects of computing.  First, the protection mechanisms provided by the mainstream processor architecture and C/C++ language abstractions, dating back to the 1970s and before, provide only coarse-grain virtual-memory-based protection.  Second, mainstream system engineering relies almost exclusively on test-and-debug methods, with (at best) prose specifications.  These methods have historically sufficed commercially for much of the computer industry, but they fail to prevent large numbers of exploitable bugs, and the security problems that this causes are becoming ever more acute.<p>
+In this paper we show how more rigorous engineering methods can be applied to the development of a new security-enhanced processor architecture, with its accompanying hardware implementation and software stack.  We use formal models of the complete instruction-set architecture (ISA) at the heart of the design and engineering process, both in lightweight ways that support and improve normal engineering practice -- as documentation, in emulators used as a test oracle for hardware and for running software, and for test generation -- and for formal verification.  We formalise key intended security properties of the design, and establish that these hold with mechanised proof.  This is for the same complete ISA models (complete enough to boot operating systems), without idealisation.<p>
+We do this for CHERI, an architecture with <em>hardware capabilities</em> that supports fine-grained memory protection and scalable secure compartmentalisation, while offering a smooth adoption path for existing software.  CHERI is a maturing research architecture, developed since 2010, with work now underway to explore its possible adoption in mass-market commercial processors.  The rigorous engineering work described here has been an integral part of its development to date, enabling more rapid and confident experimentation, and boosting confidence in the design.
+
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="UCAM-CL-TR-927">&nbsp;</a>
+</dt>
+<dd>
+Capability Hardware Enhanced RISC Instructions: CHERI
+  Instruction-Set Architecture (Version 7).
+ Robert N.&nbsp;M. Watson, Peter&nbsp;G. Neumann, Jonathan Woodruff, Michael
+  Roe, Hesham Almatary, Jonathan Anderson, John Baldwin, David Chisnall, Brooks
+  Davis, Nathaniel&nbsp;Wesley Filardo, Alexandre Joannou, Ben Laurie, A.&nbsp;Theodore
+  Markettos, Simon&nbsp;W. Moore, Steven&nbsp;J. Murdoch, Kyndylan Nienhuis, Robert
+  Norton, Alex Richardson, Peter Rugg, Peter Sewell, Stacey Son, and Hongyan
+  Xia.
+ Technical Report UCAM-CL-TR-927, University of Cambridge, Computer
+  Laboratory, June 2019.
+ 496pp.
+[&nbsp;<a href="cheriformal_bib.html#UCAM-CL-TR-927">bib</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-927.pdf">pdf</a>&nbsp;]
+<blockquote>
+This technical report describes CHERI ISAv7, the seventh version of the
+Capability Hardware Enhanced RISC Instructions (CHERI) Instruction-Set
+Architecture (ISA)
+being developed by SRI International and the University of Cambridge.
+This design captures nine years of research, development, experimentation,
+refinement, formal analysis, and validation through hardware and software
+implementation.
+CHERI ISAv7 is a substantial enhancement to prior ISA versions.
+We differentiate an architecture-neutral protection model vs.
+architecture-specific instantiations in 64-bit MIPS, 64-bit RISC-V, and
+x86-64.
+We have defined a new CHERI Concentrate compression model.
+CHERI-RISC-V is more substantially elaborated.
+A new compartment-ID register assists in resisting microarchitectural
+side-channel attacks.
+Experimental features include linear capabilities, capability coloring,
+temporal memory safety, and 64-bit capabilities for 32-bit architectures.<p>
+CHERI is a <em>hybrid capability-system architecture</em> that adds new
+capability-system primitives to commodity 64-bit RISC ISAs, enabling software
+to efficiently implement <em>fine-grained memory protection</em> and <em>
+scalable software compartmentalization</em>.
+Design goals include incremental adoptability within current ISAs and
+software stacks, low performance overhead for memory protection, significant
+performance improvements for software compartmentalization, formal grounding,
+and programmer-friendly underpinnings.
+We have focused on providing strong, non-probabilistic, efficient
+architectural foundations for the principles of <i>least privilege</i> and
+<i>intentional use</i> in the execution of software at multiple levels of
+abstraction, preventing and mitigating vulnerabilities.<p>
+The CHERI system architecture purposefully addresses known performance and
+robustness gaps in commodity ISAs that hinder the adoption of more secure
+programming models centered around the principle of least privilege.
+To this end, CHERI blends traditional paged virtual memory with an
+in-address-space capability model that includes capability registers,
+capability instructions, and tagged memory.
+CHERI builds on the C-language fat-pointer literature: its capabilities can
+describe fine-grained regions of memory, and can be substituted for data or
+code pointers in generated code, protecting data and also improving
+control-flow robustness.
+Strong capability integrity and monotonicity properties allow the CHERI model
+to express a variety of protection properties, from enforcing valid C-language
+pointer provenance and bounds checking to implementing the isolation and
+controlled communication structures required for software
+compartmentalization.<p>
+CHERI's hybrid capability-system approach, inspired by the Capsicum security
+model, allows incremental adoption of capability-oriented design: software
+implementations that are more robust and resilient can be deployed where they
+are most needed, while leaving less critical software largely unmodified, but
+nevertheless suitably constrained to be incapable of having adverse effects.
+Potential deployment scenarios include low-level software Trusted Computing
+Bases (TCBs) such as separation kernels, hypervisors, and operating-system
+kernels, as well as userspace TCBs such as language runtimes and web browsers.
+We also see potential early-use scenarios around particularly high-risk
+software libraries (such as data compression, protocol parsing, and image
+processing), which are concentrations of both complex and historically
+vulnerability-prone code exposed to untrustworthy data sources, while leaving
+containing applications unchanged.
+  
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="cheriABIsub">&nbsp;</a>
+</dt>
+<dd>
+CheriABI: Enforcing Valid Pointer Provenance and Minimizing
+  Pointer Privilege in the POSIX C Run-time Environment.
+ Brooks Davis, Robert N.&nbsp;M. Watson, Alexander Richardson, Peter&nbsp;G.
+  Neumann, Simon&nbsp;W. Moore, John Baldwin, David Chisnall, James Clarke,
+  Nathaniel&nbsp;Wesley Filardo, Khilan Gudka, Alexandre Joannou, Ben Laurie,
+  A.&nbsp;Theodore Markettos, J.&nbsp;Edward Maste, Alfredo Mazzinghi, Edward&nbsp;Tomasz
+  Napierala, Robert&nbsp;M. Norton, Michael Roe, Peter Sewell, Stacey Son, and
+  Jonathan Woodruff.
+ In ASPLOS 2019, Best paper award.
+[&nbsp;<a href="cheriformal_bib.html#cheriABIsub">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/3297858.3304042">DOI</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">project page</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201904-asplos-cheriabi.pdf">pdf</a>&nbsp;| 
+<a href="http://doi.acm.org/10.1145/3297858.3304042">http</a>&nbsp;]
+<blockquote>
+The CHERI architecture allows pointers to be implemented as
+capabilities (rather than integer virtual addresses) in a manner that
+is compatible with, and strengthens, the
+semantics of the C language.
+In addition to the spatial protections offered by conventional fat pointers,
+CHERI capabilities offer strong integrity, enforced provenance validity, and
+access monotonicity.
+The stronger guarantees of these architectural capabilities must be reconciled with the real-world behavior of operating systems, run-time environments, and applications.
+When the process model, user-kernel interactions, dynamic linking, and memory
+management are all considered, we observe that simple derivation of architectural capabilities is insufficient to describe appropriate access to memory.
+We bridge this conceptual gap with a notional <em>abstract capability</em> that
+describes the accesses that should be allowed at a given point in execution,
+whether in the kernel or userspace.
+To investigate this notion at scale, we describe the first adaptation of a
+full C-language operating system (FreeBSD) with an enterprise database
+(PostgreSQL) for complete spatial and referential memory safety.
+We show that awareness of abstract capabilities, coupled with CHERI
+architectural capabilities, can provide more complete protection, strong
+compatibility, and acceptable performance overhead compared with the pre-CHERI
+baseline and software-only approaches.
+Our observations also have potentially significant implications for other
+mitigation techniques.
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="CHERIconcentrate">&nbsp;</a>
+</dt>
+<dd>
+CHERI Concentrate: Practical Compressed
+  Capabilities.
+ Jonathan Woodruff, Alexandre Joannou, Hongyan Xia, Anthony Fox,
+  Robert Norton, Thomas Bauereiss, David Chisnall, Brooks Davis, Khilan Gudka,
+  Nathaniel&nbsp;W. Filardo, A.&nbsp;Theodore Markettos, Michael Roe, Peter&nbsp;G. Neumann,
+  Robert N.&nbsp;M. Watson, and Simon&nbsp;W. Moore.
+ <em>IEEE Transactions on Computers</em>, 2019.
+[&nbsp;<a href="cheriformal_bib.html#CHERIconcentrate">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1109/TC.2019.2914037">DOI</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/2019tc-cheri-concentrate.pdf">pdf</a>&nbsp;]
+<blockquote>
+We present CHERI Concentrate, a new fat-pointer compression scheme applied to CHERI, the most developed
+capability-pointer system at present. Capability fat pointers are a primary candidate to enforce fine-grained and non-bypassable
+security properties in future computer systems, although increased pointer size can severely affect performance. Thus, several
+proposals for capability compression have been suggested elsewhere that do not support legacy instruction sets, ignore features
+critical to the existing software base, and also introduce design inefficiencies to RISC-style processor pipelines. CHERI Concentrate
+improves on the state-of-the-art region-encoding efficiency, solves important pipeline problems, and eases semantic restrictions of
+compressed encoding, allowing it to protect a full legacy software stack. We present the first quantitative analysis of compiled capability
+code, which we use to guide the design of the encoding format. We analyze and extend logic from the open-source CHERI prototype
+processor design on FPGA to demonstrate encoding efficiency, minimize delay of pointer arithmetic, and eliminate additional
+load-to-use delay. To verify correctness of our proposed high-performance logic, we present a HOL4 machine-checked proof of the
+decode and pointer-modify operations. Finally, we measure a 50% to 75% reduction in L2 misses for many compiled C-language
+benchmarks running under a commodity operating system using compressed 128-bit and 64-bit formats, demonstrating both
+compatibility with and increased performance over the uncompressed, 256-bit format.
+
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="UCAM-CL-TR-932">&nbsp;</a>
+</dt>
+<dd>
+CheriABI: Enforcing valid pointer provenance and minimizing
+  pointer privilege in the POSIX C run-time environment.
+ Brooks Davis, Robert N.&nbsp;M. Watson, Alexander Richardson, Peter&nbsp;G.
+  Neumann, Simon&nbsp;W. Moore, John Baldwin, David Chisnall, James Clarke,
+  Nathaniel&nbsp;Wesley Filardo, Khilan Gudka, Alexandre Joannou, Ben Laurie,
+  A.&nbsp;Theodore Markettos, J.&nbsp;Edward Maste, Alfredo Mazzinghi, Edward&nbsp;Tomasz
+  Napierala, Robert&nbsp;M. Norton, Michael Roe, Peter Sewell, Stacey Son, and
+  Jonathan Woodruff.
+ Technical Report UCAM-CL-TR-932, University of Cambridge, Computer
+  Laboratory, January 2019.
+[&nbsp;<a href="cheriformal_bib.html#UCAM-CL-TR-932">bib</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/">project page</a>&nbsp;| 
+<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-932.pdf">pdf</a>&nbsp;]
+<blockquote>
+The CHERI architecture allows pointers to be implemented as capabilities (rather than integer virtual addresses) in a manner that is compatible with, and strengthens, the semantics of the C language. In addition to the spatial protections offered by conventional fat pointers, CHERI capabilities offer strong integrity, enforced provenance validity, and access monotonicity.<p>
+The stronger guarantees of these architectural capabilities must be reconciled with the real-world behavior of operating systems, run-time environments, and applications. When the process model, user-kernel interactions, dynamic linking, and memory management are all considered, we observe that simple derivation of architectural capabilities is insufficient to describe appropriate access to memory. We bridge this conceptual gap with a notional abstract capability that describes the accesses that should be allowed at a given point in execution, whether in the kernel or userspace.<p>
+To investigate this notion at scale, we describe the first adaptation of a full C-language operating system (FreeBSD) with an enterprise database (PostgreSQL) for complete spatial and referential memory safety. We show that awareness of abstract capabilities, coupled with CHERI architectural capabilities, can provide more complete protection, strong compatibility, and acceptable performance overhead compared with the pre-CHERI baseline and software-only approaches. Our observations also have potentially significant implications for other mitigation techniques.
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="sail-popl2019">&nbsp;</a>
+</dt>
+<dd>
+ISA Semantics for ARMv8-A, RISC-V, and
+  CHERI-MIPS.
+ Alasdair Armstrong, Thomas Bauereiss, Brian Campbell, Alastair Reid,
+  Kathryn&nbsp;E. Gray, Robert&nbsp;M. Norton, Prashanth Mundkur, Mark Wassell, Jon
+  French, Christopher Pulte, Shaked Flur, Ian Stark, Neel Krishnaswami, and
+  Peter Sewell.
+ In POPL 2019, Proc. ACM Program. Lang. 3, POPL, Article 71.
+[&nbsp;<a href="cheriformal_bib.html#sail-popl2019">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/3290384">DOI</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/users/pes20/sail/popl2019.html">supplementary material</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/~pes20/sail/">project page</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/users/pes20/sail/sail-popl2019.pdf">pdf</a>&nbsp;]
+<blockquote>
+Architecture specifications notionally define the fundamental interface between hardware and software: the envelope of allowed behaviour for processor implementations, and the basic assumptions for software development and verification.  But in practice, they are typically prose and pseudocode documents, not rigorous or executable artifacts, leaving software and verification on shaky ground.<p>
+In this paper, we present rigorous semantic models for the sequential behaviour of large parts of the mainstream ARMv8-A, RISC-V, and MIPS architectures, and the research CHERI-MIPS architecture, that are complete enough to boot operating systems, variously Linux, FreeBSD, or seL4.  Our ARMv8-A models are automatically translated from authoritative ARM-internal definitions, and (in one variant) tested against the ARM Architecture Validation Suite.<p>
+We do this using a custom language for ISA semantics, Sail, with a lightweight dependent type system, that supports automatic generation of emulator code in C and OCaml, and automatic generation of proof-assistant definitions for Isabelle, HOL4, and (currently only for MIPS) Coq.  We use the former for validation, and to assess specification coverage.  To demonstrate the usability of the latter, we prove (in Isabelle) correctness of a purely functional characterisation of ARMv8-A address translation.  We moreover integrate the RISC-V model into the RMEM tool for (user-mode) relaxed-memory concurrency exploration.  We prove (on paper) the soundness of the core Sail type system.<p>
+We thereby take a big step towards making the architectural abstraction actually well-defined, establishing foundations for verification and reasoning.
+
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="cerberus-popl2019">&nbsp;</a>
+</dt>
+<dd>
+Exploring C Semantics and Pointer Provenance.
+ Kayvan Memarian, Victor B.&nbsp;F. Gomes, Brooks Davis, Stephen Kell,
+  Alexander Richardson, Robert N.&nbsp;M. Watson, and Peter Sewell.
+ In POPL 2019, Proc. ACM Program. Lang. 3, POPL, Article 67. Also
+  available as ISO/IEC JTC1/SC22/WG14 N2311.
+[&nbsp;<a href="cheriformal_bib.html#cerberus-popl2019">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/3290380">DOI</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/users/pes20/cerberus/supplementary-material-popl2019">supplementary material</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/~pes20/cerberus">project page</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/users/pes20/cerberus/cerberus-popl2019.pdf">pdf</a>&nbsp;]
+<blockquote>
+The semantics of pointers and memory objects in C has been a vexed question for many years.  C values cannot be treated as either purely abstract or purely concrete entities: the language exposes their representations, but compiler optimisations rely on analyses that reason about provenance and initialisation status, not just runtime representations. The ISO WG14 standard leaves much of this unclear, and in some respects differs with de facto standard usage --- which itself is difficult to investigate.<p>
+In this paper we explore the possible source-language semantics for memory objects and pointers, in ISO C and in C as it is used and implemented in practice, focussing especially on pointer provenance.  We aim to, as far as possible, reconcile the ISO C standard, mainstream compiler behaviour, and the semantics relied on by the corpus of existing C code.  We present two coherent proposals, tracking provenance via integers and not; both address many design questions. We highlight some pros and cons and open questions, and illustrate the discussion with a library of test cases.  We make our semantics executable as a test oracle, integrating it with the Cerberus semantics for much of the rest of C, which we have made substantially more complete and robust, and equipped with a web-interface GUI.  This allows us to experimentally assess our proposals on those test cases.  To assess their viability with respect to larger bodies of C code, we analyse the changes required and the resulting behaviour for a port of FreeBSD to CHERI, a research architecture supporting hardware capabilities, which (roughly speaking) traps on the memory safety violations which our proposals deem undefined behaviour. We also develop a new runtime instrumentation tool to detect possible provenance violations in normal C code, and apply it to some of the SPEC benchmarks.  We compare our proposal with a source-language variant of the twin-allocation LLVM semantics proposal of Lee et al.  Finally, we describe ongoing interactions with WG14, exploring how our proposals could be incorporated into the ISO standard.
+
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="rems-fmcad16">&nbsp;</a>
+</dt>
+<dd>
+Extracting Behaviour from an Executable Instruction Set
+  Model.
+ Brian Campbell and Ian Stark.
+ In FMCAD 2016, Full proceedings
+  <a href="http://www.cs.utexas.edu/users/hunt/FMCAD/FMCAD16/proceedings/fmcad-2016-proceedings.pdf">http://www.cs.utexas.edu/users/hunt/FMCAD/FMCAD16/proceedings/fmcad-2016-proceedings.pdf</a>.
+[&nbsp;<a href="cheriformal_bib.html#rems-fmcad16">bib</a>&nbsp;| 
+<a href="http://homepages.inf.ed.ac.uk/bcampbe2/rems/fmcad16.pdf">pdf</a>&nbsp;]
+<blockquote>
+Presenting large formal instruction set models as executable functions makes them accessible to engineers and useful for less formal purposes such as simulation.  However, it is more difficult to extract information about the behaviour of individual instructions for reasoning.  We present a method which combines symbolic evaluation and symbolic execution techniques to provide a rule-based view of instruction behaviour, with particular application to automatic test generation for large MIPS-like models.
+</blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Cerberus-PLDI16">&nbsp;</a>
+</dt>
+<dd>
+Into the depths of C: elaborating the de facto
+  standards.
+ Kayvan Memarian, Justus Matthiesen, James Lingard, Kyndylan Nienhuis,
+  David Chisnall, Robert&nbsp;N.M. Watson, and Peter Sewell.
+ In PLDI 2016, PLDI 2016 Distinguished Paper award.
+[&nbsp;<a href="cheriformal_bib.html#Cerberus-PLDI16">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/2908080.2908081">DOI</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/~pes20/cerberus">project page</a>&nbsp;| 
+<a href="http://www.cl.cam.ac.uk/users/pes20/cerberus/pldi16.pdf">pdf</a>&nbsp;| 
+<a href="http://doi.acm.org/10.1145/2908080.2908081">http</a>&nbsp;]
+<blockquote>
+
+C remains central to our computing infrastructure.  It is notionally defined by ISO standards, but in reality the properties of C assumed by systems code and those implemented by compilers have diverged, both from the ISO standards and from each other, and none of these are clearly understood.<p>
+We make two contributions to help improve this error-prone situation.  First, we describe an in-depth analysis of the design space for the semantics of pointers and memory in C as it is used in practice.  We articulate many specific questions, build a suite of semantic test cases, gather experimental data from multiple implementations, and survey what C experts believe about the de facto standards.  We identify questions where there is a consensus (either following ISO or differing) and where there are conflicts. We apply all this to an experimental C implemented above capability hardware.  Second, we describe a formal model, Cerberus, for large parts of C.  Cerberus is parameterised on its memory model; it is linkable either with a candidate de facto memory object model, under construction, or with an operational C11 concurrency model; it is defined by elaboration to a much simpler Core language for accessibility, and it is executable as a test oracle on small examples.<p>
+This should provide a solid basis for discussion of what mainstream C is now: what programmers and analysis tools can assume and what compilers aim to implement. Ultimately we hope it will be a step towards clear, consistent, and accepted semantics for the various use-cases of C.
+
+</blockquote>
+
+</dd>
+</dl>

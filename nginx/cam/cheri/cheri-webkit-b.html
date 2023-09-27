@@ -1,0 +1,114 @@
+<title>CHERI-WebKit</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>CHERI-WebKit</h1>
+
+<p>
+CHERI-WebKit is a port of the <a href="https://webkit.org"><b>WebKit browser
+engine</b></a>, developed in collaboration with Arm, to the <a
+href="."><b>CHERI protection model</b></a>, and in particular to Arm's <a
+href="cheri-morello.html"><b>Morello<b></a> architecture.
+It will serve as a platform for measuring CHERI's impact on performance and
+security in complex applications like language runtimes.
+</p>
+
+<p><b>Note:</b> This is experimental software, and is only partially adapted
+  to use the CHERI protection model.
+  While the initial aim has been to support performance analysis, to
+  understand the implications of CHERI's larger pointer size and impact on
+  the JSC JIT, we are now exploring deploying CHERI memory safety to harden
+  the browser engine and language runtime.</p>
+
+<h2>JavaScriptCore</h2>
+
+<p>
+Work to date has focused on JavaScriptCore (JSC), WebKit's JavaScript runtime. Our
+port supports multiple tiers of optimization, including the C-loop interpreter,
+low-level interpreter, and baseline JIT compiler. To facilitate the evaluation of
+performance and security tradeoffs, JSC can be built with pure-capability
+compilation, which implements all pointers as CHERI capabilities; hybrid
+compilation, which leaves most pointers as integers; and a third option that
+implements all pointers as CHERI capabilites except for the JavaScript virtual
+machine's pointers to the JavaScript heap, which remain integers. In this third
+model, the use of integer pointers is restricted to the JavaScript heap by
+Morello's default data capability.
+CHERI-WebKit relies on the <a href="cheribsd.html"><b>CheriBSD</b></a>
+operating system, and its memory-safe <a
+href="../pdfs/201904-asplos-cheriabi.pdf"><b>CheriABI process
+environment</b></a>.
+</p>
+
+<h2>Building and running CHERI-Webkit</h2>
+
+<p>
+The CHERI-Webkit source is available in the
+<a href="https://github.com/ctsrd-cheri/webkit"><b>CHERI-WebKit GitHub
+repository</b></a>. It can be easily
+built and run on Arm's Morello FVP software model using our
+<a href="https://github.com/CTSRD-CHERI/cheribuild"><b>cheribuild
+tool</b></a>. To
+build it, run the following command line, which will build the Morello
+toolchain and CheriBSD as well as JavaScriptCore and its dependencies:
+</p>
+
+<pre>
+./cheribuild.py --include-dependencies morello-webkit-morello-purecap
+</pre>
+
+<p>
+To enable support for baseline JIT compilation, append the following
+switch to the above command:
+</p>
+
+<pre>
+--morello-webkit-morello-purecap/backend tier2asm
+</pre>
+
+<p>
+The following command line will then download the Arm FVP model, create
+a disk image that includes JSC, and run the model:
+</p>
+
+<pre>
+./cheribuild.py --include-dependencies run-fvp-morello-purecap
+</pre>
+
+<p>
+You can then run JSC on the FVP model as follows:
+</p>
+
+<pre>
+env LD_LIBRARY_PATH=/opt/morello-purecap/webkit/lib:/usr/local/morello-purecap/lib /opt/morello-purecap/webkit/bin/jsc
+</pre>
+
+<p>
+To run JavaScript files (e.g. the
+<a href="https://github.com/ctsrd-cheri/webkit/tree/master/PerformanceTests/SunSpider/tests/sunspider-1.0.2">SunSpider</a>
+benchmark suite), create and add them to cheribuild's extra files directory,
+(default ~/cheri/extra-files), rebuild the disk image, and re-run the model:
+</p>
+
+<pre>
+mkdir -p ~/cheri/extra-files/js
+cp [js files] ~/cheri/extra-files/js
+cheribuild disk-image-morello-purecap
+cheribuild run-fvp-morello-purecap
+</pre>
+
+<p>
+You can then run the files on the model as follows:
+</p>
+
+<pre>
+env LD_LIBRARY_PATH=/opt/morello-purecap/webkit/lib:/usr/local/morello-purecap/lib /opt/morello-purecap/webkit/bin/jsc /js/[js file]
+</pre>
+
+<p>
+You can also use cheribuild to run the SunSpider benchmark suite directly on the QEMU model:
+</p>
+
+<pre>
+cheribuild morello-webkit-morello-purecap --test
+</pre>

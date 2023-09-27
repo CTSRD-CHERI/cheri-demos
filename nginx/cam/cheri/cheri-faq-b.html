@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CHERI Frequently Asked Questions (FAQ)</title>
+<style type="text/css">
+</style>
+<body>
+
+<img width=200 src="../images/20120525-swm-beri-de4-photo.jpg" align=right>
+
+<h1>CHERI Frequently Asked Questions (FAQ)</h1>
+
+<p>
+  Here are answers to some of the common questions we've received (or in some
+  cases, anticipate) about CHERI.
+  See the <a href="../beri/faq.html">BERI FAQ</a> for questions about the BERI
+  platform.
+</p>
+
+<dl>
+<dt><b>What is CHERI?</b></dt>
+<dd>
+  <p>CHERI refers to <b>Capability Hardware Enhanced RISC Instructions</b>, an
+    Instruction-Set Architecture (ISA) extension that implements a hybrid
+    capability-system model providing fine-grained memory protection and
+    scalable software compartmentalisation within architectural address
+    spaces (e.g., within user processes or the kernel).
+    CHERI capabilities are a new hardware data type intended to support the
+    robust and secure implementation of <b>pointers</b>.
+    Capabilities hold a virtual address as well as metadata describing the
+    memory resources referenced by the pointer (bounds, permissions, ...) and
+    also a 1-bit tag that protects the pointer itself (integrity, valid
+    provenance, ...).
+    The architecture (and hence hardware) protects pointers in registers and
+    memory, controlling their 
+creation and use (e.g., nonforgeability and nonbypassability), 
+manipulation (e.g., enforcing monotonicity on bounds modifications and
+    permissions), 
+ensuring only authorized use (e.g., dereference within bounds), and also their
+in-memory integrity (e.g., detecting pointer corruption or injection).
+    Policies are expressed by the software (OS, compiler, language runtime,
+    and application) and enforced by the hardware.</p>
+
+    <p>CHERI capabilities are a low-level primitive usable for many purposes.
+    We employ them in implementing pointer protection and fine-grained
+    memory protection for the C and C++ programming languages, for safe
+    inter-language interoperability, and also for scalable fine-grained
+    software compartmentalization.
+    CHERI is targeted by the compiler and used to represent
+    programming-language-level protection properties, in contrast to
+    conventional memory management units (MMUs) that are used to construct
+    page-based virtual memory by operating systems.
+    In CHERI, the capability coprocessor and MMU live side by side;
+    being a hybrid model, they provide strong protection guarantees while
+    allowing significant compatibility with current software at both binary
+    and source-code levels -- a technique inspired by our earlier work on <a
+    href="../../capsicum/">Capsicum</a>, a hybrid capability-system model for
+    UNIX.</p>
+
+  <p>CHERI also refers to our prototype MIPS-based implementation of the ISA
+    in FPGA, embodied in a capability coprocessor in the BERI MIPS
+    implementation.
+    We have released the BERI source code, along with adaptations of the <a
+    href="http://www.freebsd.org/">FreeBSD operating system</a> (CheriBSD) and
+    <a href="http://www.llvm.org/">LLVM compiler suite</a> (CHERI Clang/LLVM).
+    We have also adapted tools such as the GDB debugger and LLVM linker (LLD)
+    to support conventional software development.
+    Please see our <a href="../beri/downloads-hw.html">hardware downloads</a>
+    and <a href="../beri/downloads-sw.html">software downloads</a> pages for
+    more information.
+    Research into BERI and CHERI has primarily been supported by DARPA and
+    Google, but we've also had PhD students and postdocs supported by ARM, HP,
+    Microsoft, EPSRC, ERC, and other government and industrial sponsors.  We
+    are very grateful to all of these sponsors, without whom this work could
+    not have been done!</p>
+</dd>
+
+<dt><b>What ISA(s) does CHERI extend?</b></dt>
+<dd>
+  <p>To date, our published research has been based on the 64-bit MIPS ISA;
+    MIPS was the dominant RISC ISA in use in 2010 when the project began.
+    We have a fully elaborated CHERI-MIPS ISA including formal model of the
+    instruction set (which have been used for security proofs), executable
+    QEMU model, and Bluespec SystemVerilog (BSV) implementation targeted at
+    FPGA.
+    This is a mature architecture targeted by a CHERI-extended version of the
+    Clang/LLVM compiler suite, and able to run complete open-source software
+    stacks including CheriBSD (a CHERI-extended version of FreeBSD) and
+    applications such as OpenSSH, PostgreSQL, and WebKit.
+    However, since that time we have performed significant investigation into
+    CHERI as <i>portable architectural security model</i> suitable for use in
+    multiple ISAs.
+    A key goal of this investigation has been to demonstrate that portable
+    C/C++-language software stacks -- including compiler toolchain, operating
+    systems, and applications -- can benefit from the same protection
+    properties with minimal architecture-specific adaptation beyond the
+    compiler backend and low-level architecture-specific OS components.</p>
+
+  <p>The advent of the open RISC-V ISA provides us with a richer spectrum of
+    baseline processor designs, and as the architecture matures over time, we
+    hope also a similarly rich software ecosystem.
+    RISC-V may also create new potential technology-transition possibilities.
+    We have now created an elaborated CHERI-RISC-V ISA specification suitable
+    for use with both 32-bit and 64-bit RISC-V.
+    We have similarly developed a formal model of CHERI-RISC-V, and are now
+    adapting multiple open-source processor cores from Bluespec to implement
+    CHERI.
+    Early versions of the CHERI Clang/LLVM compiler suite are now functional
+    and able to compile pure-capability C code for the bare-metal architecture.
+    We anticipate a more complete hardware-software stack in late 2019.
+    </p>
+
+  <p>We have also developed an "architectural sketch" of a CHERI-x86-64 that
+    extends the 64-bit x86 ISA with CHERI support.
+    The sketch explores the design space and potential directions, but is not
+    currently supported by a complete ISA specification or implementation.</p>
+
+  <p>More information on CHERI-MIPS, CHERI-RISC-V, and CHERI-x86-64 can be
+    found in our <a
+    href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-927.pdf"><i>Capability
+    Hardware Enhanced RISC Instructions: CHERI Instruction-Set
+    Architecture (Version 7)</i></a> technical report.</p>
+</dd>
+
+<dt><b>What is a hybrid capability system?</b></dt>
+<dd>
+  <p><i>Capabilities</i> are unforgeable tokens of authority that may be
+    passed from subject to subject (<i>delegated</i>) granting rights to
+    objects; typically, capabilites incorporate both a reference to an object
+    and a mask of permissions reflecting possible operations or methods on the
+    object.
+    Conventional <i>capability systems</i> constrain executing code such that
+    executing code can access only objects as permitted via capabilities; this
+    limitation might be enforced by constraints imposed by an ISA,
+    operating-system API, programming language, network protocol, or even by
+    static or dynamic limits imposed on a program using code analysis or
+    transformation.
+    Microkernels (such as seL4) often implement capability systems as their
+    fundamental security model, as the model provides a strong mechanism on
+    which many different policies can be implemented.</p>
+
+  <p>A <i>hybrid</i> capability system is one in which more conventional system
+    designs (such as a UNIX kernel or RISC processor) are adapted to support a
+    capability model such that some, but not all, code is limited by
+    capability-system constraints, and a set of pragmatic tradeoffs are
+    adopted to allow conventional system objects to be exposed via more
+    capability-esque models.
+    For example, <a
+    href="http://www.cl.cam.ac.uk/research/security/capsicum/">Capsicum</a>
+    composes a capability-system model with the UNIX API, treating file
+    descriptors as capabilities, and allowing selected processes to be marked
+    as losing access to global system namespaces, in effect, imposing a
+    capability system.
+    Hybrid capability systems offer improved adoptability by allowing
+    components of existing applications to be selectively migrated to a
+    least-privilege programming model, although at the cost of reduced
+    robustness and security as compared to a pure capability system and
+    application suite written entirely with those goals in mind.</p>
+
+  <p>CHERI is a hybrid capability system in several senses:</p>
+  <ul>
+    <li>CHERI's capability system is blended with a conventional RISC
+       usermode architecture without disrupting the majority of key design
+       decisions.</li>
+    <li>CHERI's capabililty system is cleanly and usefully composed with
+       conventional ring-based privileges and virtual memory based on Memory
+       Management Units (MMUs).</li>
+    <li>CHERI can be targeted by a C/C++-language compiler with strong
+       compatibility, performance, and protection properties.</li>
+    <li>CHERI supports a range of OS models including conventional MMU-based
+       virtual-memory designs, hybridized designs that host capability-based
+       software within multiple virtual address spaces, and pure
+       single-address-space capability systems.</li>
+    <li>CHERI is incrementally adoptable: Within pieces of software,
+       capability-based design can be disregarded, partially adopted, or fully
+       adopted with useful and predictable semantics.</li>
+  </ul>
+</dd>
+
+<dt><b>What is the difference between BERI and CHERI?</b></dt>
+<dd>
+  <p>BERI is the Bluespec Extensible RISC Implementation, a hardware
+    description of a 64-bit pipelined RISC processor, with debugging
+    tools and C-language simulated buses and devices.
+    <a href="../cheri.html">CHERI</a> is a set of ISA and implementation
+    extensions providing fine-grained memory protection and support for
+    scalable software compartmentalisation developed as part of the <a
+    href="../">CTSRD Project</a> joint between <a
+    href="http://www.csl.sri.com/">SRI International</a> and the <a
+    href="http://www.cl.cam.ac.ul">University of Cambridge Computer
+    Laboratory</a>.</p>
+
+  <p>The BERI implementation includes optionally compiled support for CHERI,
+    enabled via the CP2 flag at compile-time.
+    CHERI occupies the coprocessor-2 instruction encoding space, and must be
+    explicitly enabled.
+    You may find <a
+    href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-927.pdf"><i>Capability
+    Hardware Enhanced RISC Instructions: CHERI Instruction-Set
+    Architecture (Version 7)</i></a> technical report and our <a
+    href=".">various research papers</a> useful reading if this is of
+    interest.</p>
+
+  <p>For the purposes of our work on CHERI-RISC-V, we are building on a set
+    of open-source Bluespec SystemVerilog (BSV) cores designed at Bluespec
+    and MIT, rather than building the baseline CPU from scratch.</p>
+</dd>
+
+<dt><b>Why 32 capability registers?</b></dt>
+<dd>
+  <p>As our starting point was the 64-bit MIPS ISA, we made a number of design
+    choices to maximise congruence in the CHERI ISA, including selecting 32
+    capability registers to correspond to the 32 general-purpose integer
+    registers in the MIPS ISA.
+    In CHERI-RISC-V, we support both <i>split register files</i> (in which
+    capability registers are in their own independent architectural register
+    file) and a <i>merged register file</i>, in which general-purpose integer
+    registers are extended to capability width.
+    There are a number of architectural and microarchitectural implications to
+    these design choices, which we hope to explore further in our research.
+    </p>
+</dd>
+
+<dt><b>Why a separate capability register file?</b></dt>
+<dd>
+    <p>Our decision to use a separate register file for capabilities is also
+    one that could be revisited: We modeled CHERI as a CP2 extension to MIPS,
+    but there is no reason to think that we could not extend a general-purpose
+    64-bit register file to hold 128-bit capabilities (plus tags) in the same
+    style that 32-bit register files are extended to 64 bits in many 64-bit
+    architectures.
+    This might offer reduced microarchitectural overhead by avoiding
+    additional control logic for a second register file.
+    Our CHERI RISC-V design supports both split and merged register files,
+    which will allow us to evaluate this design choice and its impact on
+    hardware and software.
+  </p>
+</dd>
+
+<dt><b>Could you do it with fewer than 256 bits?</b></dt>
+<dd>
+  <p>Over CHERI ISA versions 4 to 7, we explored and developed a 128-bit
+    compressed capability format employing fat-pointer compression techniques.
+    This approach exploits redundancy between the two 64-bit virtual addresses
+    representing bounds and the 64-bit pointer itself.
+    The CHERI-128 approach retains strong C-language compatibility (e.g.,
+    out-of-bounds pointers) and retains our required security properties (e.g.,
+    monotonicity), while also achieving good microarchitectural performance
+    (i.e., avoiding multi-cycle delays for key operations).
+    128-bit capabilities substantially reduce the data-cache overhead of CHERI
+    for pointer-intensive workloads.
+    Support for 128-bit capabilities can be found in recent versions of our
+    CHERI FPGA prototype and also QEMU-CHERI.
+    Our <a href="../pdfs/2019tc-cheri-concentrate.pdf">2019 IEEE TC paper on
+    CHERI Concentrate</a> documents our approach in detail.
+</dd>
+
+<dt><b>Why tagged memory?</b></dt>
+<dd>
+  <p>Many memory-based attacks on contemporary hardware-software designs rely
+    on corrupting pointers or lengths.
+    Tags provide strong pointer-integrity guarantees that are difficult to
+    implement efficiently without hardware support.
+    Tags add one bit of memory for every 128 or 256 bits of data, with a
+    &lt;1% memory overhead; they are maintained with cache lines, and obey
+    normal cache-coherency rules.
+    In our CHERI prototype, we partition physical memory, setting aside a
+    portion to hold tags, rather than requiring a change to memory interfaces.
+    Currently, that partition is hard-coded, but it would ideally be managed
+    by the firmware or software supervisor.</p>
+</dd>
+
+<dt><b>How does CHERI compare with other memory-protection schemes?</b></dt>
+<dd>
+  <p>Our <a href="../pdfs/201406-isca2014-cheri.pdf">2014 ISCA paper</a>
+    includes a detailed comparison of the protection semantics and performance
+    of CHERI as compared to other schemes, including software bounds checking,
+    Intel MPX, HardBound, Mondriaan, and M-Machine.
+    Each selects a different point in a larger tradeoff space.
+    Key design choices that have motivated CHERI include a focus on providing
+    strong protection for C-language pointers, hybridization with MMU-based
+    virtualization, avoidance of hardware lookup tables and associative
+    structures in the microarchitecture, and strong support for existing
+    software stacks.
+    More recent papers at venues such as IEEE SSP and ASPLOS have elaborated
+    on these overheads as we pursue utilizing capabilities in more and
+    more aspects of software design.</p>
+</dd>
+</dl>
+
+</body>

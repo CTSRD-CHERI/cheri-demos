@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CHERI Software Stack</title>
+<style type="text/css">
+</style>
+<body>
+
+<img src="../images/cheri-compartmentalization.png"
+  alt="CHERI compartmentalization figure"
+  width="50%" align="right"/>
+  <!-- width="624" height="318" align="right"/> -->
+
+<h1>
+  CHERI Software Stack
+</h1>
+
+<table bgcolor="ddffdd" border="0"><tr><td>February 2021: We have open sourced
+  a <a href="cheri-webkit.html"><b>CHERI adaptation of the WebKit browser
+  framework and JavaScript interpreter</b></a>, which has been developed in
+  close collaboration with Arm.
+  This is the first open-source JIT available for CHERI, and runs on Arm's
+  Morello architecture.</td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>April 2019: We are pleased to
+  announce that our <b>ASPLOS 2019 paper on CHERI and OS design</b>, <a
+  href="cheri-publications.html#academic-papers"><b>CheriABI: Enforcing Valid
+  Pointer Provenance and Minimizing Pointer Privilege in the POSIX C Run-time
+  Environment</b></a>, on the general-purpose OS design implications of CHERI  when used for ubiquitous memory safety, has won an ASPLOS Best Paper
+  award.</td></tr></table>
+
+<!--
+<table bgcolor="ddffdd" border="0"><tr><td>June 2017: We have now posted our
+  ASPLOS 2017 paper, <a href="../pdfs/201704-asplos-cherijni.pdf"><b>CHERI-JNI:
+  Sinking the Java security model into the C</a>, which explores how CHERI
+  capabilities can be used to support sandboxing with safe and efficient
+  memory sharing between Java Native Interface (JNI) code and the Java Virtual
+  Machine.</td></tr></table>
+
+<table bgcolor="ffdddd" border="0"><tr><td>June 2016: We have now posted our
+  PLDI 2016 paper, <a href="../pdfs/201606-pldi2016-clanguage.pdf"><b>Into
+  to the depths of C: elaborating the de facto standards</b></a>, which
+  develops a formal model for the C language, and explores its implications
+  for CHERI.
+  This paper won a PLDI 2016 distinguished paper award.</td></tr></table>
+-->
+
+<br clear=all>
+
+<p>This page describes our CHERI software-stack prototypes, including the
+  <a href="cheri-llvm.html"><b>CHERI Clang/LLVM/LLD compiler suite and
+  linker</b></a>, <a href="cheribsd.html"><b>CheriBSD operating
+  system</b></a>, and QEMU-CHERI ISA-level simulator.
+  We have also performed CHERI adaptations of the GDB debugger, FreeRTOS
+  embedded operating system, and Spike RISC-V simulator, as well as
+  applications such as <a href="cheri-webkit.html"><b>WebKit</b></a>.
+  Entirely new software is released under a BSD license; extensions to
+  existing software packages are released under the license used by that
+  package.</p>
+
+<p>Our recent <a href="../pdfs/201904-asplos-cheriabi.pdf"><b>ASPLOS 2019
+  paper on CheriABI</b></a> provides the best current general introduction to
+  CHERI memory safety for operating systems and applications.
+  There is also an <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-932.pdf"><b>extended
+  CheriABI technical report</b></a> that contains additional implementation
+  information on this work.</p>
+
+<h2>CHERI Clang/LLVM compiler suite, LLD linker, and GDB debugger</h2>
+<p>
+<a href="cheri-llvm.html"><b>CHERI Clang/LLVM and LLD</b></a> are a complete
+compiler suite and compile-time linker for use with the CHERI architecture as
+instantiated for 64-bit MIPS and 32/64-bit RISC-V.
+We have also adapted the GDB debugger to use CHERI.
+The suite targets two C interpretations and ABIs:</p>
+
+<dl>
+<dt>Hybrid-capability C and binary code</dt>
+<dd><i>Hybrid-capability C/C++</i> starts with the conventional integer
+  implementation of C/C++ pointers, but allows types to be optionally
+  qualified in order to trigger implementation using CHERI capabilities.
+  This model could also transparently introduce capability use where it does
+  not interfere with existing ABIs.
+  This model is typically used in low-level OS components and compatibility
+  layers, such as in allowing the pure-capability CheriABI process environment
+  to be implemented over a hybrid-capability kernel.</dd>
+
+<dt>Pure-capability C and binary code</dt>
+<dd><i>Pure-capability C/C++</i> implements all C/C++ pointers using CHERI
+  capabilities.
+  This includes explicit pointers (such as explicitly declared pointers to
+  functions, global variables, local variables, and heap allocations), and
+  also implicit pointers (such as return addresses, and GOT pointers).
+  This model is suitable for a broad variety of uses, including in providing
+  strong memory safety for operating-system kernels and user
+  applications.
+  CHERI C is documented in our <a
+  href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-947.pdf"><b>CHERI
+  C/C++ Programming Guide</b></a>.
+</dd>
+</dl>
+
+
+<h2>CheriBSD operating system</h2>
+<p>
+<a href="cheribsd.html"><b>CheriBSD</b></a> is an adaptation of the
+open-source <a href="http://www.freebsd.org/">FreeBSD operating system</a> to
+utilize the CHERI Architecture's capability-system model.
+CheriBSD provides strong CHERI-based memory protection for the kernel and
+userspace, as well as support for scalable single-address-space software
+compartmentalization.
+By default, the kernel is compiled as a hybrid-capability binary, but we have
+experimental extensions that allow it to run as a pure-capability binary.
+Both kernels support running existing off-the-shelf userspace MIPS and RISC-V
+binaries, as well as pure-capability binaries running in the CheriABI process
+environment.
+CheriBSD runs on 64-bit CHERI-MIPS and 64-bit CHERI-RISC-V.
+</p>
+
+
+<h2>QEMU-CHERI</h2>
+<p>We have also developed a <a href="cheri-qemu.html"><b>QEMU
+CHERI-MIPS and CHERI-RISC-V</b></a> implementation, which provides an
+ISA-level emulation of our CHERI extensions to the 64-bit MIPS and RISC-V
+ISAs.
+While not micro-architecturally realistic, this emulation can be useful for
+software development, especially in the absence of an FPGA or access to
+Bluespec.
+It is faster than the Sail-generated C emulator, but less directly based on
+the Sail CHERI-MIPS and CHERI-RISC-V ISA specifications.
+</p>
+
+<h2>Other ported software</h2>
+<p>In addition to software packages such as OpenSSL and OpenSSH that are
+included in <a href="cheribsd.html"><b>CheriBSD</b></a>, we have ported
+a number of other applications to CHERI.
+These include:
+</p>
+<dl>
+  <dt><a href="https://github.com/CTSRD-CHERI/nginx"><b>nginx</b></a></dt>
+  <dd>Webserver</dd>
+  <dt><a href="https://github.com/CTSRD-CHERI/newlib"><b>newlib</b></a></dt>
+  <dd>Embedded/baremetal C standard library.</dd>
+  <dt><a href="https://github.com/CTSRD-CHERI/postgres"><b>PostgreSQL</b></a></dt>
+  <dd>Enterprise relational database.</dd>
+  <dt><A href="https://github.com/CTSRD-CHERI/qtbase"><b>Qt</b></a></dt>
+  <dd>Cross-platform GUI framework.</dd>
+  <!--<dt><a href="https://github.com/CTSRD-CHERI/qtwebkit"><b>QtWebKit</b></a></dt>-->
+  <!--<dd>Web browser engine (HTML and JavaScript).</dd>-->
+  <dt><a href="https://github.com/CTSRD-CHERI/sqlite"><b>SQLite</b></a></dt>
+  <dd>Embedded relational database.</dd>
+  <!--<dt><a href="https://github.com/CTSRD-CHERI/cpython"><b>Python</b></a></dt>-->
+  <!--<dd>CPython, the reference implementation of the Python programming language.</dd>-->
+  <dt><a href="cheri-webkit.html"><b>WebKit</b></a></dt>
+  <dd>The WebKit browser platform and JavaScript Core (JSC) language runtime.
+  This includes a CHERI-adapted JIT for Morello</dd>
+</dl>
+
+</body>

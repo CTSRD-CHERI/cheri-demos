@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>20140313 - First BERI/CHERI source-code release for early adopters</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>
+  First BERI/CHERI source-code release for early adopters (20140313)
+</h1>
+
+<h2>Description</h2>
+
+<p>
+This is our first "early adopter" BERI/CHERI source-code release, which
+includes Bluespec source code for the BERI1/BERI2 processors, supporting
+Bluespec libraries, as well as C-language simulation components and tools
+(E.g., berictl which communicates with the BERI debug unit).
+These releases correspond roughly to the 1 March 2014 release of the BERI test
+suite, and 5 March 2014 release of BERI/CHERI documentation.
+The documentation drop includes instructions for building and simulating the
+processors, as well as building corresponding CHERI SDK and FreeBSD/CheriBSD
+operating-system images.
+</p>
+
+<p>
+These drops have been prepared with the intent that they support
+Bluespec-based simulation outside of the SRI/Cambridge development
+environment for the first time; they may also be useful for hardware
+synthesis targets, although we are not yet able to distribute the Altera
+Quartus project files and some related components which will make building
+our demonstration tablet environment easier.
+Currently, our build files and scripts for simulation include assumptions
+about our development environment that will likely not hold true elsewhere; as
+these are discovered, please let us know and we can help resolve them.
+As this is a first release, we expect that the road may be somewhat bumpy for
+early adopters -- please do e-mail the CHERI early adopters' mailing list, or
+us directly, if you encounter difficulties.
+</p>
+
+<h2>WARNING</h2>
+
+<p>
+<b>
+THIS HARDWARE, SOFTWARE, AND DOCUMENTATION IS PROVIDED BY THE AUTHOR AND
+CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</b>
+</p>
+
+<h2>Downloads</h2>
+
+<table>
+<tr>
+<th>File</th>
+<th>Title</th>
+<th>Version</th>
+</tr>
+
+<tr>
+<td><a href="downloads/cheri-r11480.tgz">cheri-r11480.tgz</a></td>
+<td>BERI/CHERI Bluespec and C source code</td>
+<td>r11480</td>
+</tr>
+
+</table>
+
+</body>

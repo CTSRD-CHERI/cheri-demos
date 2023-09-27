@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>CHERI Software Compartmentalization</title>
+<style type="text/css">
+</style>
+<body>
+
+<img src="../images/cheri-compartmentalization.png"
+  alt="CHERI compartmentalization figure"
+  width="50%" align="right"/>
+  <!-- width="624" height="318" align="right"/> -->
+
+<h1>
+  CHERI Software Compartmentalization
+</h1>
+<p>
+  The <a href=".">CHERI protection model</a> provides a set of low-level
+  primitives that enable scalable, fine-grained software compartmentalization.
+  These primitives can be used to implement a variety of software-layer models
+  pursuing different <i>software operational models</i>
+  We have implemented multiple prototypes of potential models, including the
+  following, which are implemented in our <a href="cheribsd.html"><b>CheriBSD
+  operating system</b></a>.
+  <b>Note that these are experimental prototypes, and are not yet believed to
+  provide strong containment.</b>
+</p>
+
+<h2>Colocated processes (co-processes)</h2>
+<p>
+  In this model, multiple UNIX processes run <i>colocated</i> within a single
+  virtual address space, separated by CHERI rather than using multiple
+  MMU page tables.
+  CHERI enables faster process switching through exception-free,
+  capability-based and higher bandwidth communication
+  channels; in early FPGA-based measurements, we have seen 1-2 orders of
+  magnitude improvements.
+  Coprocesses inherit the integrity, confidentiality, and availability
+  properties of the UNIX process model.
+  This model requires eliminating fork() to create colocated processes, which
+  interacts with the common zygote performance optimization for sandboxed
+  programs.
+  There is an initial prototype of this model in a CheriBSD development
+  branch, which runs on the CHERI-RISC-V architecture.
+  A port to the Morello architecture is in progress.
+</p>
+
+<h2>Compartmentalized shared libraries</h2>
+<p>
+  In this model, a compartmentalizing run-time linker constraints arbitrary
+  code execution within shared libraries to linkage declared in ELF, as well
+  as any policy constraints on linkage.
+  Compartmentalized shared libraries have strong confidentality and integrity
+  properties, but not additional availability properties.
+  An initial prototype of this model shipped in CheriBSD 22.12, and runs on
+  the Morello architecture.
+  We plan to also develop support for the CHERI-RISC-V architecture.
+</p>
+
+</body>

@@ -1,0 +1,7 @@
+Order Allow,Deny
+Satisfy Any
+AuthType Basic
+AuthName "CHERI early access"
+AuthUserFile /anfs/www/html/research/security/ctsrd/cheri-early/.htpasswd
+AuthGroupFile /anfs/www/html/research/security/ctsrd/cheri-early/archive/.htgroup
+Require group archival

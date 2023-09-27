@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<head>
+<title>Temporally Enhanced Security Logic Assertions (TESLA)</title>
+<link rel="stylesheet" type="text/css" href="tesla.css"/>
+</head>
+
+<body>
+<h1 class="title">Temporally Enhanced Security Logic Assertions (TESLA)</h1><p>
+TESLA builds on our experiences developing the TrustedBSD MAC Framework
+and Capsicum: our most critical security properties are frequently safety
+(temporal) properties rather than static invariants.
+Current tools for testing temporal properties are largely static, and unable
+to work effectively on extremely large C-language software bases, such as
+multi-million lines-of-code operating system kernels and web browsers.
+TESLA borrows ideas from model checking, applying them in a dynamic context
+using compiler-assisted instrumentation to continuously validate temporal
+security assertions during software execution.
+We have implemented a prototype of TESLA based on clang/LLVM AST transforms,
+which is able to test both explicit automata against C implementations (such
+as protocol state machines in the kernel and OpenSSL) and inline assertions
+checking for missing access control checks in OS logic.
+</p>
+
+<p><b>Further work on TESLA will take place in the context of the <a
+  href="../../cadets/">CADETS</a>, a successor DARPA-sponsored project
+  investigating program analysis and transformation in support of distributed
+  security tracing.</b></p>
+
+<h2>Papers and slides</h2>
+
+<ul>
+<li>Jonathan Anderson, Robert N. M. Watson, David Chisnall, Khilan Gudka,
+  Brooks Davis, and Ilias Marinos.  <a
+  href="../pdfs/201404-eurosys2014-tesla.pdf"><b>TESLA: Temporally Enhanced
+  System Logic Assertions</b></a>, Proceedings of The 2014 European Conference
+  on Computer Systems (EuroSys 2014), April 14&ndash;16 2014, Amsterdam, The
+  Netherlands.</li>
+</ul>
+
+<img src="images/tesla-logo.png" id="tesla-logo"/>
+</body></html>

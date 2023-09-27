@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<title>The CAPcelerate project</title>
+<style type="text/css">
+</style>
+<body>
+
+<h1>The CAPcelerate project</h1>
+
+
+<div class="ucampas-toc"></div>
+
+<h2 id="outline">Outline</h2>
+
+<p>CAPcelerate is a £1.2m project funded by the UK Industrial Strategy Challenge
+Fund's <a href="../dsbd.html"><b>Digital Security by Design</b></a> (DSbD)
+programme, led by <a href="/~tmj32">Dr Timothy Jones</a> and <a
+href="/~atm26">Dr A. Theodore Markettos</a>.</p>
+
+<p>In parallel with the production of <a
+href="../cheri-morello.html"><b>Morello</b></a> platform, the project seeks
+to consider the implications of using CHERI capabilities in various classes
+of accelerators, such as GPUs, AI and crypto accelerators and FPGAs.  In
+particular we are interested in workloads that have rich software stacks
+that interwork with CPU code in shared memory.  We are considering whether
+it is feasible to add capability support to such accelerators and their
+software stacks (compilers, drivers, libraries, etc), or whether
+alternative schemes can be used to protect from accelerators that might be
+running malicious software, or potentially malicious hardware itself (for
+example, a malicious external Thunderbolt GPU).</p>
+
+<p>CAPcelerate considers several aspects:</p>
+
+<ul>
+<li>Understanding the usage model of software on top of current
+accelerators, and particularly how that might be relevant to
+capability-enabled accelerator hardware.  Typically, there is great
+diversity in such software and there is often not a common software model -
+for example, for GPGPUs there are OpenCL, CUDA, ROCm, OneAPI, SYCL and
+others.  Other types of accelerators have different software stacks (eg
+Tensorflow for machine learning accelerators).</li>
+
+<li>Understanding the challenges of implementing capabilities in hardware in
+a device that is substantially different from CPUs where capabilities have
+been implemented to date.  Is it feasible to build an accelerator where
+capabilities are used as a native datatype, and can we address the
+challenges in microarchitecture?</li>
+
+<li>Integrating such capability hardware in a system, for example in a
+system-on-chip, in order to offer security guarantees from CPU across
+interconnect to accelerator.</li>
+
+<li>Exploring opportunities for capability protection in driver code,
+whether or not a capability-enabled accelerator is used.  For example,
+compartmentalisation of drivers using CHERI compartments to offer more
+protection from malicious driver code than the current way drivers are built
+today.</li>
+</ul>
+
+<h2 id="related">Related projects</h2>
+
+<p>This project builds on other recent work.  In particular, we published <a
+href="https://thunderclap.io/"><b>Thunderclap</b></a>, a series of
+vulnerabilities in commodity operating systems' use of Input/Output Memory
+Management Unit (IOMMU) protection against malicious devices such as network
+cards.  In response to the publication of the Thunderclap paper, a number of
+vendors including Apple, Microsoft, Intel and others have improved their
+IOMMU protections and use of them has been mandated in the USB 4 and
+Thunderbolt 4 standards.</p>
+
+<p>Thunderclap is part of the EPSRC-funded IOSEC project, part of the <a
+href="https://www.ukrise.org/"><b>RISE initiative</b></a>.  IOSEC has
+additionally been considering other forms of protection from malicious
+peripheral devices, such as networking and storage.</p>
+
+<h4>Further reading:</h4> 
+
+<p>A. Theodore Markettos, John Baldwin, Ruslan Bukin, Peter G. Neumann,
+Simon W. Moore, Robert N.M. Watson. <a href="../../pdfs/2020cheri-dma.pdf"><b>Position Paper: Defending Direct Memory Access with
+CHERI Capabilities</b></a>. Hardware and Architectural Support for Security and Privacy (HASP)
+2020, October 2020.</p>
+
+
+</body>
