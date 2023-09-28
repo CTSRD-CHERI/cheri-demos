@@ -41,7 +41,7 @@ as follows:
 
 ```
 cp demo-self-signed.crt /etc/ssl/certs/
-cp demo-self-sgined.key /etc/ssl/private/
+cp demo-self-signed.key /etc/ssl/private/
 ```
 
 **NOTE: the demo certificate and key should provide no security and should
