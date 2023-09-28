@@ -9,7 +9,9 @@ In the demo nginx is configured with the following root location:
 To serve the demo static content it must be copied to that root
 location:
 
-`cp -r cam /usr/local/www/nginx`
+```
+cp -r cam /usr/local/www/nginx
+```
 
 ## HTTPS config
 
@@ -27,7 +29,9 @@ The demo nginx configuration file includes the file `demo-ssl-params.conf`.
 This file configures the self-signed certifcate and signing key used for
 the demo. Install this file as follows:
 
-`cp demo-ssl-params.conf /usr/local/etc/nginx/`
+```
+cp demo-ssl-params.conf /usr/local/etc/nginx/
+```
 
 The file `demo-ssl-params.conf` contains the following nginx config:
 
@@ -53,14 +57,18 @@ The demo nginx configuration file includes the file `demo-ssl-params.conf.`
 This file configures TLS parameters to provide a realistic real-world HTTPS
 server. Install this file as follows: 
 
-`cp demo-ssl-params.conf /usr/local/etc/nginx/`
+```
+cp demo-ssl-params.conf /usr/local/etc/nginx/
+```
 
 #### dhparam.pem
 
 This nginx demo ssl configuration includes a setting to increase the default
 strength of Diffe-Hellan keys. To install the parameter file:
 
-`cp dhparams.pem /usr/local/etc/nginx/`
+```
+cp dhparams.pem /usr/local/etc/nginx/
+```
 
 **NOTE: the dhparams.pem file should not be used for any other purpose than
 the demo.**  
