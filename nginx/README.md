@@ -21,8 +21,8 @@ Copy the `nginx.conf` file its default location:
 cp nginx.conf /usr/local/etc/nginx.conf
 ```
 
-** NOTE: Reninstalling nginx (`gmake install`) installs the default `nginx.conf`
-file replacing this setup. **
+**NOTE: Reninstalling nginx (`gmake install`) installs the default `nginx.conf`
+file replacing this setup.**
 
 ## HTTPS config
 
