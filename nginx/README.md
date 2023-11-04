@@ -78,9 +78,9 @@ This nginx demo ssl configuration includes a setting to increase the default
 strength of Diffe-Hellan keys. To install the parameter file:
 
 ```
-cp dhparams.pem /usr/local/etc/nginx/
+cp dhparam.pem /usr/local/etc/nginx/
 ```
 
-**NOTE: the dhparams.pem file should not be used for any other purpose than
+**NOTE: the dhparam.pem file should not be used for any other purpose than
 the demo.**  
 
