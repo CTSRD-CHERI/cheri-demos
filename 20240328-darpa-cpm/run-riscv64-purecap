@@ -1,0 +1,14 @@
+#!/bin/sh
+
+qemu-system-riscv64cheri \
+    -M virt \
+    -m 2048 \
+    -nographic \
+    -bios bbl-riscv64cheri-virt-fw_jump.bin \
+    -kernel kernel.CHERI-PURECAP-QEMU \
+    -append 'kernelname=/boot/kernel.CHERI-PURECAP-QEMU/kernel module_path=/boot/kernel.CHERI-PURECAP-QEMU;/boot/modules;/boot/dtb;/boot/dtb/overlays' \
+    -drive if=none,file=cheribsd-riscv64-purecap.img,id=drv,format=raw \
+    -device virtio-blk-device,drive=drv \
+    -device virtio-net-device,netdev=net0 \
+    -netdev 'user,id=net0,hostfwd=tcp::10000-:22' \
+    -device virtio-rng-pci
