@@ -1,5 +1,5 @@
 # Packages
-pkg64 install gdb-cheri ghidra-cheri llvm qemu
+pkg64 install gdb-cheri gdb-cheri-c18n ghidra-cheri llvm qemu
 pkg64c install cheri-desktop cheri-vm-support chericat git tmux
 
 # Git repos
