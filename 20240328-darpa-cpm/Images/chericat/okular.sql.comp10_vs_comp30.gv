@@ -1,0 +1,10 @@
+digraph G {
+	graph [rankdir=RL]
+	node [color=lightgreen fillcolor=lightblue fontname=Courier fontsize=10 style=filled]
+	edge [fontname=Courier]
+	node [fontname=Courier shape=record size="6,6"]
+	30 [label="30:libKF5CoreAddons.so.5.108.0, libKF5CoreAddons.so.5.108.0(.plt), libKF5CoreAddons.so.5.108.0(.got), Stack" fillcolor=lightblue rank=same]
+	10 [label="10:libKF5Crash.so.5.108.0, libKF5Crash.so.5.108.0(.plt), libKF5Crash.so.5.108.0(.got), Stack" fillcolor=pink rank=same]
+	30 -> 10 [label=rwRW penwidth=1.2552725051033053]
+	10 -> 30 [label=rwRW penwidth=1.505149978319904]
+}

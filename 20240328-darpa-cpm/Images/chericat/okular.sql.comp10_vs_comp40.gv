@@ -1,0 +1,8 @@
+digraph G {
+	graph [rankdir=RL]
+	node [color=lightgreen fillcolor=lightblue fontname=Courier fontsize=10 style=filled]
+	edge [fontname=Courier]
+	node [fontname=Courier shape=record size="6,6"]
+	40 [label="40:libxcb.so.1.1.0, libxcb.so.1.1.0(.plt), libxcb.so.1.1.0(.got)" fillcolor=lightblue rank=same]
+	10 [label="10:libKF5Crash.so.5.108.0, libKF5Crash.so.5.108.0(.plt), libKF5Crash.so.5.108.0(.got), Stack" fillcolor=pink rank=same]
+}
