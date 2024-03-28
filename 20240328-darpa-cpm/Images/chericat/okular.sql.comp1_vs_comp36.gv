@@ -1,0 +1,10 @@
+digraph G {
+	graph [rankdir=RL]
+	node [color=lightgreen fillcolor=lightblue fontname=Courier fontsize=10 style=filled]
+	edge [fontname=Courier]
+	node [fontname=Courier shape=record size="6,6"]
+	1 [label="1:libc.so.7, libc.so.7(.plt), libthr.so.3, libthr.so.3(.plt), Stack" fillcolor=lightblue rank=same]
+	36 [label="36:libc++.so.1, libc++.so.1(.plt), Stack" fillcolor=pink rank=same]
+	1 -> 36 [label=rwxRWE penwidth=2.807535028068773]
+	36 -> 1 [label=rwRW penwidth=3.79218149614862]
+}
