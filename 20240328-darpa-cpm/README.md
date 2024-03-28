@@ -1,5 +1,24 @@
 # DARPA CPM demo, March 28-29, 2024
 
+## CHERI GDB demonstration
+
+1. `gdb-cheri-c18n okular`.
+
+1. In GDB: `r`.
+
+1. In Okular: `File` -> `Open` and click on a file you want to open but don't
+   click `Open`.
+
+1. In GDB: `ctrl-c`
+
+1. In GDB: `rbreak png`. This will take 5s and will display a list of breakpoints.
+
+1. In GDB: `q<enter>` to exit the list of set breakpoints.
+
+1. In GDB: `c`.
+
+1. In Okular: `Open`.
+
 ## CHERI QEMU
 
 1. Install CHERI QEMU:
