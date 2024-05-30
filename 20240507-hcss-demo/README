@@ -1,0 +1,41 @@
+Three quick demos of CHERI memory safety, intended to be run under GDB.  Add
+this line to your gdbinit:
+
+	set listsize 20
+
+Then they will all be short enough to fully list the souce code of, using
+"list", in GDB at the start of each demo.
+
+
+1. buffer-overflow.c
+
+Over run a global array into the next global variable as a result of an
+off-by-one error.  Without CHERI, print the overwritten value.  With CHERI,
+fault with SIGPROT.
+
+Note that the variable 'bp' exists so that you can easily print out the
+capability being dereferenced to see its bounds.
+
+Show off the variable after crash.
+
+2. use-after-free.c
+
+Illustrate the difference between use-after-free and use-after-reallocation to
+motivate understanding of quarantines and CHERI revocation.
+
+Be sure to note that you don't normally need to call malloc_revoke() -- that's
+done automatically by the memory allocator in much the same style as garbage
+collection, as a result of memory pressure.  But since there's no memory
+pressure in our example, and we want to show off the fault, we force it.
+
+Show off the "(invalid)" string when printing the capability after crash.
+
+3. ptr-type-confusion.c
+
+Pointer-integer type confusion is an important tool used in most memory-safety
+attacks to coerce a failure of memory (or just innate C/C++ unsafety) into
+arbitrary code execution.  We show how modifying a memory location as an
+integer fails to preseve the tag, and then an attempted dereference crashes.
+
+Show off the "(invalid)" string when printing the capability after crash.
+Note that it has the right integer value .. it just can't be used.
