@@ -40,7 +40,6 @@ main(void)
 		if (result != 0) {
 			printf("\nSuccess! Type 'exit' to log out.\n\n");
 			do_login();
-			break;
 		} else {
 			printf("Wrong password. Try again.\n\n");
 		}
