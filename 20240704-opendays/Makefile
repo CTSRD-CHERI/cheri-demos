@@ -1,4 +1,4 @@
-all: login-cheri login-unsafe shell
+all: login-cheri login-fixed login-unsafe shell
 
 USER=		admin
 GROUP=		admin
@@ -16,6 +16,9 @@ login.h: login.h.in
 login-cheri: login.h login.c
 	cc -g -o login-cheri login.c
 
+login-fixed: login.h login-fixed.c
+	cc -g -mabi=aapcs -o login-fixed login-fixed.c
+
 login-unsafe: login.h login.c
 	cc -g -mabi=aapcs -o login-unsafe login.c
 
@@ -28,4 +31,4 @@ shell: shell.c
 	sudo chmod 4755 shell
 
 clean:
-	rm -f login.h login-cheri login-unsafe shell
+	rm -f login.h login-cheri login-fixed login-unsafe shell
