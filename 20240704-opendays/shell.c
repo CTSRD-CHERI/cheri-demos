@@ -6,7 +6,7 @@ int
 main(void)
 {
 	char *argv[] = { "/bin/sh", NULL };
-	char *envv[] = { "PS1=\\u@\\h:\\w \\$ ", "HOME=/usr/home/" USER, NULL };
+	char *envv[] = { "PS1=\\u@\\h:\\w \\$ ", "HOME=/home/" USER, NULL };
 
 	chdir("/home/" USER);
 	execve(argv[0], (char **)&argv, (char **)&envv);

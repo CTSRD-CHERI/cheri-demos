@@ -25,7 +25,7 @@ login-unsafe: login.h login.c
 shell: shell.c
 	sudo pw groupadd ${GROUP} -g ${GID} || true
 	sudo pw useradd ${USER} -m -u ${UID} -g ${GID} || true
-	@sudo sh -c 'echo ${PASSWORD} >/usr/home/${USER}/flag'
+	@sudo sh -c 'echo ${PASSWORD} >/home/${USER}/flag'
 	cc -o shell shell.c
 	sudo chown ${USER}:${GROUP} shell
 	sudo chmod 4755 shell
