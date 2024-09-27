@@ -4,8 +4,11 @@
 
 ### Setup
 
-1. Store a password for the Jenkins readonly user in
-   `~/.config/ctsrd-jenkins-readonly-user.txt`.
+1. Store a password for the Jenkins readonly user in:
+
+   ```
+   ~/.config/ctsrd-jenkins-readonly-user.txt
+   ```
 
 1. Install curl.
 
