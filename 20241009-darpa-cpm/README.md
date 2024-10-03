@@ -4,75 +4,61 @@
 
 ### Setup
 
-1. Store a password for the Jenkins readonly user in:
+1. Run:
 
    ```
-   ~/.config/ctsrd-jenkins-readonly-user.txt
+   ./kernel-c18n/setup.sh
    ```
 
-1. Install curl.
+### PI meeting demo
+
+1. Run:
 
    ```
-   sudo pkg64c install curl
+   ./kernel-c18n/demo-pi.sh
    ```
 
-1. Enter the directory with scripts.
+### Example `sift_sa` kernel module
+
+1. Load the multi-object ELF `sift_sa` kernel module:
 
    ```
-   cd kernel-c18n/
+   kldload sift_sa
    ```
 
-1. While connected to the Computer Lab network, fetch a disk image.
+1. Overflow the public buffer by 1 byte, waiting 1s after reading 5 bytes, and
+   suspend the process:
 
    ```
-   ./fetch.sh
+   dd if=/dev/sift_sa_public of=/dev/null bs=1 count=17 speed=5
+   ```
+   ```
+   CTRL-z
    ```
 
-1. Start a VM.
+1. Enter `ddb`:
 
    ```
-   ./start.sh
+   sysctl debug.kdb.enter=1
    ```
 
-1. Stop a VM.
+1. Display loaded kernel modules and their objects:
 
    ```
-   ./stop.sh
+   kldstat
    ```
 
-### ddb
+1. List compartments:
 
-You can enter ddb(4) in the bhyve console by executing:
+   ```
+   c18nstat
+   ```
 
-```
-sysctl debug.kdb.enter=1
-```
+1. Show compartment details, including symbols it imports through relocations:
 
-ddb implements the following commands:
-
-* List kernel modules with their objects:
-
-  ```
-  kldstat
-  ```
-
-* List compartments:
-
-  ```
-  c18nstat
-  ```
-
-* List compartments with those automatically created for all threads:
-
-  ```
-  c18nstat/v
-  ```
-
-* Show compartment details, including symbols it imports through relocations:
-
-  ```
-  show compartment addr
-  ```
+   ```
+   show compartment addr
+   ```
 
 ### Example zlib kernel module
 
@@ -85,8 +71,6 @@ There are two zlib kernel modules:
 Loading either of them will result in using compartmentalization, with
 compartments per object in the `zlib_mo`'s case.
 
-### Demo
-
 1. Load the multi-object ELF zlib kernel module.
 
    ```
@@ -97,8 +81,10 @@ compartments per object in the `zlib_mo`'s case.
    compress data.
 
    ```
-   zlibtest
+   zlibtest -p
    ```
+
+1. Enter `ddb` and display commands as in the `sift_sa`'s case.
 
 ## Library-based compartmentalization for multi-library ELFs
 
