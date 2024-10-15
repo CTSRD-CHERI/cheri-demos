@@ -15,6 +15,6 @@ main(int argc, char *argv[])
 
 	u.u_ptr = &c_array[0];		/* Pointer to first entry. */
 	u.u_int64++;			/* Increment address. */
-	printf("%d\n", *u.u_ptr);	/* Dereference pointer. */
+	printf("%c\n", *u.u_ptr);	/* Dereference pointer. */
 	exit(1);
 }
