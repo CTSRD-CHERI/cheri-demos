@@ -18,31 +18,11 @@ echo "Checking Chromium runtime dependencies"
 # Missing:
 # dav1d - patches ready but no official port
 # snappy - no patches ready for this
-CHROMIUM_RUNTIME_DEPS= \
-    at-spi2-core \
-    boringssl \
-    cairo \
-    flac \
-    gtk3 \
-    fontconfig \
-    freetype \
-    harfbuzz \
-    icu \
-    libxml2 \
-    libxlst \
-    mesa-libs \
-    mesa-dria \
-    noto-basic \
-    nspr \
-    nss \
-    openh264 \
-    opus \
-    png \
-    pango
+CHROMIUM_RUNTIME_DEPS="at-spi2-core boringssl cairo flac gtk3 fontconfig freetype2 harfbuzz icu libxml2 libxslt mesa-libs mesa-dri noto-basic nss openh264 opus png pango"
 
 if $(pkg64c check -d $CHROMIUM_RUNTIME_DEPS); then
     echo "All Chromiumn runtime dependencies found"
 else
     echo "Installing Chromium runtime dependencies"
-    pkg64c install $(CHROMIUM_RUNTIME_DEPS)
+    pkg64c install -y $CHROMIUM_RUNTIME_DEPS
 fi
