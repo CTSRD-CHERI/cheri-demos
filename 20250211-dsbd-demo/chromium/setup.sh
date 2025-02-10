@@ -13,12 +13,19 @@ fi
 
 echo "DSbD Showcase 2025-02-11 Chromium Demo"
 
-echo "Checking Chromium runtime dependencies"
-
-# Missing:
-# dav1d - patches ready but no official port
-# snappy - no patches ready for this
-CHROMIUM_RUNTIME_DEPS="at-spi2-core boringssl cairo flac gtk3 fontconfig freetype2 harfbuzz icu libxml2 libxslt mesa-libs mesa-dri noto-basic nss openh264 opus png pango"
+###############################################################################
+# Dependencies for Chromium (is_component = false).
+# 
+# Dependencies to check:
+# borringssl probably isn't necessary as it is embedded in nss.
+#
+# Missing (but not needed in the demo):
+#     dav1d - patches ready but no official port
+#     speech-dispatch - no patches ready for this
+#     speex - no patches ready for this
+#     snappy - no patches ready for this
+###############################################################################
+CHROMIUM_RUNTIME_DEPS="at-spi2-core cairo cups dbus dbus-glib expat2 flac fontconfig freetype2 glib gtk3 harfbuzz harfbuzz-icu icu jsoncpp libdrm libepoll-shim libevent libexif libffi libgcrypt libpci libsecret libxkbcommon libxshmdence libxml2 libxslt mesa-libs noto-basic nspr nss openh264 opus png pango re2 wayland"
 
 if $(pkg64c check -d $CHROMIUM_RUNTIME_DEPS); then
     echo "All Chromiumn runtime dependencies found"
