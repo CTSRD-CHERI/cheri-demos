@@ -21,11 +21,15 @@ echo "DSbD Showcase 2025-02-11 Chromium Demo"
 #
 # Missing (but not needed in the demo):
 #     dav1d - patches ready but no official port
+#     expat2 - no patches for this
+#     harfbuzz-icu - no patches for this
+#     jsoncpp - no patches for this
+#     libsecret - no patches for this
 #     speech-dispatch - no patches ready for this
 #     speex - no patches ready for this
 #     snappy - no patches ready for this
 ###############################################################################
-CHROMIUM_RUNTIME_DEPS="at-spi2-core cairo cups dbus dbus-glib expat2 flac fontconfig freetype2 glib gtk3 harfbuzz harfbuzz-icu icu jsoncpp libdrm libepoll-shim libevent libexif libffi libgcrypt libpci libsecret libxkbcommon libxshmdence libxml2 libxslt mesa-libs noto-basic nspr nss openh264 opus png pango re2 wayland"
+CHROMIUM_RUNTIME_DEPS="at-spi2-core cairo cups dbus dbus-glib flac fontconfig freetype2 glib gtk3 harfbuzz icu libdrm libepoll-shim libevent libexif libffi libgcrypt libpci libxkbcommon libxshmfence libxml2 libxslt mesa-libs noto-basic nspr nss openh264 opus png pango re2 wayland"
 
 if $(pkg64c check -d $CHROMIUM_RUNTIME_DEPS); then
     echo "All Chromiumn runtime dependencies found"
