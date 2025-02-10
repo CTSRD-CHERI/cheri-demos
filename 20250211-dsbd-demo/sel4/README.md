@@ -8,3 +8,8 @@ $ ./run-sel4-cheri.sh /path/to/sel4test-bhyve-image
 ```
 
 The scripts will create the VM sel4cheri and sel4aarch64 respectively.
+In order to destroy the VM, you can use the following command:
+
+```
+$ sudo bhyvectl --vm=sel4cheri --destroy
+```
