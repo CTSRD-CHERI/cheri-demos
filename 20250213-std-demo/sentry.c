@@ -2,9 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * Show sentry capabilities protecting control flow from manipulation.
- */
 volatile int x = 1;
 
 static void
