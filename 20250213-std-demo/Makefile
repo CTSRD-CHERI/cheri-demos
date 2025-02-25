@@ -1,8 +1,8 @@
 AARCH_ALL=buffer-overflow-aarch64 use-after-free-aarch64 ptr-type-confusion-aarch64 ipc-ptr-aarch64 sentry-aarch64
 CHERI_ALL=buffer-overflow-cheri use-after-free-cheri ptr-type-confusion-cheri ipc-ptr-cheri monotonicity-cheri readonly-ptr-cheri sentry-cheri
 
-AARCH_CC=clang		# aarch64
-CHERI_CC=cc		# aarch64c
+AARCH_CC=cc -mabi=aapcs		# aarch64
+CHERI_CC=cc -mabi=purecap	# aarch64c
 CFLAGS=-Wall -g
 
 all: ${AARCH_ALL} ${CHERI_ALL}
