@@ -1,4 +1,0 @@
-set args --user-data-dir=$(mktemp -d) --js-flags="--jitless --regexp-interpret-all" --single-process
-file /home/demo/chromium/chrome
-
-r
